@@ -1,5 +1,5 @@
 =================================
-Django MegaProjects Kenya Project
+Django MegaProjects Kenya Website
 =================================
 
 Acknowledgements
