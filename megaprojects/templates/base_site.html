@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+  <header class="page-header">
+    <h1 class="page-heading">{% block heading %}{% endblock heading %}</h1>
+  </header>
+  <div class="row columns columns-1">
+    <div class="span12 column column-1">
+      <div class="column-inner">
+        {# Content #}
+        {% block content_1_1 %}{% endblock content_1_1 %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}
