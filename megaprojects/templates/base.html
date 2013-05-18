@@ -5,38 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta name="robots" content="noarchive" />
-
+    <meta name="robots" content="noarchive">
     <title>{% block title %}MegaProjects Kenya{% endblock title %}</title>
-
     {% block stylesheet %}
       {% if debug %}
-        <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
-        <link href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
       {% else %}
         <link href="//netdna.bootstrapcdn.com/bootswatch/2.3.1/cosmo/bootstrap.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
       {% endif %}
+      <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,700,400" rel="stylesheet">
     {% endblock stylesheet %}
-
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
   </head>
-
   <body>
     <div class="container">
       <h1>{% block page_title %}{% endblock page_title %}</h1>
       {% block content %}{% endblock content %}
     </div> <!-- /container -->
-    {% block javascript %}
-      {% if debug %}
-          <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
-          <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-      {% else %}
+    <div id="javascript">
+      {% block javascript %}
+        {% if debug %}
+          <script src="{{ STATIC_URL }}js/jquery.js"></script>
+          <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+          <script src="{{ STATIC_URL }}js/holder.js"></script>
+        {% else %}
           <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
           <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-      {% endif %}
-    {% endblock javascript %}
+        {% endif %}
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+      {% endblock javascript %}
+    </div> <!-- /javascript -->
   </body>
 </html>
