@@ -32,7 +32,7 @@ class Detail(models.Model):
     program = models.ForeignKey(Program)
 
     def __unicode__(self):
-        return self.key
+        return self.title
 
     class Meta:
         order_with_respect_to = 'program'
