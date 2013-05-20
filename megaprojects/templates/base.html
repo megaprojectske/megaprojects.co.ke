@@ -6,16 +6,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="robots" content="noarchive">
+
     <title>{% block title %}MegaProjects Kenya{% endblock title %}</title>
+
     {% block stylesheet %}
-      {% if debug %}
-        <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
-      {% else %}
-        <link href="//netdna.bootstrapcdn.com/bootswatch/2.3.1/cosmo/bootstrap.min.css" rel="stylesheet">
-      {% endif %}
+      <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+      <link href="{{ STATIC_URL }}css/megaprojects.css" rel="stylesheet">
       <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,700,400" rel="stylesheet">
     {% endblock stylesheet %}
   </head>
+
   <body>
     {% include "_header.html" %}
     <div id="navigation">
@@ -34,16 +34,13 @@
       </div> <!-- /container -->
     </div> <!-- /content -->
     {% include "_footer.html" %}
+    
     <div id="javascript">
       {% block javascript %}
-        {% if debug %}
-          <script src="{{ STATIC_URL }}js/jquery.js"></script>
-          <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
-          <script src="{{ STATIC_URL }}js/holder.js"></script>
-        {% else %}
-          <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
-          <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-        {% endif %}
+        <script src="{{ STATIC_URL }}js/jquery.js"></script>
+        <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+        <script src="{{ STATIC_URL }}js/holder.js"></script>
+        <script src="{{ STATIC_URL }}js/megaprojects.js"></script>
         <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
