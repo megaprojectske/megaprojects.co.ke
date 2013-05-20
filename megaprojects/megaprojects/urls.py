@@ -18,3 +18,10 @@ urlpatterns = patterns('',
                        # Uncomment the next line to enable the admin:
                        url(r'^admin/', include(admin.site.urls)),
                        )
+
+import sys
+import settings.base as settings
+
+if 'runserver' in sys.argv:
+    urlpatterns += patterns('', url(r'^media/(.*)$', 'django.views.static.serve', kwargs={
+                            'document_root': settings.MEDIA_ROOT}),)
