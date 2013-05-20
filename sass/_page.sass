@@ -1,0 +1,237 @@
+//
+// Page
+//
+
+
+.container
+  padding: 10px 0
+
+#content
+  background: #f5f5f5
+  padding-bottom: 10px
+  .container
+    background: $white
+    border-left: 1px solid $gray-light
+    border-right: 1px solid $gray-light
+    border-bottom: 1px solid $gray-light
+    padding: 0
+
+#openlayers
+  height: ($grid-row-width / 4)
+  .olTileImage
+    max-width: inherit
+    vertical-align: inherit
+    border: inherit
+  .olControlAttribution
+    +text-shadow(0 1px 0 $white)
+    bottom: 0
+    font-weight: normal
+    line-height: 1em
+    padding: 5px
+    right: 0
+    z-index: 1002 !important
+
+.table-sidebar
+  border-right: 0
+  th
+    border-left: 0
+
+.page-heading
+  line-height: 1.2em
+  margin: 0
+
+.image-render
+  border-top: 1px solid $gray-light
+  border-bottom: 1px solid $gray-light
+  margin-bottom: 10px
+  position: relative
+  .caption
+    background: #222
+    padding: 15px
+    p
+      color: $white
+      line-height: 20px
+      margin-bottom: 0
+  .muted
+    margin: 20px
+
+.pagination
+  margin: 0
+  padding: 20px 0
+
+.block-title
+  background: #fefefe
+  border-bottom: 2px solid $green
+  margin: 0
+  padding: 10px 20px
+  text-transform: capitalize
+
+
+.half-text, .next-page
+  padding: 30px
+  margin-bottom: 0
+  text-transform: uppercase
+  font-size: 20px
+
+.half-text
+  background: #fefefe
+  border-bottom: 2px solid $green
+
+.next-page
+  background: $gray-lighter
+
+.staged-page, 
+  .staged-header
+    border-bottom: 1px solid $gray-light
+    padding: 30px ($grid-row-width / 30)
+  .staged-byline
+    margin-bottom: 0
+    margin-top: 20px
+  .staged-content
+    padding: 40px 0
+    &>p, &>blockquote
+      margin-left: ($grid-row-width / 30)
+      margin-right: ($grid-row-width / 30)
+    &>ul, &>ol
+      padding-left: ($grid-row-width / 30)
+      padding-right: ($grid-row-width / 30)
+    p:last-child
+      margin-bottom: 0
+
+.listed-page
+  .listed-header
+    border-bottom: 1px solid $gray-light
+    padding: 30px ($grid-row-width / 30)
+  .listed-content
+    padding: 40px 0
+  // Remove extra padding
+  .teaser-listed:first-child
+    padding-top: 0
+  .pagination
+    padding-bottom: 0
+
+.teaser-listed
+  border-bottom: 1px dotted $gray-light
+  margin: 0
+  padding-bottom: 20px
+  padding-left: ($grid-row-width / 30)
+  padding-right: ($grid-row-width / 30)
+  padding-top: 20px
+  .teaser-heading
+    font-size: 17.5px // H4
+    line-height: 25px
+  .teaser-byline
+    margin-bottom: 10px
+  .teaser-image
+    margin-bottom: 10px
+
+.teaser-simple
+  padding: 20px
+  .teaser-heading
+    font-size: 21px // H3
+    line-height: 1.25em
+    margin: 0 0 10px
+    a
+      color: $black
+  .teaser-image
+    margin-bottom: 10px
+  .teaser-byline
+    margin-bottom: 10px
+
+.teaser-overlay
+  position: relative
+  .teaser-header
+    background: rgba(0, 0, 0, .5)
+    bottom: 0
+    height: ($grid-row-width / 4)
+    left: 0
+    position: absolute
+    right: 0
+    &:hover
+      background: rgba(0, 0, 0, .25)
+  .teaser-heading
+    +text-shadow(0 1px 1px $black)
+    font-size: 24.5px // H3
+    line-height: 1.25em
+    margin: 0
+    padding: 10px
+    a
+      color: $white
+      &:hover
+        text-decoration: none
+  .teaser-byline
+    +text-shadow(0 1px 1px $black)
+    color: $white
+    margin-bottom: 0
+    padding: 0 10px
+
+.popular-content
+  li
+    border-bottom: 1px dotted $green
+    &:last-child
+      border-bottom: none
+  .popular-listed
+    padding: 10px 0
+    .popular-header
+      text-align: center
+    .popular-heading
+      font-size: 1em
+      line-height: 1.25
+      margin: 0 0 5px
+      a
+        color: $black
+        text-decoration: none
+    .popular-byline
+      margin-bottom: 0
+
+.gallery-carousel
+  margin-bottom: 0
+  .carousel-control
+    +border-radius(0)
+    line-height: 26px
+    top: 50%
+  .carousel-inner
+    background: #454545
+    height: ($grid-row-width / 4)
+  .gallery-image
+    position: relative
+
+hr
+  &.separator-dark, &.separator-dotted
+    margin: 0
+    border-bottom: none
+  &.separator-dark
+    border-top: 1px solid $black
+  &.separator-dotted
+    border-top: 1px dotted $gray-light
+
+.columns
+  &.columns-2
+    .column-1
+      border-right: 1px solid $gray-light
+      margin-right: -1px
+    .column-2
+      background: #fefefe
+      border-left: 1px solid $gray-light
+      width: ($grid-row-width / 3) - 1
+  &.columns-3
+    // .column
+    //   padding-bottom: 9000px // CSS equal height hack
+    //   margin-bottom: -9000px // CSS equal height hack
+    .column-1
+      border-right: 1px solid $gray-light
+      width: ($grid-row-width / 3) - 1
+      .teaser-simple
+        padding-right: 19px
+    .column-2
+      border-left: 1px solid $gray-light
+      border-right: 1px solid $gray-light
+      margin: 0 -1px
+    .column-3
+      border-left: 1px solid $gray-light
+      width: ($grid-row-width / 3) - 1
+      .teaser-simple
+        padding-left: 19px
+
+.nan
+  margin: 0 ($grid-row-width / 30)
