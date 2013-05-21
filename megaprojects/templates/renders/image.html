@@ -1,0 +1,15 @@
+{% load thumbnail %}
+
+  
+<div class="image-render">
+  {% if image and image.status %}
+    {% thumbnail image.image '640' crop='center' as im %}
+      <img id="{{ image.uuid }}" src="{{ im.url }}" title="{{ image.title }}" alt="{% if image.alt %}{{ image.alt }}{% else %}{{ image.title }}{% endif %}">
+      <div class="caption">
+        <p>{{ image.title }}</p>
+      </div>
+    {% endthumbnail %}
+  {% else %}
+    <div class="text-center muted">{% if not image %}Error loading image :-({% else %}Image is not available{% endif %}</div>
+  {% endif %}
+</div>

@@ -27,6 +27,9 @@ class Article(AuthorModel):
 
     objects = ArticleManager()
 
+    def get_absolute_url(self):
+        return reverse('article_detail', kwargs={'pk': self.pk})
+
     @property
     def thumbnail(self):
         if self.image_set.published().filter(article=self):

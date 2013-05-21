@@ -1,0 +1,32 @@
+{% extends "articles/base_detail.html" %}
+{% load core_tags %}
+
+
+{% block title %}
+  {{ article.title }} | {{ block.super }}
+{% endblock title %}
+
+{% block breadcrumbs %}
+  {% include "_breadcrumb.html" %}
+  <li class="active">{{ article.title }}</li>
+{% endblock breadcrumbs %}
+
+{% block heading %}
+  {{ article.title }}
+{% endblock heading %}
+
+{% block byline %}
+  {{ article.pubdate|date:'F j, Y - f A' }}
+{% endblock byline %}
+
+{# Content #}
+{% block content_1_1 %}
+  {% if article.lead %}
+    <p class="lead">{{ article.lead }}</p>
+  {% endif %}
+  {{ article.body|render_images|safe }}
+{% endblock content_1_1 %}
+
+{# Sidebar #}
+{% block content_1_2 %}
+{% endblock content_1_2 %}
