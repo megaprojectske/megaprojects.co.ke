@@ -29,8 +29,8 @@ class Article(AuthorModel):
 
     @property
     def thumbnail(self):
-        if self.image_set.published():
-            return self.image_set.published()[:1].get()
+        if self.image_set.published().filter(article=self):
+            return self.image_set.published().filter(article=self)[:1].get()
 
     class Meta:
         ordering = ['-pubdate']
