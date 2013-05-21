@@ -20,6 +20,11 @@ class Program(BaseModel):
     def save(self, *args, **kwargs):
         super(Program, self).save(*args, **kwargs)
 
+    @property
+    def thumbnail(self):
+        if self.image_set.published().filter(program=self):
+            return self.image_set.published().filter(program=self)[:1].get()
+
     class Meta:
         ordering = ['title']
 
