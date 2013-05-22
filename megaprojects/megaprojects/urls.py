@@ -20,6 +20,7 @@ urlpatterns = patterns('',
 
                        url(r'^articles/', include('articles.urls')),
                        url(r'^projects/', include('programs.urls')),
+                       url(r'^discover/', include('blog.urls')),
                        )
 
 import sys

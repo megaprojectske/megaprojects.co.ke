@@ -21,6 +21,9 @@ class Post(AuthorModel):
 
     objects = PostManager()
 
+    def get_absolute_url(self):
+        return reverse('post_detail', kwargs={'pk': self.pk})
+
     @property
     def thumbnail(self):
         if self.image_set.published().filter(post=self):

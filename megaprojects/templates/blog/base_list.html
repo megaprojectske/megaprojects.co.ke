@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+  <div class="listed-page">
+    <header class="listed-header">
+      <h1 class="page-heading">
+        {% block heading %}{% endblock heading %}
+      </h1>
+    </header>
+    <div class="listed-body">
+      <div class="row columns columns-2">
+        <div class="span8 column column-1">
+          <div class="column-inner listed-content">
+            {# Content #}
+            {% block content_1_1 %}{% endblock content_1_1 %}
+          </div>
+        </div>
+        <aside class="span4 column column-2">
+          <div class="column-inner listed-sidebar">
+            {# Sidebar #}
+            {% block content_1_2 %}{% endblock content_1_2 %}
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

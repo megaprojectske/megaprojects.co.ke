@@ -1,0 +1,33 @@
+{% extends "blog/base_detail.html" %}
+{% load core_tags %}
+
+
+{% block title %}
+  {{ post.title }} | {{ block.super }}
+{% endblock title %}
+
+{% block breadcrumbs %}
+  {% include "_breadcrumb.html" %}
+  <li><a href="{% url 'post_listed' %}">Blog</a> <span class="divider">/</span></li>
+  <li class="active">{{ post.title }}</li>
+{% endblock breadcrumbs %}
+
+{% block heading %}
+  {{ post.title }}
+{% endblock heading %}
+
+{% block byline %}
+  {{ post.pubdate|date:'F j, Y - f A' }}
+{% endblock byline %}
+
+{# Content #}
+{% block content_1_1 %}
+  {% if post.lead %}
+    <p class="lead">{{ post.lead }}</p>
+  {% endif %}
+  {{ post.body|render_images|safe }}
+{% endblock content_1_1 %}
+
+{# Sidebar #}
+{% block content_1_2 %}
+{% endblock content_1_2 %}
