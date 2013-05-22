@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+  <div class="staged-page">
+    <header class="staged-header">
+      <h1 class="page-heading">
+        {% block heading %}{% endblock heading %}
+      </h1>
+    </header>
+    <div class="staged-body">
+      <div class="row columns columns-1">
+        <div class="span12 column column-1">
+          <div class="column-inner staged-content">
+            {# Content #}
+            {% block content_1_1 %}{% endblock content_1_1 %}
+          </div>
+        </div>
+      </div>
+      <hr class="separator-dark">
+      <div class="row columns columns-1">
+        <div class="span12 column column-1">
+          <div class="column-inner">
+            {# Recent #}
+            {% block content_2_1 %}{% endblock content_2_1 %}
+          </div>
+        </div>
+      </div>
+      <hr class="separator-dark">
+      <div class="row columns columns-3">
+        <div class="span4 column column-1">
+          <div class="column-inner">
+            {# Recent #}
+            {% block content_3_1 %}{% endblock content_3_1 %}
+          </div>
+        </div>
+        <div class="span4 column column-2">
+          <div class="column-inner">
+            {# Popular #}
+            {% block content_3_2 %}{% endblock content_3_2 %}
+          </div>
+        </div>
+        <div class="span4 column column-3">
+          <div class="column-inner">
+            {# Recent #}
+            {% block content_3_3 %}{% endblock content_3_3 %}
+          </div>
+        </div>
+      </div>
+      {% if image_list %}
+        <hr class="separator-dark">
+        <div class="row columns columns-1">
+          <div class="span12 column column-1">
+            <div class="column-inner">
+              {# Gallery #}
+              {% block content_4_1 %}{% endblock content_4_1 %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      <hr class="separator-dark">
+      <div class="row columns columns-3">
+        <div class="span4 column column-1">
+          <div class="column-inner">
+            {# Recent #}
+            {% block content_5_1 %}{% endblock content_5_1 %}
+          </div>
+        </div>
+        <div class="span4 column column-2">
+          <div class="column-inner">
+            {# Popular #}
+            {% block content_5_2 %}{% endblock content_5_2 %}
+          </div>
+        </div>
+        <div class="span4 column column-3">
+          <div class="column-inner">
+            {# Recent #}
+            {% block content_5_3 %}{% endblock content_5_3 %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="separator-dark">
+    {% block bottom %}{% endblock bottom %}
+  </div>
+{% endblock content %}

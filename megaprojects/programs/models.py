@@ -17,8 +17,8 @@ class Program(BaseModel):
 
     objects = ProgramManager()
 
-    def save(self, *args, **kwargs):
-        super(Program, self).save(*args, **kwargs)
+    def get_absolute_url(self):
+        return reverse('program_current', kwargs={'pk': self.pk})
 
     @property
     def thumbnail(self):

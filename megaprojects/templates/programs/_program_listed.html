@@ -1,0 +1,16 @@
+{% load thumbnail core_tags %}
+
+<article class="teaser-overlay">
+  <div class="teaser-image">
+    {% thumbnail program.thumbnail.image '960x240' crop='center' as im %}
+      <img src="{{ im.url }}" title="{{ program.thumbnail.title }}" alt="{% if program.thumbnail.alt %}{{ program.thumbnail.alt }}{% else %}{{ program.thumbnail.title }}{% endif %}">
+    {% empty%}
+      <img data-src="holder.js/960x240/auto">
+    {% endthumbnail %}
+  </div>
+  <header class="teaser-header">
+    <h2 class="teaser-heading">
+      <a href="{{ program.get_absolute_url }}">{{ program.title }}</a>
+    </h2>
+  </header>
+</article>

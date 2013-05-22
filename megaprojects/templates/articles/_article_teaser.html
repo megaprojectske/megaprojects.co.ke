@@ -1,0 +1,23 @@
+{% load thumbnail core_tags %}
+
+
+<article class="teaser-simple">
+  <header class="teaser-header">
+    <h2 class="teaser-heading">
+      <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+    </h2>
+    <p class="teaser-byline">
+      {{ article.pubdate|date:'F j, Y - f A' }}
+    </p>
+  </header>
+  <div class="teaser-image">
+    {% thumbnail article.thumbnail.image '280x210' crop='center' as im %}
+      <img src="{{ im.url }}" title="{{ article.thumbnail.title }}" alt="{% if article.thumbnail.alt %}{{ article.thumbnail.alt }}{% else %}{{ article.thumbnail.title }}{% endif %}">
+    {% empty%}
+      <img data-src="holder.js/280x210/auto">
+    {% endthumbnail %}
+  </div>
+  <div class="teaser-body">
+    {{ article.body|remove_images|striptags|linebreaks|truncatewords:30 }}
+  </div>
+</article>

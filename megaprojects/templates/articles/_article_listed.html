@@ -1,0 +1,26 @@
+{% load thumbnail core_tags %}
+
+
+
+<article class="media teaser-listed">
+  <a class="pull-left" href="{{ article.get_absolute_url }}">
+    {% thumbnail article.thumbnail.image '168x168' crop='center' as im %}
+      <img class="media-object" src="{{ im.url }}" title="{{ article.thumbnail.title }}" alt="{% if article.thumbnail.alt %}{{ article.thumbnail.alt }}{% else %}{{ article.thumbnail.title }}{% endif %}">
+    {% empty%}
+      <img class="media-object" data-src="holder.js/168x168/auto">
+    {% endthumbnail %}
+  </a>
+  <div class="media-body">
+    <header class="teaser-header">
+      <h2 class="media-heading teaser-heading">
+        <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+      </h2>
+      <p class="teaser-byline">
+        {{ article.pubdate|date:'F j, Y - f A' }}
+      </p>
+    </header>
+    <div class="media-body teaser-body">
+      {{ article.body|remove_images|striptags|linebreaks|truncatewords:60 }} <a href="{{ post.get_absolute_url }}">Read More</a>
+    </div>
+  </div>
+</article>

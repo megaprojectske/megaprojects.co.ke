@@ -1,0 +1,57 @@
+{% extends "programs/base_detail.html" %}
+{% load core_tags %}
+
+
+{% block title %}
+  {{ program.title }} - Details | {{ block.super }}
+{% endblock title %}
+
+{% block breadcrumbs %}
+  {% include "_breadcrumb.html" %}
+  <li><a href="{% url 'program_listed' %}">Projects</a> <span class="divider">/</span></li>
+  <li class="active">{{ program.title }}</li>
+  <li class="pull-right"><a href="{{ program.get_absolute_url }}">Current</a> <span class="divider">|</span> <span class="active">Details</span> <span class="divider">|</span> <a href="{% url 'program_archive' program.pk %}">Archive</a></li>
+{% endblock breadcrumbs %}
+
+{% block heading %}
+  {{ program.title }} <small>Details</small>
+{% endblock heading %}
+
+{# Content #}
+{% block content_1_1 %}
+  {% if program.body %}  
+    {% if program.lead %}
+      <p class="lead">{{ program.lead }}</p>
+    {% endif %}
+    {{ program.body|render_images|safe }}
+  {% else %}
+    <p class="muted">No Description Given</p>
+  {% endif %}
+{% endblock content_1_1 %}
+
+{# Sidebar #}
+{% block content_1_2 %}
+  {% if program.detail_set.all %}
+    {% include "programs/_program_details.html" %}
+  {% endif %}
+{% endblock content_1_2 %}
+
+{# Geo/Map #}
+{% block content_2_1 %}
+  <div id="openlayers"></div>
+{% endblock content_2_1 %}
+
+{# -------------------------------------------------------------------------- #}
+
+{% block stylesheet %}
+  {{ block.super }}
+  <link href="{{ STATIC_URL }}openlayers/theme/default/style.css" rel="stylesheet">
+{% endblock stylesheet %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script src="{{ STATIC_URL }}openlayers/openlayers.js"></script>
+  <script type="text/javascript">
+    {% include "programs/_openlayers_map.js" %}
+  </script>
+{% endblock javascript %}
