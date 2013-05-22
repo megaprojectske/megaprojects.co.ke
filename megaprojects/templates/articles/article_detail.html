@@ -16,7 +16,7 @@
 {% endblock heading %}
 
 {% block byline %}
-  {{ article.pubdate|date:'F j, Y - f A' }}
+  {{ article.pubdate|date:'F j, Y - f A' }} {% if article.program %}| <a href="{{ article.program.get_absolute_url }}">{{ article.program.title }}</a>{% endif %}
 {% endblock byline %}
 
 {# Content #}

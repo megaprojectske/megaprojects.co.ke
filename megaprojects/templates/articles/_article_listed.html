@@ -20,7 +20,7 @@
       </p>
     </header>
     <div class="media-body teaser-body">
-      {{ article.body|remove_images|striptags|linebreaks|truncatewords:60 }} <a href="{{ post.get_absolute_url }}">Read More</a>
+      {{ article.body|remove_images|striptags|linebreaks|truncatewords:60 }} <a href="{{ article.get_absolute_url }}">Read More</a>
     </div>
   </div>
 </article>

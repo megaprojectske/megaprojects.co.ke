@@ -18,6 +18,6 @@
     {% endthumbnail %}
   </div>
   <div class="teaser-body">
-    {{ article.body|remove_images|striptags|linebreaks|truncatewords:30 }}
+    {{ article.body|remove_images|striptags|linebreaks|truncatewords:30 }} <a href="{{ article.get_absolute_url }}">Read More</a>
   </div>
 </article>

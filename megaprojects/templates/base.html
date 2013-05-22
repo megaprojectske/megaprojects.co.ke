@@ -21,21 +21,21 @@
     <div id="navigation">
       <div class="container">
         {% include "_navigation.html" %}
+      </div> <!-- /container -->
+    </div> <!-- /navigation -->
+    <div id="content">
+      <div class="container">
         <ul class="breadcrumb">
           {% block breadcrumbs %}
             <li class="active">Front Page</li>
           {% endblock breadcrumbs %}
         </ul>
-      </div> <!-- /container -->
-    </div> <!-- /navigation -->
-    <div id="content">
-      <div class="container">
         {% block content %}{% endblock content %}
       </div> <!-- /container -->
     </div> <!-- /content -->
     {% include "_footer.html" %}
     
-    <div id="javascript">
+    <div id="scripts">
       {% block javascript %}
         <script src="{{ STATIC_URL }}js/jquery.js"></script>
         <script src="{{ STATIC_URL }}js/bootstrap.js"></script>

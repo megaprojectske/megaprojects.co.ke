@@ -61,6 +61,12 @@ class ProgramCurrentView(DetailView):
             article for article in Article.objects.published().filter(program=self.object)[:12]]
         context['image_list'] = [image for image in Image.objects.published().filter(
             article__program=self.object)[:12]]
-        context['popular_list'] = [
-            article for article in Article.objects.published().filter(program=self.object)[:8]]
+
+        popular_list = [article for article in Article.objects.published().filter(
+            program=self.object)[:8]]
+
+        # Only show popular list if more than 5 exist
+        if len(popular_list) >= 5:
+            context['popular_list'] = popular_list
+
         return context

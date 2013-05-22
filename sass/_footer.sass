@@ -4,9 +4,23 @@
 
 
 #footer
-  background: #454545
+  background: $banner-bg-gray
   border-top: 2px solid $black
   color: #c3c3c3
+  .search-form
+    margin: 20px 0 0
+    input
+      padding: 12px
+      &:focus
+        outline: none
+    button
+      border: 1px solid $gray
+      padding-bottom: 12px
+      padding-top: 12px
+      &:hover, &:focus
+        border-color: #c8c8c8
+    .input-append
+      margin-bottom: 0
   .block
     // padding-left: 10px
     .title

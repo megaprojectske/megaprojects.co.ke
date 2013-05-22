@@ -4,15 +4,11 @@
 
 
 #navigation
-  padding-top: 10px
-  background: #f5f5f5
+  border-bottom: 2px solid $black
   .container
+    background-color: $white
     padding: 0
-    border-left: 1px solid $gray-light
-    border-right: 1px solid $gray-light
-    border-top: 1px solid $gray-light
-    background: $white
-
+    
 .primary-menu
   .primary-nav
     +inline-block-list-container
@@ -20,11 +16,11 @@
     +inline-block-list-item
     float: left
     &:hover
-      border-left: 1px solid $gray-light
-      border-right: 1px solid $gray-light
+      border-left: 1px solid $content-border
+      border-right: 1px solid $content-border
       .primary-link
-        padding: 0 19px
         background: none
+        padding: 0 19px
       .primary-block
         display: block
   .primary-link
@@ -36,10 +32,10 @@
     .caret
       margin: 1.4em 0 0 0.4em
   .primary-block
-    background: $white
-    border-bottom: 1px solid $gray-light
-    border-left: 1px solid $gray-light
-    border-right: 1px solid $gray-light
+    background-color: $white
+    border-bottom: 1px solid $content-border
+    border-left: 1px solid $content-border
+    border-right: 1px solid $content-border
     display: none
     margin-left: -1px
     position: absolute
@@ -53,8 +49,8 @@
         padding: 10px 30px
 
 .secondary-menu
+  background-color: $black
   height: 1.8em
-  background: $black
   .secondary-title
     +float-left
     color: $white
@@ -73,8 +69,3 @@
       padding: 0 10px
       &:hover
         background: none
-
-.breadcrumb
-  background: #f5f5f5
-  margin-bottom: 0
-  border-bottom: 1px solid $gray-light

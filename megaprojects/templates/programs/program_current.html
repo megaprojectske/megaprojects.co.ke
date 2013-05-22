@@ -28,11 +28,13 @@
 
 {# Recent #}
 {% block content_2_1 %}
-  {% for article in article_list|slice:':4' %}
-    <span class="span3">
-      {% include "articles/_article_overlay.html" %}
-    </span>
-  {% endfor %}
+  <div class="overlay-carousel">
+    {% for article in article_list|slice:':4' %}
+      <span class="span3">
+        {% include "articles/_article_overlay.html" %}
+      </span>
+    {% endfor %}
+  </div>
 {% endblock content_2_1 %}
 
 {# Recent #}

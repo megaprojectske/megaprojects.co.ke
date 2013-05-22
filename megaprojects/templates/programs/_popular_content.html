@@ -14,9 +14,9 @@
             <h2 class="popular-heading">
               <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
             </h2>
-            <p class="popular-byline">
+            <small class="popular-byline">
               {{ article.pubdate|date:'F j, Y - f A' }}
-            </p>
+            </small>
           </header>
         </article>
       </li>
