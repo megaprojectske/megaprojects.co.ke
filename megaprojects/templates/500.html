@@ -1,1 +1,20 @@
-<h1>Whoops!</h1>
+{% extends "base_site.html" %}
+
+
+{% block title %}
+  Whoops!
+{% endblock title %}
+
+{% block breadcrumbs %}
+  {% include "_breadcrumb.html" %}
+  <li class="active">500</li>
+{% endblock breadcrumbs %}
+
+{% block heading %}
+  Whoops!
+{% endblock heading %}
+
+{# Content #}
+{% block content_1_1 %}
+  <p>:-S</p>
+{% endblock content_1_1 %}
