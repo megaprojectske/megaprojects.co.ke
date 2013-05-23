@@ -1,12 +1,13 @@
 from django.conf.urls import patterns, include, url
-from django.views.generic import TemplateView
+
+from .views import FrontPageView
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-                       url(r'^$', TemplateView.as_view(template_name='base.html')),
+                       url(regex=r'^$', view=FrontPageView.as_view(), name='frontpage'),
 
                        # Examples:
                        # url(r'^$', 'megaprojects.views.home', name='home'),
