@@ -10,10 +10,12 @@ import util
 class Program(BaseModel):
 
     abbr = models.CharField('abbreviation', max_length=255, blank=True)
-    status = models.BooleanField(
-        help_text='Boolean indicating whether the entity is published (visible to non-administrators).')
     lead = models.CharField(max_length=255, blank=True)
     body = models.TextField(blank=True)
+    status = models.BooleanField(
+        help_text='Boolean indicating whether the entity is published (visible to non-administrators).')
+    reviewed = models.BooleanField(
+        help_text='Program has been reviewed (quality control).')
 
     objects = ProgramManager()
 

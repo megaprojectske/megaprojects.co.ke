@@ -34,7 +34,7 @@ class ProgramAdmin(admin.ModelAdmin):
 
     actions = [make_published, make_unpublished]
     inlines = [DetailInline, ImageInline]
-    list_display = ['title', 'abbr', 'status']
+    list_display = ['title', 'abbr', 'status', 'reviewed']
     list_filter = ['status']
     readonly_fields = ['uuid', 'created', 'changed']
     search_fields = ['title']

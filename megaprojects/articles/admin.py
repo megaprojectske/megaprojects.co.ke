@@ -24,7 +24,7 @@ make_withdrawn.short_description = "Mark selected articles as Withdrawn"
 class ImageInline(admin.TabularInline):
 
     extra = 1
-    fields = ['title', 'alt', 'status', 'reviewed', 'image', 'uuid']
+    fields = ['title', 'alt', 'status', 'reviewed', 'thumbnail', 'image', 'uuid']
     model = Image
     ordering = ['created']
     readonly_fields = ['uuid']

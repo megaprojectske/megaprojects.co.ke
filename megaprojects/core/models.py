@@ -66,6 +66,8 @@ class ImageModel(BaseModel):
                            help_text='Alternative image text, for the image\'s \'alt\' attribute.')
     status = models.BooleanField(
         default=True, help_text='Boolean indicating whether the entity is published (visible to non-administrators).')
+    reviewed = models.BooleanField(
+        help_text='Object has been reviewed (quality control).')
 
     def __unicode__(self):
         return self.uuid

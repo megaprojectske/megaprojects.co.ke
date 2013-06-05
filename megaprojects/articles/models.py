@@ -44,8 +44,6 @@ class Article(AuthorModel):
 class Image(ImageModel):
 
     image = models.ImageField(upload_to=util.get_image_path)
-    reviewed = models.BooleanField(
-        help_text='Image has been reviewed (quality control).')
 
     article = models.ForeignKey(Article)
 
