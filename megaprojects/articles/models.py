@@ -22,6 +22,8 @@ class Article(AuthorModel):
     body = models.TextField()
     drupal_id = models.IntegerField('drupal NID', unique=True, blank=True,
                                     null=True, help_text='Node ID from the previous Drupal website (imported).')
+    reviewed = models.BooleanField(
+        help_text='Article has been reviewed (quality control).')
 
     program = models.ForeignKey(Program, blank=True, null=True)
 
@@ -42,6 +44,8 @@ class Article(AuthorModel):
 class Image(ImageModel):
 
     image = models.ImageField(upload_to=util.get_image_path)
+    reviewed = models.BooleanField(
+        help_text='Image has been reviewed (quality control).')
 
     article = models.ForeignKey(Article)
 

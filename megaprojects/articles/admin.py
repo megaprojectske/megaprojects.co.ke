@@ -24,7 +24,7 @@ make_withdrawn.short_description = "Mark selected articles as Withdrawn"
 class ImageInline(admin.TabularInline):
 
     extra = 1
-    fields = ['title', 'alt', 'status', 'image', 'uuid']
+    fields = ['title', 'alt', 'status', 'reviewed', 'image', 'uuid']
     model = Image
     ordering = ['created']
     readonly_fields = ['uuid']
@@ -34,7 +34,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
     actions = [make_draft, make_published, make_withdrawn]
     inlines = [ImageInline]
-    list_display = ['title', 'status', 'pubdate', 'program', 'author']
+    list_display = ['title', 'status', 'pubdate', 'program', 'author', 'reviewed']
     list_filter = ['status', 'pubdate', 'program', 'author__username']
     readonly_fields = ['drupal_id', 'uuid', 'created', 'changed']
     search_fields = ['title']
@@ -46,7 +46,7 @@ class ArticleAdmin(admin.ModelAdmin):
         (None, {'fields': ['lead', 'body']}),
         ('Advanced', {
             'classes': ['collapse'],
-            'fields': ['drupal_id', 'uuid', 'created', 'changed']
+            'fields': ['drupal_id', 'uuid', 'created', 'changed', 'reviewed']
         }),
     ]
 
