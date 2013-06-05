@@ -8,8 +8,18 @@
       <div class="caption">
         <p>{{ image.title }}</p>
       </div>
+    {% empty %}
+      <div class="text-center muted">
+        Error loading image (500)
+      </div>
     {% endthumbnail %}
   {% else %}
-    <div class="text-center muted">{% if not image %}Error loading image :-({% else %}Image is not available{% endif %}</div>
+    <div class="text-center muted">
+      {% if image %}
+        Image is not available
+      {% else %}
+        Error loading image (404)
+      {% endif %}
+    </div>
   {% endif %}
 </div>
