@@ -9,6 +9,7 @@ from .models import Program
 class ProgramListedView(ListView):
 
     model = Program
+    paginate_by = 5
 
     def get_queryset(self):
         # Check that status = True (Published)
