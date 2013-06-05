@@ -2,6 +2,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 
 from core.models import BaseModel, ImageModel
+from core.util import unique_boolean
 
 from .managers import ProgramManager, ImageManager
 import util
@@ -24,8 +25,9 @@ class Program(BaseModel):
 
     @property
     def thumbnail(self):
-        if self.image_set.published().filter(program=self):
-            return self.image_set.published().filter(program=self)[:1].get()
+        thumbnail = self.image_set.filter(status=True).filter(thumbnail=True)
+        # 'thumbnail' field is unique
+        return thumbnail.get() if thumbnail else None
 
     class Meta:
         ordering = ['title']
@@ -45,6 +47,8 @@ class Detail(models.Model):
         order_with_respect_to = 'program'
 
 
+# Keep the 'thumbnail' field unique for the images of each program
+@unique_boolean('thumbnail', subset=['program'])
 class Image(ImageModel):
 
     image = models.ImageField(upload_to=util.get_image_path)

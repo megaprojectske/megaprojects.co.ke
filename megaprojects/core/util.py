@@ -53,3 +53,39 @@ def image_remove(content):
         return ''
 
     return image_sub(content, _replace)
+
+
+def unique_boolean(field, subset=[]):
+    from functools import wraps
+
+    """
+    Allows to specify a unique boolean for a model.
+    """
+
+    def cls_factory(cls):
+        def factory(func):
+            @wraps(func)
+            def decorator(self):
+                kwargs = {field: True}
+                for arg in subset:
+                    if getattr(self, arg):
+                        kwargs[arg] = getattr(self, arg)
+                if getattr(self, field):
+                    try:
+                        tmp = self.__class__.objects.get(**kwargs)
+                        if self != tmp:
+                            setattr(tmp, field, False)
+                            tmp.save()
+                    except self.__class__.DoesNotExist:
+                        if getattr(self, field) is not True:
+                            setattr(self, field, True)
+                else:
+                    if self.__class__.objects.filter(**kwargs).count() == 0:
+                        setattr(self, field, True)
+                return func(self)
+            return decorator
+        if hasattr(cls, 'save'):
+            cls.save = factory(cls.save)
+        return cls
+
+    return cls_factory

@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 
 from core.models import AuthorModel, ImageModel
+from core.util import unique_boolean
 
 from .managers import PostManager, ImageManager
 import util
@@ -26,13 +27,16 @@ class Post(AuthorModel):
 
     @property
     def thumbnail(self):
-        if self.image_set.published().filter(post=self):
-            return self.image_set.published().filter(post=self)[:1].get()
+        thumbnail = self.image_set.filter(status=True).filter(thumbnail=True)
+        # 'thumbnail' field is unique
+        return thumbnail.get() if thumbnail else None
 
     class Meta:
         ordering = ['-pubdate']
 
 
+# Keep the 'thumbnail' field unique for the images of each post
+@unique_boolean('thumbnail', subset=['post'])
 class Image(ImageModel):
 
     image = models.ImageField(upload_to=util.get_image_path)
