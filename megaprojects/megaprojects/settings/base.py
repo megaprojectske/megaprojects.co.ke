@@ -184,10 +184,10 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
-    # Database migration helpers:
     'south',
     'bootstrap-pagination',
     'sorl.thumbnail',
+    'ckeditor',
 )
 
 # Apps specific for this project go here.
@@ -240,3 +240,29 @@ LOGGING = {
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = 'wsgi.application'
 ########## END WSGI CONFIGURATION
+
+
+########## CKEDITOR CONFIGURATION
+# See: https://github.com/shaunsephton/django-ckeditor#required
+CKEDITOR_UPLOAD_PATH = normpath(join(SITE_ROOT, 'ckeditor'))
+
+# See: https://github.com/shaunsephton/django-ckeditor#optional
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar_Full': [
+            ['Source', '-', 'Save', 'NewPage', 'DocProps', 'Preview', 'Print'],
+            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'],
+            ['Find', 'Replace', '-', 'SelectAll', '-', 'SpellChecker', 'Scayt'],
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Table', 'HorizontalRule', 'SpecialChar'],
+            ['Format'],
+            ['Maximize', 'ShowBlocks', '-', 'About'],
+        ],
+        'forcePasteAsPlainText': True,
+        'startupMode': 'source',
+        'startupOutlineBlocks': True,
+    },
+}
+########## END CKEDITOR CONFIGURATION

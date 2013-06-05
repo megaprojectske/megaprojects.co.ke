@@ -1,24 +1,32 @@
+from django import forms
 from django.contrib import admin
+
+from ckeditor.widgets import CKEditorWidget
 
 from .models import Post, Image
 
 
 def make_draft(modeladmin, request, queryset):
     queryset.update(status='d')
-
 make_draft.short_description = "Mark selected posts as Draft"
 
 
 def make_published(modeladmin, request, queryset):
     queryset.update(status='p')
-
 make_published.short_description = "Mark selected posts as Published"
 
 
 def make_withdrawn(modeladmin, request, queryset):
     queryset.update(status='w')
-
 make_withdrawn.short_description = "Mark selected posts as Withdrawn"
+
+
+class PostAdminForm(forms.ModelForm):
+
+    body = forms.CharField(widget=CKEditorWidget())
+
+    class Meta:
+        model = Post
 
 
 class ImageInline(admin.TabularInline):
@@ -38,6 +46,8 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ['status', 'pubdate', 'author__username']
     readonly_fields = ['drupal_id', 'uuid', 'created', 'changed']
     search_fields = ['title']
+
+    form = PostAdminForm
 
     fieldsets = [
         (None, {'fields': ['title', 'author']}),

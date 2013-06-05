@@ -7,14 +7,17 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-                       url(regex=r'^$', view=FrontPageView.as_view(), name='frontpage'),
+                       url(regex=r'^$', view=FrontPageView.as_view(),
+                           name='frontpage'),
 
                        # Examples:
                        # url(r'^$', 'megaprojects.views.home', name='home'),
-                       # url(r'^megaprojects/', include('megaprojects.foo.urls')),
+                       # url(r'^megaprojects/',
+                       # include('megaprojects.foo.urls')),
 
                        # Uncomment the admin/doc line below to enable admin documentation:
-                       # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+                       # url(r'^admin/doc/',
+                       # include('django.contrib.admindocs.urls')),
 
                        # Uncomment the next line to enable the admin:
                        url(r'^admin/', include(admin.site.urls)),
@@ -22,6 +25,8 @@ urlpatterns = patterns('',
                        url(r'^articles/', include('articles.urls')),
                        url(r'^projects/', include('programs.urls')),
                        url(r'^discover/', include('blog.urls')),
+
+                       url(r'^ckeditor/', include('ckeditor.urls')),
                        )
 
 import sys
