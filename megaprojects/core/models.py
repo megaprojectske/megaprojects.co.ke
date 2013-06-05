@@ -11,8 +11,10 @@ class TimeStampedModel(models.Model):
     ``modified`` fields.
     """
 
-    created = models.DateTimeField(auto_now_add=True, help_text='The time when this entity was created.')
-    changed = models.DateTimeField(auto_now=True, help_text='The time when this entity was most recently saved.')
+    created = models.DateTimeField(
+        auto_now_add=True, help_text='The time when this entity was created.')
+    changed = models.DateTimeField(
+        auto_now=True, help_text='The time when this entity was most recently saved.')
 
     class Meta:
         abstract = True
@@ -24,17 +26,18 @@ class BaseModel(TimeStampedModel):
     Abstract model for main entities. Provides a ``title`` and ``uuid`` field.
     """
 
-    title = models.CharField(max_length=255, help_text='The title of this entity, always treated as non-markup plain text.')
+    title = models.CharField(
+        max_length=255, help_text='The title of this entity, always treated as non-markup plain text.')
     uuid = models.CharField('UUID', max_length=255, unique=True,
                             help_text='Unique Key: Universally unique identifier for this entity.')
+
+    def __unicode__(self):
+        return self.title
 
     def save(self, *args, **kwargs):
         if not self.uuid:
             self.uuid = uuid.uuid4()
         super(BaseModel, self).save(*args, **kwargs)
-
-    def __unicode__(self):
-        return self.title
 
     class Meta:
         abstract = True
@@ -59,7 +62,8 @@ class ImageModel(BaseModel):
     Abstract base class model for Image fields.
     """
 
-    alt = models.CharField(max_length=255, blank=True, help_text='Alternative image text, for the image\'s \'alt\' attribute.')
+    alt = models.CharField(max_length=255, blank=True,
+                           help_text='Alternative image text, for the image\'s \'alt\' attribute.')
     status = models.BooleanField(
         default=True, help_text='Boolean indicating whether the entity is published (visible to non-administrators).')
 
