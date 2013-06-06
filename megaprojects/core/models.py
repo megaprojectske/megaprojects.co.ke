@@ -68,7 +68,7 @@ class ImageModel(BaseModel):
         default=True, help_text='Boolean indicating whether the entity is published (visible to non-administrators).')
     reviewed = models.BooleanField(
         help_text='Object has been reviewed (quality control).')
-    thumbnail = models.BooleanField(help_text='Set as main object thumbnail.')
+    thumbnail = models.BooleanField(help_text='Boolean indicating whether the entity is the main model thumbnail.')
 
     def __unicode__(self):
         return self.uuid
