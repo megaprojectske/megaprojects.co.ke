@@ -27,7 +27,7 @@
   {% if article.lead %}
     <p class="lead">{{ article.lead }}</p>
   {% endif %}
-  {{ article.body|render_images|safe }}
+  {{ article.body|render_images:article|safe }}
 {% endblock content_1_1 %}
 
 {# Sidebar #}

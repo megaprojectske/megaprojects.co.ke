@@ -23,7 +23,7 @@
     {% if program.lead %}
       <p class="lead">{{ program.lead }}</p>
     {% endif %}
-    {{ program.body|render_images|safe }}
+    {{ program.body|render_images:program|safe }}
   {% else %}
     <p class="muted">No Description Given</p>
   {% endif %}
