@@ -33,7 +33,8 @@ class DetailInline(admin.TabularInline):
 class ImageInline(admin.TabularInline):
 
     extra = 1
-    fields = ['title', 'alt', 'status', 'image', 'uuid']
+    fields = ['title', 'alt', 'status',
+              'reviewed', 'thumbnail', 'image', 'uuid']
     model = Image
     ordering = ['created']
     readonly_fields = ['uuid']
