@@ -261,7 +261,8 @@ CKEDITOR_CONFIGS = {
             ['Maximize', 'ShowBlocks', '-', 'About'],
         ],
         'forcePasteAsPlainText': True,
-        'startupMode': 'source',
+        'scayt_autoStartup': True,
+        'scayt_sLang': 'en_GB',
         'startupOutlineBlocks': True,
     },
 }
