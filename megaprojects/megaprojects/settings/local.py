@@ -65,3 +65,9 @@ MIDDLEWARE_CLASSES += (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 ########## END TOOLBAR CONFIGURATION
+
+
+########## SORL THUMBNAIL CONFIGURATION
+# See: http://sorl-thumbnail.readthedocs.org/en/latest/logging.html#errors-logging
+THUMBNAIL_DEBUG = DEBUG
+########## END SORL THUMBNAIL CONFIGURATION
