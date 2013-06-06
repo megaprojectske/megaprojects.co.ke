@@ -19,7 +19,7 @@ class ArticleDetailView(DetailView):
     model = Article
 
     def get_queryset(self):
-        # Check that status = 'p' (Published)
+        # Check that the status = 'p' (Published)
         self.article = get_object_or_404(
             Article, pk=self.kwargs.get('pk'), status='p')
         return super(ArticleDetailView, self).get_queryset()

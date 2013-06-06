@@ -458,8 +458,8 @@ body {
 
 /* line 202, ../../../sass/_page.sass */
 .image-render {
-  border-top: 1px solid #dfdfdf;
   border-bottom: 1px solid #dfdfdf;
+  border-top: 1px solid #dfdfdf;
   margin-bottom: 10px;
 }
 /* line 206, ../../../sass/_page.sass */

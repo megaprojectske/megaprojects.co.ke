@@ -9,12 +9,12 @@
         <p>{{ image.title }}</p>
       </div>
     {% empty %}
-      <div class="text-center muted">
+      <div class="muted text-center">
         Error loading image (500)
       </div>
     {% endthumbnail %}
   {% else %}
-    <div class="text-center muted">
+    <div class="muted text-center">
       {% if image %}
         Image is not available
       {% else %}
