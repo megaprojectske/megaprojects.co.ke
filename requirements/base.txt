@@ -7,3 +7,4 @@ South==0.7.6
 django-bootstrap-pagination==0.1.10
 sorl-thumbnail==11.12
 django-ckeditor==4.0.2
+Pillow-PIL==0.1dev
