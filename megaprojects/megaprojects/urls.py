@@ -1,10 +1,21 @@
 from django.conf.urls import patterns, include, url
+from django.contrib.sitemaps import GenericSitemap
 
+from articles.models import Article
+from programs.models import Program
+from blog.models import Post
 from .views import FrontPageView
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
+
+
+sitemaps = {
+    'articles': GenericSitemap({'queryset': Article.objects.published(), 'date_field': 'pubdate'}),
+    'projects': GenericSitemap({'queryset': Program.objects.published(), 'date_field': 'created'}),
+    'discover': GenericSitemap({'queryset': Post.objects.published(), 'date_field': 'pubdate'}),
+}
 
 urlpatterns = patterns('',
                        url(regex=r'^$', view=FrontPageView.as_view(),
@@ -14,6 +25,8 @@ urlpatterns = patterns('',
                        # url(r'^$', 'megaprojects.views.home', name='home'),
                        # url(r'^megaprojects/',
                        # include('megaprojects.foo.urls')),
+                       url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {
+                           'sitemaps': sitemaps}),
 
                        # Uncomment the admin/doc line below to enable admin documentation:
                        # url(r'^admin/doc/',

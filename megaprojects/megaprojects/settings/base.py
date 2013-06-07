@@ -185,6 +185,7 @@ DJANGO_APPS = (
     # 'django.contrib.admindocs',
 
     'django.contrib.flatpages',
+    'django.contrib.sitemaps',
 )
 
 THIRD_PARTY_APPS = (
