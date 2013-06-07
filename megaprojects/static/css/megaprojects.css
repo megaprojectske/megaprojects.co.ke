@@ -151,7 +151,7 @@ body {
 }
 
 /* line 8, ../../../sass/_page.sass */
-#megaprojects {
+#page {
   background-color: white;
 }
 
@@ -518,32 +518,33 @@ body {
 
 /* line 6, ../../../sass/_header.sass */
 #header {
+  background-color: white;
   border-bottom: 1px solid #dfdfdf;
 }
-/* line 8, ../../../sass/_header.sass */
+/* line 9, ../../../sass/_header.sass */
 #header .search-form {
   float: right;
   margin-bottom: 0;
 }
-/* line 11, ../../../sass/_header.sass */
+/* line 12, ../../../sass/_header.sass */
 #header .search-form input {
   padding: 12px;
 }
-/* line 13, ../../../sass/_header.sass */
+/* line 14, ../../../sass/_header.sass */
 #header .search-form input:focus {
   outline: none;
 }
-/* line 15, ../../../sass/_header.sass */
+/* line 16, ../../../sass/_header.sass */
 #header .search-form button {
   border: 1px solid #bbbbbb;
   padding-bottom: 12px;
   padding-top: 12px;
 }
-/* line 19, ../../../sass/_header.sass */
+/* line 20, ../../../sass/_header.sass */
 #header .search-form button:hover, #header .search-form button:focus {
   border-color: #c8c8c8;
 }
-/* line 21, ../../../sass/_header.sass */
+/* line 22, ../../../sass/_header.sass */
 #header .search-form .input-append {
   margin-bottom: 0;
 }

@@ -33,11 +33,16 @@ REF: +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       <link href="{{ STATIC_URL }}css/megaprojects.css" rel="stylesheet">
       <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,700,400" rel="stylesheet">
     {% endblock stylesheet %}
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
 
   <body>
-    <div id="megaprojects">
-      {% include "_header.html" %}
+    {% include "_header.html" %}
+
+    <div id="page">
       <div id="navigation">
         <div class="container">
           {% include "_navigation.html" %}
@@ -53,7 +58,8 @@ REF: +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
           {% block content %}{% endblock content %}
         </div> <!-- /container -->
       </div> <!-- /content -->
-    </div> <!-- /megaprojects -->
+    </div> <!-- /page -->
+
     {% include "_footer.html" %}
 
     <div id="scripts">
@@ -62,9 +68,6 @@ REF: +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
         <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
         <script src="{{ STATIC_URL }}js/holder.js"></script>
         <script src="{{ STATIC_URL }}js/megaprojects.js"></script>
-        <!--[if lt IE 9]>
-          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
       {% endblock javascript %}
     </div> <!-- /scripts -->
   </body>
