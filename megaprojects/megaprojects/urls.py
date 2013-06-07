@@ -5,6 +5,7 @@ from articles.models import Article
 from programs.models import Program
 from blog.models import Post
 from .views import FrontPageView
+from .feeds import FrontPageFeed
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -20,6 +21,7 @@ sitemaps = {
 urlpatterns = patterns('',
                        url(regex=r'^$', view=FrontPageView.as_view(),
                            name='frontpage'),
+                       url(r"^rss/index.xml$", FrontPageFeed()),
 
                        # Examples:
                        # url(r'^$', 'megaprojects.views.home', name='home'),
