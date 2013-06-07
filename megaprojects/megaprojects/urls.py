@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.sitemaps import GenericSitemap
+from django.views.generic import TemplateView
 
 from articles.models import Article
 from programs.models import Program
@@ -29,6 +30,8 @@ urlpatterns = patterns('',
                        # include('megaprojects.foo.urls')),
                        url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {
                            'sitemaps': sitemaps}),
+                       url(r'^robots\.txt$', TemplateView.as_view(
+                           template_name='robots.txt', content_type='text/plain')),
 
                        # Uncomment the admin/doc line below to enable admin documentation:
                        # url(r'^admin/doc/',
