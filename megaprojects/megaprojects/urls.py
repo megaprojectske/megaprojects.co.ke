@@ -20,14 +20,14 @@ sitemaps = {
 }
 
 urlpatterns = patterns('',
-                       url(regex=r'^$', view=FrontPageView.as_view(),
-                           name='frontpage'),
+                       url(r'^$', FrontPageView.as_view(), name='frontpage'),
                        url(r"^rss/index.xml$", FrontPageFeed()),
 
-                       # Examples:
-                       # url(r'^$', 'megaprojects.views.home', name='home'),
-                       # url(r'^megaprojects/',
-                       # include('megaprojects.foo.urls')),
+                       url(r'^articles/', include('articles.urls')),
+                       url(r'^projects/', include('programs.urls')),
+                       url(r'^discover/', include('blog.urls')),
+                       url(r'^ckeditor/', include('ckeditor.urls')),
+
                        url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {
                            'sitemaps': sitemaps}),
                        url(r'^robots\.txt$', TemplateView.as_view(
@@ -39,12 +39,6 @@ urlpatterns = patterns('',
 
                        # Uncomment the next line to enable the admin:
                        url(r'^admin/', include(admin.site.urls)),
-
-                       url(r'^articles/', include('articles.urls')),
-                       url(r'^projects/', include('programs.urls')),
-                       url(r'^discover/', include('blog.urls')),
-
-                       url(r'^ckeditor/', include('ckeditor.urls')),
                        )
 
 import sys
