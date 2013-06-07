@@ -155,6 +155,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
 )
 ########## END MIDDLEWARE CONFIGURATION
 
@@ -181,6 +183,8 @@ DJANGO_APPS = (
     # Admin panel and documentation:
     'django.contrib.admin',
     # 'django.contrib.admindocs',
+
+    'django.contrib.flatpages',
 )
 
 THIRD_PARTY_APPS = (

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+  <article class="staged-page">
+    <header class="staged-header">
+      <h1 class="page-heading">
+        {% block heading %}{% endblock heading %}
+      </h1>
+    </header>
+    <div class="staged-body">
+      <div class="row columns columns-2">
+        <div class="span8 column column-1">
+          <div class="column-inner staged-content">
+            {# Content #}
+            {% block content_1_1 %}{% endblock content_1_1 %}
+          </div>
+        </div>
+        <aside class="span4 column column-2">
+          <div class="column-inner staged-sidebar">
+            {# Sidebar #}
+            {% block content_1_2 %}{% endblock content_1_2 %}
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article> <!-- /article -->
+{% endblock content %}
