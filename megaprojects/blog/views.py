@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 from .models import Post
 
 
-class PostListedView(ListView):
+class PostListView(ListView):
 
     model = Post
     paginate_by = 8

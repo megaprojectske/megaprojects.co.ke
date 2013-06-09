@@ -1,13 +1,13 @@
 from django.conf.urls import patterns
 from django.conf.urls import url
 
-from .views import PostListedView, PostDetailView
+from .views import PostListView, PostDetailView
 
 urlpatterns = patterns("",
                        url(
                            regex=r"^$",
-                           view=PostListedView.as_view(),
-                           name="post_listed"
+                           view=PostListView.as_view(),
+                           name="post_list"
                        ),
                        url(
                            regex=r"^(?P<pk>\d+)/$",

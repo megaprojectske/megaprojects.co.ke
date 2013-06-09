@@ -45,13 +45,13 @@
 
 {% block stylesheet %}
   {{ block.super }}
-  <link href="{{ STATIC_URL }}openlayers/theme/default/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ STATIC_URL }}openlayers/theme/default/style.css">
 {% endblock stylesheet %}
 
 {% block javascript %}
   {{ block.super }}
   <script src="{{ STATIC_URL }}openlayers/openlayers.js"></script>
-  <script type="text/javascript">
+  <script>
     {% include "programs/_openlayers_map.js" %}
   </script>
 {% endblock javascript %}

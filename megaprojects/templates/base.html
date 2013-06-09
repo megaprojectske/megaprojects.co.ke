@@ -29,9 +29,9 @@ REF: +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     <title>{% block title %}MegaProjects Kenya{% endblock title %}</title>
 
     {% block stylesheet %}
-      <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
-      <link href="{{ STATIC_URL }}css/megaprojects.css" rel="stylesheet">
-      <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,700,400" rel="stylesheet">
+      <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" >
+      <link rel="stylesheet" href="{{ STATIC_URL }}css/megaprojects.css">
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,700,400">
     {% endblock stylesheet %}
 
     <!--[if lt IE 9]>
@@ -62,13 +62,13 @@ REF: +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
     {% include "_footer.html" %}
 
-    <div id="scripts">
+    <div id="script">
       {% block javascript %}
         <script src="{{ STATIC_URL }}js/jquery.js"></script>
         <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
         <script src="{{ STATIC_URL }}js/holder.js"></script>
         <script src="{{ STATIC_URL }}js/megaprojects.js"></script>
       {% endblock javascript %}
-    </div> <!-- /scripts -->
+    </div> <!-- /script -->
   </body>
 </html>

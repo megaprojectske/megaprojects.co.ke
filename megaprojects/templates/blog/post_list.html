@@ -19,7 +19,7 @@
 {% block content_1_1 %}
   {% if post_list %}
     {% for post in post_list %}
-      {% include "blog/_post_listed.html" %}
+      {% include "blog/_post_list.html" %}
     {% endfor %}
     {% bootstrap_paginate page_obj range=8 show_first_last='true' %}
   {% else %}

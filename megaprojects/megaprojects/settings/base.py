@@ -189,10 +189,10 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
-    'south',
     'bootstrap-pagination',
-    'sorl.thumbnail',
     'ckeditor',
+    'sorl.thumbnail',
+    'south',
 )
 
 # Apps specific for this project go here.

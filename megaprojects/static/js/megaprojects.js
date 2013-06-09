@@ -7,8 +7,8 @@
 
             var maxH = Math.max(col1.height(), col2.height());
 
-            col1.height(maxH);
-            col2.height(maxH);
+            col1.css('min-height', maxH);
+            col2.css('min-height', maxH);
         });
 
         $('.columns-3').each(function (index, object) {
@@ -18,9 +18,9 @@
 
             var maxH = Math.max(col1.height(), col2.height(), col3.height());
 
-            col1.height(maxH);
-            col2.height(maxH);
-            col3.height(maxH);
+            col1.css('min-height', maxH);
+            col2.css('min-height', maxH);
+            col3.css('min-height', maxH);
         });
     });
 

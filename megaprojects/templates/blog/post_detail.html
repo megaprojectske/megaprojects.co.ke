@@ -8,26 +8,21 @@
 
 {% block breadcrumbs %}
   {% include "_breadcrumb.html" %}
-  <li><a href="{% url 'post_listed' %}">Blog</a> <span class="divider">/</span></li>
+  <li><a href="{% url 'post_list' %}">Blog</a> <span class="divider">/</span></li>
   <li class="active">{{ post.title }}</li>
 {% endblock breadcrumbs %}
 
-{% block heading %}
+{# Headline #}
+{% block headline %}
   {{ post.title }}
-{% endblock heading %}
+{% endblock headline %}
 
+{# Byline #}
 {% block byline %}
   {{ post.pubdate|date:'F j, Y - f A' }}
 {% endblock byline %}
 
-{# Content #}
-{% block content_1_1 %}
-  {% if post.lead %}
-    <p class="lead">{{ post.lead }}</p>
-  {% endif %}
+{# Body #}  
+{% block body %}
   {{ post.body|render_images:post|safe }}
-{% endblock content_1_1 %}
-
-{# Sidebar #}
-{% block content_1_2 %}
-{% endblock content_1_2 %}
+{% endblock body %}
