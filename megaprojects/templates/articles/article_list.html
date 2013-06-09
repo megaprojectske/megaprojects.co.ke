@@ -11,17 +11,19 @@
   <li class="active">Articles</li>
 {% endblock breadcrumbs %}
 
-{% block heading %}
+{# Headline #}
+{% block headline %}
   Articles
-{% endblock heading %}
+{% endblock headline %}
 
-{# Content #}
-{% block content_1_1 %}
-  {# {% if article_list %} #}
-    {# {% for article in article_list %} #}
-    {# {% endfor %} #}
-    {# {% bootstrap_paginate page_obj range=8 show_first_last='true' %} #}
-  {# {% else %} #}
+{# List #}
+{% block list %}
+  {% if article_list %}
+    {% for article in article_list %}
+      {% include "articles/_article_list.html" %}
+    {% endfor %}
+    {% bootstrap_paginate page_obj range=8 show_first_last='true' %}
+  {% else %}
     <p class="muted nan">Nothing available - Check back later</p>
-  {# {% endif %} #}
-{% endblock content_1_1 %}
+  {% endif %}
+{% endblock list %}

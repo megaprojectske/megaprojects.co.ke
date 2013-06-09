@@ -19,7 +19,7 @@
 
 {# Byline #}
 {% block byline %}
-  {{ post.pubdate|date:'F j, Y - f A' }}
+  {{ post.pubdate|date:'F j, Y - f A' }} | <a href="{% url 'post_list' %}">Blog</a>
 {% endblock byline %}
 
 {# Body #}  

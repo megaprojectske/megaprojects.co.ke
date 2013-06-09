@@ -2,35 +2,36 @@
 
 
 {% block content %}
-  <article class="staged-page">
-    <header class="staged-header">
+  <div class="staged-page">
+    <div class="staged-header">
+      {# Headline #}
       <h1 class="page-heading">
-        {% block heading %}{% endblock heading %}
+        {% block headline %}{% endblock headline %}
       </h1>
-    </header>
-    <div class="staged-body">
-      <div class="row columns columns-2">
-        <div class="span8 column column-1">
-          <div class="column-inner staged-content">
-            {# Content #}
-            {% block content_1_1 %}{% endblock content_1_1 %}
-          </div>
+    </div>
+    <div class="row columns columns-2">
+      <div class="span8 column column-1">
+        {# Lead | Body #}
+        <div class="staged-content">
+          {% block lead %}{% endblock lead %}
+          {% block body %}{% endblock body %}
         </div>
-        <aside class="span4 column column-2">
-          <div class="column-inner staged-sidebar">
-            {# Sidebar #}
-            {% block content_1_2 %}{% endblock content_1_2 %}
-          </div>
-        </aside>
       </div>
-      <div class="row columns columns-1">
-        <div class="span12 column column-1">
-          <div class="column-inner">
-            {# Geo/Map #}
-            {% block content_2_1 %}{% endblock content_2_1 %}
-          </div>
+      <div class="span4 column column-2">
+        {# Sidebar #}
+        <div class="staged-sidebar">
+          {% block sidebar %}{% endblock sidebar %}
         </div>
       </div>
     </div>
-  </article> <!-- /article -->
+    <div class="row columns columns-1">
+      <div class="span12 column column-1">
+        {# Geo/Map #}
+        <div class="staged-map">
+          {% block map %}{% endblock map %}
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock content %}
+

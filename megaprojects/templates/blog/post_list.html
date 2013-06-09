@@ -11,12 +11,13 @@
   <li class="active">Blog</li>
 {% endblock breadcrumbs %}
 
-{% block heading %}
+{# Headline #}
+{% block headline %}
   Blog
-{% endblock heading %}
+{% endblock headline %}
 
-{# Content #}
-{% block content_1_1 %}
+{# List #}
+{% block list %}
   {% if post_list %}
     {% for post in post_list %}
       {% include "blog/_post_list.html" %}
@@ -25,4 +26,4 @@
   {% else %}
     <p class="muted nan">Nothing available - Check back later</p>
   {% endif %}
-{% endblock content_1_1 %}
+{% endblock list %}

@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 from .models import Article
 
 
-class ArticleListedView(ListView):
+class ArticleListView(ListView):
 
     model = Article
     paginate_by = 8

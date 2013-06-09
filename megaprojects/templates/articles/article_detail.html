@@ -11,10 +11,12 @@
   <li class="active">{{ article.title }}</li>
 {% endblock breadcrumbs %}
 
-{% block heading %}
+{# Headline #}
+{% block headline %}
   {{ article.title }}
-{% endblock heading %}
+{% endblock headline %}
 
+{# Byline #}
 {% block byline %}
   {{ article.pubdate|date:'F j, Y - f A' }} 
   {% if article.program %}
@@ -22,14 +24,14 @@
   {% endif %}
 {% endblock byline %}
 
-{# Content #}
-{% block content_1_1 %}
+{# Lead #}
+{% block lead %}
   {% if article.lead %}
     <p class="lead">{{ article.lead }}</p>
   {% endif %}
-  {{ article.body|render_images:article|safe }}
-{% endblock content_1_1 %}
+{% endblock lead %}
 
-{# Sidebar #}
-{% block content_1_2 %}
-{% endblock content_1_2 %}
+{# Body #}  
+{% block body %}
+  {{ article.body|render_images:article|safe }}
+{% endblock body %}

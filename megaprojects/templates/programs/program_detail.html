@@ -13,35 +13,40 @@
   <li class="pull-right"><a href="{{ program.get_absolute_url }}">Current</a> <span class="divider">|</span> <span class="active">Details</span> <span class="divider">|</span> <a href="{% url 'program_archive' program.pk %}">Archive</a></li>
 {% endblock breadcrumbs %}
 
-{% block heading %}
+{# Headline #}
+{% block headline %}
   {{ program.title }} <small>Details</small>
-{% endblock heading %}
+{% endblock headline %}
 
-{# Content #}
-{% block content_1_1 %}
-  {% if program.body %}  
-    {% if program.lead %}
-      <p class="lead">{{ program.lead }}</p>
-    {% endif %}
+{# Lead #}
+{% block lead %}
+  {% if program.lead %}
+    <p class="lead">{{ program.lead }}</p>
+  {% endif %}
+{% endblock lead %}
+
+{# Body #}
+{% block body %}
+  {% if program.body %}
     {{ program.body|render_images:program|safe }}
   {% else %}
     <p class="muted">No Description Given</p>
   {% endif %}
-{% endblock content_1_1 %}
+{% endblock body %}
 
 {# Sidebar #}
-{% block content_1_2 %}
+{% block sidebar %}
   {% if program.detail_set.all %}
     {% include "programs/_program_details.html" %}
   {% endif %}
-{% endblock content_1_2 %}
+{% endblock sidebar %}
 
 {# Geo/Map #}
-{% block content_2_1 %}
+{% block map %}
   <div id="openlayers"></div>
-{% endblock content_2_1 %}
+{% endblock map %}
 
-{# -------------------------------------------------------------------------- #}
+{# ------------------------------------------------------------------------- #}
 
 {% block stylesheet %}
   {{ block.super }}
