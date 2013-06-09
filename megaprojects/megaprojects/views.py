@@ -1,13 +1,22 @@
 from django.views.generic import TemplateView
 
-from articles.models import Article
+from articles.models import Article, Image
+from blog.models import Post
 
 
 class FrontPageView(TemplateView):
 
-    template_name = "frontpage/frontpage.html"
+    template_name = "frontpage/index.html"
 
     def get_context_data(self, **kwargs):
         context = super(FrontPageView, self).get_context_data(**kwargs)
-        context['article_list'] = [article for article in Article.objects.all()[:12]]
+
+        context['article_list'] = [
+            article for article in Article.objects.published()[:15]]
+        context['popular_list'] = context['article_list'][:5]
+        context['image_list'] = [
+            image for image in Image.objects.published()[:6]]
+        context['post_list'] = [
+            article for article in Post.objects.published()[:5]]
+
         return context

@@ -1,0 +1,33 @@
+{% extends "renders/block.html" %}
+{% load thumbnail %}
+
+
+{% block heading %}
+  <h3 class="block-title">Blog - Recent Posts</h3>
+{% endblock heading %}
+
+{% block content %}
+  <ul class="unstyled post-content">
+    {% for post in post_list %}
+      <li class="media post-list">
+        <a class="pull-left" href="{{ post.get_absolute_url }}">
+          {% thumbnail post.thumbnail.image '95x95' crop='center' as im %}
+            <img class="media-object" src="{{ im.url }}" title="{{ post.thumbnail.title }}" alt="{% if post.thumbnail.alt %}{{ post.thumbnail.alt }}{% else %}{{ post.thumbnail.title }}{% endif %}">
+          {% empty%}
+            <img class="media-object" data-src="holder.js/95x95/auto">
+          {% endthumbnail %}
+        </a>
+        <div class="media-body post-body">
+          <div class="post-header">
+            <h2 class="media-heading post-heading">
+              <a href="{{ post.get_absolute_url }}">{{ post.title|truncatechars:50 }}</a>
+            </h2>
+            <p class="post-byline">
+              {{ post.pubdate|date:'F j, Y' }}
+            </p>
+          </div>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

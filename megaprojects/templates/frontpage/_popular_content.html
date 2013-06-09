@@ -1,0 +1,25 @@
+{% extends "renders/block.html" %}
+
+
+{% block heading %}
+  <h3 class="block-title">Popular Content This Week</h3>
+{% endblock heading %}
+
+{% block content %}
+  <ul class="unstyled popular-content">
+    {% for article in popular_list %}
+      <li>
+        <div class="popular-list">
+          <div class="popular-header">
+            <h2 class="popular-heading">
+              <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+            </h2>
+            <small class="popular-byline">
+              {{ article.pubdate|date:'F j, Y - f A' }}
+            </small>
+          </div>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

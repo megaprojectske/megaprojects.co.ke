@@ -5,6 +5,14 @@
 body
   background-color: $banner-bg-gray
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  font-weight: normal
+
 #page
   background-color: $white
 
@@ -153,6 +161,24 @@ body
       color: $black
       text-decoration: none
 
+.post-content
+  margin: 0
+  .post-list
+    margin-top: 0
+    border-bottom: 1px dotted $black
+    &:last-child
+      border-bottom: none
+  .post-body
+    margin-right: 10px
+    margin-top: 10px
+  .post-heading
+    font-size: 1.1em
+    line-height: 1.5
+    margin: 0 0 5px
+    a
+      color: $black
+      text-decoration: none
+
 .staged-page
   .staged-byline
     margin-bottom: 0
@@ -193,8 +219,19 @@ body
   .gallery-image
     position: relative
 
+.frontpage-carousel
+  background-color: $banner-bg-gray
+  margin-bottom: 0
+  .carousel-control
+    +border-radius(0)
+    line-height: 26px
+    top: 50%
+  .carousel-inner
+    height: ($grid-row-width / 4)
+  .frontpage-image
+    position: relative
+
 .page-heading
-  font-weight: normal
   line-height: 1.2
   margin: 0
 
@@ -221,11 +258,17 @@ body
 .nan
   margin: 0 ($grid-row-width / 30)
 
-.separator-dotted
+.separator-dotted,
+.separator-solid
   border-bottom: none
-  border-top: 1px dotted $content-border
-  height: 1px
+  height: 0
   margin: 0
+
+.separator-dotted
+  border-top: 1px dotted $content-border
+
+.separator-solid
+  border-top: 1px solid $black
 
 .next-page
   background-color: $content-bg-gray

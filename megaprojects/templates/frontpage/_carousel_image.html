@@ -1,0 +1,13 @@
+{% load thumbnail %}
+
+
+{% thumbnail image.image '480x240' crop='center' as im %}
+  <div class="span6 frontpage-image">
+    <img src="{{ im.url }}" title="{{ image.title }}" alt="{% if image.alt %}{{ image.alt }}{% else %}{{ image.title }}{% endif %}">
+    <a href="{{ image.article.get_absolute_url }}#{{ image.uuid }}">
+      <div class="carousel-caption">
+        <p>{{ image.title }}</p>
+      </div>
+    </a>
+  </div>
+{% endthumbnail %}

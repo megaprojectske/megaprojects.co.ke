@@ -1,0 +1,37 @@
+{% extends "renders/block.html" %}
+
+
+{% block heading %}
+  <h3 class="block-title">Gallery - Recent Images</h3>
+{% endblock heading %}
+
+{% block content %}
+  <div id="carousel" class="carousel slide frontpage-carousel" data-interval="false">
+    <ol class="carousel-indicators">
+      <li data-target="#carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel" data-slide-to="1"></li>
+      <li data-target="#carousel" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner">
+      <div class="active item">
+        {% for image in image_list|slice:':2' %}
+          {% include "frontpage/_carousel_image.html" %}
+        {% endfor %}
+      </div>
+      <div class="item">
+        {% for image in image_list|slice:'2:4' %}
+          {% include "frontpage/_carousel_image.html" %}
+        {% endfor %}
+      </div>
+      <div class="item">
+        {% for image in image_list|slice:'4:6' %}
+          {% include "frontpage/_carousel_image.html" %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <a class="carousel-control left" href="#carousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#carousel" data-slide="next">&rsaquo;</a>
+  </div>
+{% endblock content %}
