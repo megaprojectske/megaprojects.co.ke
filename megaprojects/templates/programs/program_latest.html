@@ -1,0 +1,41 @@
+{% extends "programs/base_latest.html" %}
+{% load core_tags %}
+
+
+{% block title %}
+  {{ program.title }} | {{ block.super }}
+{% endblock title %}
+
+{% block breadcrumbs %}
+  {% include "_breadcrumb.html" %}
+  <li><a href="{% url 'program_list' %}">Projects</a> <span class="divider">/</span></li>
+  <li class="active">{{ program.title }}</li>
+  <li class="pull-right"><span class="active">Current</span> <span class="divider">|</span> <a href="{% url 'program_detail' program.pk %}">Details</a> <span class="divider">|</span> <a href="{% url 'program_archive' program.pk %}">Archive</a></li>
+{% endblock breadcrumbs %}
+
+{# Headline #}
+{% block headline %}
+  {{ program.title }}
+{% endblock headline %}
+
+{# Body #}
+{% block body %}
+  {% if program.body %}
+    <p>{{ program.body|remove_images|striptags|linebreaks|truncatewords:40 }} <a href="{% url 'program_detail' program.pk %}">Read More</a></p>
+  {% else %}
+    <p class="muted">No Description Given</p>
+  {% endif %}
+{% endblock body %}
+
+{# Latest #}
+{% block latest %}
+  {% include "programs/_program_latest.html" %}
+{% endblock latest %}
+
+{# Bottom #}
+{% block bottom %}
+  <div class="text-center next-page">
+    {{ program.title }} <a href="{% url 'program_archive' program.pk %}">Archive</a>
+  </div>
+{% endblock bottom %}
+

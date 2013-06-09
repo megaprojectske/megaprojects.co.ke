@@ -11,21 +11,22 @@
   <li class="active">Projects</li>
 {% endblock breadcrumbs %}
 
-{% block heading %}
+{# Headline #}
+{% block headline %}
   Projects
-{% endblock heading %}
+{% endblock headline %}
 
-{# Content #}
-{% block content_1_1 %}
+{# List #}
+{% block list %}
   {% if program_list %}
     {% for program in program_list %}
-      {% include "programs/_program_listed.html" %}
+      {% include "programs/_program_list.html" %}
       {% if not forloop.last %}
-        <hr class="separator-dotted">
+        <hr class="separator-solid">
       {% endif %}
     {% endfor %}
     {% bootstrap_paginate page_obj range=8 show_first_last='true' %}
   {% else %}
     <p class="muted nan">Nothing available - Check back later</p>
   {% endif %}
-{% endblock content_1_1 %}
+{% endblock list %}

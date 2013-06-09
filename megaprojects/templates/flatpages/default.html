@@ -10,15 +10,12 @@
   <li class="active">{{ flatpage.title }}</li>
 {% endblock breadcrumbs %}
 
-{% block heading %}
+{# Headline #}
+{% block headline %}
   {{ flatpage.title }}
-{% endblock heading %}
+{% endblock headline %}
 
-{# Content #}
-{% block content_1_1 %}
+{# Body #}
+{% block body %}
   {{ flatpage.content|safe }}
-{% endblock content_1_1 %}
-
-{# Sidebar #}
-{% block content_1_2 %}
-{% endblock content_1_2 %}
+{% endblock body %}

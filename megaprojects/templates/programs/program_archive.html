@@ -8,7 +8,7 @@
 
 {% block breadcrumbs %}
   {% include "_breadcrumb.html" %}
-  <li><a href="{% url 'program_listed' %}">Projects</a> <span class="divider">/</span></li>
+  <li><a href="{% url 'program_list' %}">Projects</a> <span class="divider">/</span></li>
   <li class="active">{{ program.title }}</li>
   <li class="pull-right"><a href="{{ program.get_absolute_url }}">Current</a> <span class="divider">|</span> <a href="{% url 'program_detail' program.pk %}">Details</a> <span class="divider">|</span> <span class="active">Archive</span></li>
 {% endblock breadcrumbs %}

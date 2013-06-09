@@ -9,19 +9,17 @@
         {% block headline %}{% endblock headline %}
       </h1>
     </div>
-    <div class="row columns columns-2">
-      <div class="span8 column column-1">
-        {# Body #}
+    <div class="row columns columns-1">
+      <div class="span12 column column-1">
         <div class="staged-content">
+          {# Body #}
           {% block body %}{% endblock body %}
         </div>
       </div>
-      <div class="span4 column column-2">
-        {# Sidebar #}
-        <div class="staged-sidebar">
-          {% block sidebar %}{% endblock sidebar %}
-        </div>
-      </div>
     </div>
+    {# Latest #}
+    {% block latest %}{% endblock latest %}
+    {# Bottom #}
+    {% block bottom %}{% endblock bottom %}
   </div>
 {% endblock content %}

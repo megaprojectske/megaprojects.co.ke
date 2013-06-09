@@ -1,0 +1,20 @@
+{% load thumbnail %}
+
+
+<div class="teaser-overlay">
+  <div class="teaser-image">
+    {% thumbnail article.thumbnail.image '320x240' crop='center' as im %}
+      <img src="{{ im.url }}" title="{{ article.thumbnail.title }}" alt="{% if article.thumbnail.alt %}{{ article.thumbnail.alt }}{% else %}{{ article.thumbnail.title }}{% endif %}">
+    {% empty%}
+      <img data-src="holder.js/320x240/auto">
+    {% endthumbnail %}
+  </div>
+  <div class="teaser-header">
+    <h2 class="teaser-heading">
+      <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+    </h2>
+    <p class="teaser-byline">
+      {{ article.pubdate|date:'F j, Y - f A' }}
+    </p>
+  </div>
+</div>

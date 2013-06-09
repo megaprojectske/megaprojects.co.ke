@@ -9,16 +9,16 @@
   <ul class="unstyled popular-content">
     {% for article in popular_list %}
       <li>
-        <article class="popular-listed">
-          <header class="popular-header">
+        <div class="popular-list">
+          <div class="popular-header">
             <h2 class="popular-heading">
               <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
             </h2>
             <small class="popular-byline">
               {{ article.pubdate|date:'F j, Y - f A' }}
             </small>
-          </header>
-        </article>
+          </div>
+        </div>
       </li>
     {% endfor %}
   </ul>

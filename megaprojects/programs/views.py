@@ -6,7 +6,7 @@ from articles.models import Article, Image
 from .models import Program
 
 
-class ProgramListedView(ListView):
+class ProgramListView(ListView):
 
     model = Program
     paginate_by = 5
@@ -45,27 +45,27 @@ class ProgramDetailView(DetailView):
         return super(ProgramDetailView, self).get_queryset()
 
 
-class ProgramCurrentView(DetailView):
+class ProgramLatestView(DetailView):
 
     model = Program
-    template_name = 'programs/program_current.html'
+    template_name = 'programs/program_latest.html'
 
     def get_queryset(self):
         # Check that status = True (Published)
         self.program = get_object_or_404(
             Program, pk=self.kwargs.get('pk'), status=True)
-        return super(ProgramCurrentView, self).get_queryset()
+        return super(ProgramLatestView, self).get_queryset()
 
     def get_context_data(self, **kwargs):
-        context = super(ProgramCurrentView, self).get_context_data(**kwargs)
-        context['article_list'] = [
-            article for article in Article.objects.published().filter(program=self.object)[:12]]
-        context['image_list'] = [image for image in Image.objects.published().filter(
-            article__program=self.object)[:12]]
+        context = super(ProgramLatestView, self).get_context_data(**kwargs)
 
         popular_list = [article for article in Article.objects.published().filter(
             program=self.object)[:8]]
 
+        context['article_list'] = [
+            article for article in Article.objects.published().filter(program=self.object)[:12]]
+        context['image_list'] = [image for image in Image.objects.published().filter(
+            article__program=self.object)[:12]]
         # Only show popular list if more than 5 exist
         if len(popular_list) >= 5:
             context['popular_list'] = popular_list
