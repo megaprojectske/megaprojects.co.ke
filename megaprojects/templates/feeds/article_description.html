@@ -1,5 +1,6 @@
 {% load thumbnail core_tags %}
 
+
 {% thumbnail obj.thumbnail.image '640x480' crop='center' as im %}
   <img src="{{ im.url }}" title="{{ obj.thumbnail.title }}" alt="{% if obj.thumbnail.alt %}{{ obj.thumbnail.alt }}{% else %}{{ obj.thumbnail.title }}{% endif %}">
 {% endthumbnail %}

@@ -22,8 +22,8 @@ REF: +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    {# <meta name="description" content=""> #}
+    {# <meta name="author" content=""> #}
     <meta name="robots" content="noarchive">
 
     <title>{% block title %}MegaProjects Kenya{% endblock title %}</title>
@@ -34,33 +34,25 @@ REF: +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
       <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,700,400">
     {% endblock stylesheet %}
 
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    {% block extrahead %}
+      <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+    {% endblock extrahead %}
   </head>
 
   <body>
-    {% include "_header.html" %}
+    <header id="header">
+      {% include "_header.html" %}
+    </header> <!-- /header -->
 
     <div id="page">
-      <div id="navigation">
-        <div class="container">
-          {% include "_navigation.html" %}
-        </div> <!-- /container -->
-      </div> <!-- /navigation -->
-      <div id="content">
-        <div class="container">
-          <ul class="breadcrumb">
-            {% block breadcrumbs %}
-              <li class="active">Front Page</li>
-            {% endblock breadcrumbs %}
-          </ul>
-          {% block content %}{% endblock content %}
-        </div> <!-- /container -->
-      </div> <!-- /content -->
+      {% block page %}{% endblock page %}
     </div> <!-- /page -->
 
-    {% include "_footer.html" %}
+    <footer id="footer">
+      {% include "_footer.html" %}
+    </footer> <!-- /footer -->
 
     <div id="script">
       {% block javascript %}

@@ -1,8 +1,6 @@
 from django import template
 from django.template.defaultfilters import stringfilter
 
-from core import util
-
 register = template.Library()
 
 
@@ -11,6 +9,7 @@ register = template.Library()
 def render_images(value, model):
     from os.path import join
     from django import template
+    from core import util
 
     def _replace(match):
         templates = [join('renders', 'image')]
@@ -26,6 +25,8 @@ def render_images(value, model):
 @register.filter(is_safe=True)
 @stringfilter
 def remove_images(value):
+    from core import util
+
     def _replace(match):
         return ''
 
