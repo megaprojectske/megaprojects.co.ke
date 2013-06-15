@@ -46,8 +46,8 @@ class ArticleAdmin(admin.ModelAdmin):
 
     actions = [make_draft, make_published, make_withdrawn]
     inlines = [ImageInline]
-    list_display = [
-        'title', 'status', 'pubdate', 'program', 'author', 'reviewed']
+    list_display = ['title', 'status', 'pubdate',
+                    'program_abbr', 'author', 'reviewed']
     list_filter = ['status', 'pubdate', 'program', 'author__username']
     readonly_fields = ['drupal_id', 'uuid', 'created', 'changed']
     search_fields = ['title']
@@ -64,6 +64,10 @@ class ArticleAdmin(admin.ModelAdmin):
             'fields': ['drupal_id', 'uuid', 'created', 'changed', 'reviewed']
         }),
     ]
+
+    def program_abbr(self, obj):
+        return obj.program.abbr if obj.program else None
+    program_abbr.short_description = 'Program'
 
 
 admin.site.register(Article, ArticleAdmin)
