@@ -3,6 +3,7 @@ from django.contrib import admin
 
 from ckeditor.widgets import CKEditorWidget
 
+from core.admin import BaseImageAdminForm, BaseImageInline
 from .models import Article, Image
 
 
@@ -21,22 +22,24 @@ def make_withdrawn(modeladmin, request, queryset):
 make_withdrawn.short_description = "Mark selected articles as Withdrawn"
 
 
+class ImageAdminForm(BaseImageAdminForm):
+
+    class Meta:
+        model = Image
+
+
+class ImageInline(BaseImageInline):
+
+    form = ImageAdminForm
+    model = Image
+
+
 class ArticleAdminForm(forms.ModelForm):
 
     body = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = Article
-
-
-class ImageInline(admin.TabularInline):
-
-    extra = 1
-    fields = ['title', 'alt', 'status',
-              'reviewed', 'thumbnail', 'image', 'uuid']
-    model = Image
-    ordering = ['created']
-    readonly_fields = ['uuid']
 
 
 class ArticleAdmin(admin.ModelAdmin):

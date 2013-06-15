@@ -3,6 +3,7 @@ from django.contrib import admin
 
 from ckeditor.widgets import CKEditorWidget
 
+from core.admin import BaseImageAdminForm, BaseImageInline
 from .models import Program, Detail, Image
 
 
@@ -16,28 +17,30 @@ def make_unpublished(modeladmin, request, queryset):
 make_unpublished.short_description = "Mark selected projects as Unpublished"
 
 
-class ProgramAdminForm(forms.ModelForm):
-
-    body = forms.CharField(widget=CKEditorWidget())
-
-    class Meta:
-        model = Program
-
-
 class DetailInline(admin.TabularInline):
 
     extra = 1
     model = Detail
 
 
-class ImageInline(admin.TabularInline):
+class ImageAdminForm(BaseImageAdminForm):
 
-    extra = 1
-    fields = ['title', 'alt', 'status',
-              'reviewed', 'thumbnail', 'image', 'uuid']
+    class Meta:
+        model = Image
+
+
+class ImageInline(BaseImageInline):
+
+    form = ImageAdminForm
     model = Image
-    ordering = ['created']
-    readonly_fields = ['uuid']
+
+
+class ProgramAdminForm(forms.ModelForm):
+
+    body = forms.CharField(widget=CKEditorWidget())
+
+    class Meta:
+        model = Program
 
 
 class ProgramAdmin(admin.ModelAdmin):
