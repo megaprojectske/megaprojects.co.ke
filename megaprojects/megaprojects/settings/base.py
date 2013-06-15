@@ -189,6 +189,7 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
+    'analytical',
     'bootstrap-pagination',
     'ckeditor',
     'sorl.thumbnail',

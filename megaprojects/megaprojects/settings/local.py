@@ -71,3 +71,5 @@ MIDDLEWARE_CLASSES += (
 # See: http://sorl-thumbnail.readthedocs.org/en/latest/logging.html#errors-logging
 THUMBNAIL_DEBUG = DEBUG
 ########## END SORL THUMBNAIL CONFIGURATION
+
+GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-000000-1'

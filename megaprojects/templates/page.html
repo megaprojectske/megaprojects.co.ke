@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load google_analytics %}
+
+
+{% block extrahead %}
+  {{ block.super }}
+  {% google_analytics %}
+{% endblock extrahead %}
+
+{% block page %}
+  <div id="navigation">
+    <div class="container">
+      {% include "_navigation.html" %}
+    </div> <!-- /container -->
+  </div> <!-- /navigation -->
+
+  <div id="content">
+    <div class="container">
+      <ul class="breadcrumb">
+        {% block breadcrumbs %}
+          <li class="active">Front Page</li>
+        {% endblock breadcrumbs %}
+      </ul>
+      {% block content %}{% endblock content %}
+    </div> <!-- /container -->
+  </div> <!-- /content -->
+{% endblock page %}
