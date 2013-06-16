@@ -40,6 +40,7 @@ urlpatterns = patterns('',
                            template_name='robots.txt', content_type='text/plain')),
 
                        url(r'^ckeditor/', include('ckeditor.urls')),
+                       url(r'^search/', include('haystack.urls')),
                        )
 
 import sys

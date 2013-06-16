@@ -192,6 +192,7 @@ THIRD_PARTY_APPS = (
     'analytical',
     'bootstrap-pagination',
     'ckeditor',
+    'haystack',
     'sorl.thumbnail',
     'south',
 )
@@ -273,3 +274,14 @@ CKEDITOR_CONFIGS = {
     },
 }
 ########## END CKEDITOR CONFIGURATION
+
+
+########## HAYSTACK CONFIGURATION
+# See: http://django-haystack.readthedocs.org/en/latest/tutorial.html#configuration
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': normpath(join(DJANGO_ROOT, 'whoosh_index')),
+    },
+}
+########## END HAYSTACK CONFIGURATION

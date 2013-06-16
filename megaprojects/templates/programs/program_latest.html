@@ -23,7 +23,7 @@
   {% if program.body %}
     <p>{{ program.body|remove_images|striptags|linebreaks|truncatewords:40 }} <a href="{% url 'program_detail' program.pk %}">Read More</a></p>
   {% else %}
-    <p class="muted">No Description Given</p>
+    <p class="muted">No description given.</p>
   {% endif %}
 {% endblock body %}
 
