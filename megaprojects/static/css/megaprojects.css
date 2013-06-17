@@ -383,7 +383,7 @@ body {
 /* line 165, ../../../sass/_page.sass */
 .post-content .post-list {
   margin-top: 0;
-  border-bottom: 1px dotted #1f26b6;
+  border-bottom: 1px dashed #dfdfdf;
 }
 /* line 168, ../../../sass/_page.sass */
 .post-content .post-list:last-child {
