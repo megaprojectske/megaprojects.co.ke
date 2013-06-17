@@ -108,12 +108,17 @@ body
 
 .teaser-overlay
   position: relative
-  .teaser-image
-    height: ($grid-row-width / 4)
+  &.wide
+    .teaser-image,
+    .teaser-header
+      height: ($grid-row-width / 4)
+  &.tall
+    .teaser-image,
+    .teaser-header
+      height: ($grid-row-width / 2)
   .teaser-header
     background-color: rgba(0, 0, 0, .5)
     bottom: 0
-    height: ($grid-row-width / 4)
     left: 0
     position: absolute
     right: 0
@@ -159,7 +164,7 @@ body
   margin: 0
   .post-list
     margin-top: 0
-    border-bottom: 1px dotted $black
+    border-bottom: 1px dotted $blue-dark
     &:last-child
       border-bottom: none
   .post-body
@@ -222,7 +227,7 @@ body
     top: 50%
   .carousel-inner
     height: ($grid-row-width / 4)
-  .frontpage-image
+  .carousel-image
     position: relative
 
 .page-heading
@@ -280,3 +285,24 @@ body
   border-right: 0
   th
     border-left: 0
+
+.addthis_default_style
+  a
+    color: black
+    cursor: pointer
+    display: block
+    float: right
+    line-height: 3em
+    vertical-align: middle
+  img
+    padding: 0 10px
+  .addthis_follow_label
+    display: none
+  .addthis_button_facebook_follow
+    background-color: #3b5998
+  .addthis_button_twitter_follow
+    background-color: #00aced
+  .addthis_button_google_follow
+    background-color: #d14836
+  .addthis_button_rss_follow
+    background-color: #ff8300
