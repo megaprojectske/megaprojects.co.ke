@@ -27,8 +27,7 @@ class BaseImageAdminForm(forms.ModelForm):
 class BaseImageInline(admin.TabularInline):
 
     extra = 1
-    fields = ['title', 'alt', 'status',
-              'reviewed', 'thumbnail', 'image', 'uuid']
+    fields = ['title', 'status', 'reviewed', 'thumbnail', 'image', 'uuid']
     ordering = ['created']
     readonly_fields = ['uuid']
 

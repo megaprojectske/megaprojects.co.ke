@@ -13,7 +13,7 @@
     </div>
     <div class="teaser-image">
       {% thumbnail post.thumbnail.image '576x168' crop='center' as im %}
-        <img class="media-object" src="{{ im.url }}" title="{{ post.thumbnail.title }}" alt="{% if post.thumbnail.alt %}{{ post.thumbnail.alt }}{% else %}{{ post.thumbnail.title }}{% endif %}">
+        <img class="media-object" src="{{ im.url }}" alt="{{ post.thumbnail.title }}">
       {% empty%}
         <img class="media-object" data-src="holder.js/576x168/auto">
       {% endthumbnail %}

@@ -4,7 +4,7 @@
 <div class="teaser-overlay">
   <div class="teaser-image">
     {% thumbnail program.thumbnail.image '960x240' crop='center' as im %}
-      <img src="{{ im.url }}" title="{{ program.thumbnail.title }}" alt="{% if program.thumbnail.alt %}{{ program.thumbnail.alt }}{% else %}{{ program.thumbnail.title }}{% endif %}">
+      <img src="{{ im.url }}" alt="{{ program.thumbnail.title }}">
     {% empty%}
       <img data-src="holder.js/960x240/auto">
     {% endthumbnail %}

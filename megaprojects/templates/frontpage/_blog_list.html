@@ -12,7 +12,7 @@
       <li class="media post-list">
         <a class="pull-left" href="{{ post.get_absolute_url }}">
           {% thumbnail post.thumbnail.image '95x95' crop='center' as im %}
-            <img class="media-object" src="{{ im.url }}" title="{{ post.thumbnail.title }}" alt="{% if post.thumbnail.alt %}{{ post.thumbnail.alt }}{% else %}{{ post.thumbnail.title }}{% endif %}">
+            <img class="media-object" src="{{ im.url }}" alt="{{ post.thumbnail.title }}">
           {% empty%}
             <img class="media-object" data-src="holder.js/95x95/auto">
           {% endthumbnail %}

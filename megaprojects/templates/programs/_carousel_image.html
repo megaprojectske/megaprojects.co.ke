@@ -3,7 +3,7 @@
 
 {% thumbnail image.image '240x240' crop='center' as im %}
   <div class="span3 gallery-image">
-    <img src="{{ im.url }}" title="{{ image.title }}" alt="{% if image.alt %}{{ image.alt }}{% else %}{{ image.title }}{% endif %}">
+    <img src="{{ im.url }}" alt="{{ image.title }}">
     <a href="{{ image.article.get_absolute_url }}#{{ image.uuid }}">
       <div class="carousel-caption">
         <p>{{ image.title|truncatechars:30 }}</p>

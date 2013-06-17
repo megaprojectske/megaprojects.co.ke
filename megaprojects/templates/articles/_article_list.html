@@ -4,7 +4,7 @@
 <div class="media teaser-list">
   <a class="pull-left" href="{{ article.get_absolute_url }}">
     {% thumbnail article.thumbnail.image '168x168' crop='center' as im %}
-      <img class="media-object" src="{{ im.url }}" title="{{ article.thumbnail.title }}" alt="{% if article.thumbnail.alt %}{{ article.thumbnail.alt }}{% else %}{{ article.thumbnail.title }}{% endif %}">
+      <img class="media-object" src="{{ im.url }}" alt="{{ article.thumbnail.title }}">
     {% empty%}
       <img class="media-object" data-src="holder.js/168x168/auto">
     {% endthumbnail %}

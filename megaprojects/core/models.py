@@ -62,13 +62,12 @@ class ImageModel(BaseModel):
     Abstract base class model for Image fields.
     """
 
-    alt = models.CharField(max_length=255, blank=True,
-                           help_text='Alternative image text, for the image\'s \'alt\' attribute.')
     status = models.BooleanField(
         default=True, help_text='Boolean indicating whether the entity is published (visible to non-administrators).')
     reviewed = models.BooleanField(
         help_text='Object has been reviewed (quality control).')
-    thumbnail = models.BooleanField(help_text='Boolean indicating whether the entity is the main model thumbnail.')
+    thumbnail = models.BooleanField(
+        help_text='Boolean indicating whether the entity is the main model thumbnail.')
 
     def __unicode__(self):
         return self.uuid

@@ -12,7 +12,7 @@
   </div>
   <div class="teaser-image">
     {% thumbnail article.thumbnail.image '280x210' crop='center' as im %}
-      <img src="{{ im.url }}" title="{{ article.thumbnail.title }}" alt="{% if article.thumbnail.alt %}{{ article.thumbnail.alt }}{% else %}{{ article.thumbnail.title }}{% endif %}">
+      <img src="{{ im.url }}" alt="{{ article.thumbnail.title }}">
     {% empty%}
       <img data-src="holder.js/280x210/auto">
     {% endthumbnail %}
