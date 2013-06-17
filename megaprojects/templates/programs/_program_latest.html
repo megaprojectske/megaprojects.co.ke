@@ -3,42 +3,44 @@
     <div class="span12 column column-1">
       {# Recent #}
       <div class="overlay-carousel">
-        {% for article in article_list|slice:':2' %}
-          <span class="span6">
-            {% include "articles/_article_overlay_span6.html" %}
+        {% for article in article_list|slice:':4' %}
+          <span class="span3">
+            {% include "articles/_article_ov_wide_span3.html" %}
           </span>
         {% endfor %}
       </div>
     </div>
   </div>
+  <hr class="separator-solid">
 {% endif %}
 {% if article_list|slice:'2:4' or popular_list or article_list|slice:'4:6' %}
-<div class="row columns columns-3">
-  <div class="span4 column column-1">
-    {# Recent #}
-    {% for article in article_list|slice:'2:4' %}
-      {% include "articles/_article_teaser.html" %}
-      {% if not forloop.last %}
-        <hr class="separator-dotted">
+  <div class="row columns columns-3">
+    <div class="span4 column column-1">
+      {# Recent #}
+      {% for article in article_list|slice:'4:6' %}
+        {% include "articles/_article_teaser.html" %}
+        {% if not forloop.last %}
+          <hr class="separator-dotted">
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="span4 column column-2">
+      {# Popular #}
+      {% if popular_list %}
+        {% include "programs/_popular_content.html" %}
       {% endif %}
-    {% endfor %}
+    </div>
+    <div class="span4 column column-3">
+      {# Recent #}
+      {% for article in article_list|slice:'6:8' %}
+        {% include "articles/_article_teaser.html" %}
+        {% if not forloop.last %}
+          <hr class="separator-dotted">
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
-  <div class="span4 column column-2">
-    {# Popular #}
-    {% if popular_list %}
-      {% include "programs/_popular_content.html" %}
-    {% endif %}
-  </div>
-  <div class="span4 column column-3">
-    {# Recent #}
-    {% for article in article_list|slice:'4:6' %}
-      {% include "articles/_article_teaser.html" %}
-      {% if not forloop.last %}
-        <hr class="separator-dotted">
-      {% endif %}
-    {% endfor %}
-  </div>
-</div>
+  <hr class="separator-solid">
 {% endif %}
 {% if image_list %}
   <div class="row columns columns-1">
@@ -47,26 +49,28 @@
       {% include "programs/_gallery_carousel.html" %}
     </div>
   </div>
+  <hr class="separator-solid">
 {% endif %}
 {% if article_list|slice:'6:7' or article_list|slice:'7:8' or article_list|slice:'8:9' %}
   <div class="row columns columns-3">
     <div class="span4 column column-1">
       {# Recent #}
-      {% for article in article_list|slice:'6:7' %}
+      {% for article in article_list|slice:'8:9' %}
         {% include "articles/_article_teaser.html" %}
       {% endfor %}
     </div>
     <div class="span4 column column-2">
-      {# Popular #}
-      {% for article in article_list|slice:'7:8' %}
+      {# Recent #}
+      {% for article in article_list|slice:'9:10' %}
         {% include "articles/_article_teaser.html" %}
       {% endfor %}
     </div>
     <div class="span4 column column-3">
       {# Recent #}
-      {% for article in article_list|slice:'8:9' %}
+      {% for article in article_list|slice:'10:11' %}
         {% include "articles/_article_teaser.html" %}
       {% endfor %}
     </div>
   </div>
+  <hr class="separator-solid">
 {% endif %}

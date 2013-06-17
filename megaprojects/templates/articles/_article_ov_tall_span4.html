@@ -1,12 +1,12 @@
 {% load thumbnail %}
 
 
-<div class="teaser-overlay">
+<div class="teaser-overlay tall">
   <div class="teaser-image">
-    {% thumbnail article.thumbnail.image '240x240' crop='center' as im %}
-      <img src="{{ im.url }}" title="{{ article.thumbnail.title }}" alt="{% if article.thumbnail.alt %}{{ article.thumbnail.alt }}{% else %}{{ article.thumbnail.title }}{% endif %}">
+    {% thumbnail article.thumbnail.image '320x480' crop='center' as im %}
+      <img src="{{ im.url }}" alt="{{ article.thumbnail.title }}">
     {% empty%}
-      <img data-src="holder.js/240x240/auto">
+      <img data-src="holder.js/320x480/auto">
     {% endthumbnail %}
   </div>
   <div class="teaser-header">

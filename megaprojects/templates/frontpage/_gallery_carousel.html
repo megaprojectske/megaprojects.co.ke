@@ -2,7 +2,7 @@
 
 
 {% block heading %}
-  <h3 class="block-title">Gallery - Recent Images</h3>
+  <h3 class="block-title">Recent Article Snaps *</h3>
 {% endblock heading %}
 
 {% block content %}
@@ -12,25 +12,23 @@
       <li data-target="#carousel" data-slide-to="1"></li>
       <li data-target="#carousel" data-slide-to="2"></li>
     </ol>
-
     <div class="carousel-inner">
       <div class="active item">
-        {% for image in image_list|slice:':2' %}
+        {% for image in image_list|slice:':4' %}
           {% include "frontpage/_carousel_image.html" %}
         {% endfor %}
       </div>
       <div class="item">
-        {% for image in image_list|slice:'2:4' %}
+        {% for image in image_list|slice:'4:8' %}
           {% include "frontpage/_carousel_image.html" %}
         {% endfor %}
       </div>
       <div class="item">
-        {% for image in image_list|slice:'4:6' %}
+        {% for image in image_list|slice:'8:12s' %}
           {% include "frontpage/_carousel_image.html" %}
         {% endfor %}
       </div>
     </div>
-
     <a class="carousel-control left" href="#carousel" data-slide="prev">&lsaquo;</a>
     <a class="carousel-control right" href="#carousel" data-slide="next">&rsaquo;</a>
   </div>

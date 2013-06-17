@@ -7,33 +7,32 @@
 
 {% block content %}
   <div class="row">
-    {% for article in article_list|slice:':1' %}
-      <div class="span12">
-        {% include "articles/_article_overlay_span12.html" %}
-      </div>
-    {% endfor %}
-  </div>
-
-  <hr class="separator-solid">
-
-  <div class="row">
-    {% for article in article_list|slice:'1:2' %}
-      <div class="span6">
-        {% include "articles/_article_overlay_span6.html" %}
-      </div>
-    {% endfor %}
-    {% for article in article_list|slice:'2:4' %}
-      <div class="span3">
-        {% include "articles/_article_overlay_span3.html" %}
-      </div>
-    {% endfor %}
+    <div class="span8">
+      {% for article in article_list|slice:':1' %}
+        <div class="span8">
+          {% include "articles/_article_ov_wide_span8.html" %}
+        </div>
+      {% endfor %}
+      {% for article in article_list|slice:'1:3' %}
+        <div class="span4">
+          {% include "articles/_article_ov_wide_span4.html" %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="span4">
+      {% for article in article_list|slice:'3:4' %}
+        <div class="span4">
+          {% include "articles/_article_ov_tall_span4.html" %}
+        </div>
+      {% endfor %}
+    </div>
   </div>
 
   <hr class="separator-solid">
 
   <div class="row columns columns-3">
     <div class="span4 column column-1">
-      {% for article in article_list|slice:'4:5' %}
+      {% for article in article_list|slice:'4:6' %}
         {% include "articles/_article_teaser.html" %}
         {% if not forloop.last %}
           <hr class="separator-dotted">
@@ -44,7 +43,7 @@
       {% include "frontpage/_popular_content.html" %}
     </div>
     <div class="span4 column column-3">
-      {% for article in article_list|slice:'5:6' %}
+      {% for article in article_list|slice:'6:8' %}
         {% include "articles/_article_teaser.html" %}
         {% if not forloop.last %}
           <hr class="separator-dotted">
@@ -55,29 +54,29 @@
 
   <hr class="separator-solid">
 
-  <div class="row columns columns-2">
-    <div class="span12 column column-1">
-      {% include "frontpage/_gallery_carousel.html" %}
-    </div> 
-  </div>
+  {% include "frontpage/_gallery_carousel.html" %}
 
   <hr class="separator-solid">
 
   <div class="row columns columns-3">
-    {% for article in article_list|slice:'11:12' %}
+    {% for article in article_list|slice:'8:9' %}
       <div class="span4 column column-1">
         {% include "articles/_article_teaser.html" %}
       </div>
     {% endfor %}
-    {% for article in article_list|slice:'12:13' %}
-      <div class="span4 column column-2">
+    <div class="span4 column column-2">
+      {% include "frontpage/_blog_list.html" %}
+    </div>
+    {% for article in article_list|slice:'9:10' %}
+      <div class="span4 column column-3">
         {% include "articles/_article_teaser.html" %}
       </div>
     {% endfor %}
-    <div class="span4 column column-3">
-      {% include "frontpage/_blog_list.html" %}
-    </div>
   </div>
+
+  <hr class="separator-solid">
+
+  {% include "frontpage/_archive_content.html" %}
 
   <hr class="separator-solid">
 

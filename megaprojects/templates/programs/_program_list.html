@@ -1,7 +1,7 @@
 {% load thumbnail core_tags %}
 
 
-<div class="teaser-overlay">
+<div class="teaser-overlay wide">
   <div class="teaser-image">
     {% thumbnail program.thumbnail.image '960x240' crop='center' as im %}
       <img src="{{ im.url }}" alt="{{ program.thumbnail.title }}">
