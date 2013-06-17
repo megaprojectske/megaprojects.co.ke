@@ -1,4 +1,4 @@
-{% if article_list|slice:':2' %}
+{% if article_list|slice:':4' %}
   <div class="row columns columns-1">
     <div class="span12 column column-1">
       {# Recent #}
@@ -13,7 +13,7 @@
   </div>
   <hr class="separator-solid">
 {% endif %}
-{% if article_list|slice:'2:4' or popular_list or article_list|slice:'4:6' %}
+{% if article_list|slice:'4:6' or popular_list or article_list|slice:'6:8' %}
   <div class="row columns columns-3">
     <div class="span4 column column-1">
       {# Recent #}
@@ -51,7 +51,7 @@
   </div>
   <hr class="separator-solid">
 {% endif %}
-{% if article_list|slice:'6:7' or article_list|slice:'7:8' or article_list|slice:'8:9' %}
+{% if article_list|slice:'8:9' or article_list|slice:'9:10' or article_list|slice:'10:11' %}
   <div class="row columns columns-3">
     <div class="span4 column column-1">
       {# Recent #}
