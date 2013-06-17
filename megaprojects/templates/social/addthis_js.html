@@ -1,0 +1,28 @@
+<script type="text/javascript">
+  var addthis_config = {
+    {% if data_ga_property %}
+      data_ga_property: '{{ data_ga_property }}',
+      data_ga_social: {{ data_ga_social|lower }},
+    {% endif %}  
+    data_track_addressbar: {{ data_track_addressbar|lower }}, 
+    data_track_clickback: {{ data_track_clickback|lower }},
+    ui_use_css: false,
+  };
+
+  var addthis_share = {
+    {% if share_url %}
+      url: '{{ share_url }}'
+    {% endif %}
+    url_transforms : {
+      shorten: {
+        twitter: 'bitly'
+      },
+      clean: true,
+    }, 
+    shorteners : {
+      bitly : {},
+    }
+  };
+</script>
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid={{ pubid }}"></script>

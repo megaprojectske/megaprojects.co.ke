@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load google_analytics %}
+{% load google_analytics core_tags %}
 
 
 {% block extrahead %}
@@ -25,3 +25,10 @@
     </div> <!-- /container -->
   </div> <!-- /content -->
 {% endblock page %}
+
+{# ------------------------------------------------------------------------- #}
+
+{% block javascript %}
+  {{ block.super }}
+  {% addthis_js %}
+{% endblock javascript %}
