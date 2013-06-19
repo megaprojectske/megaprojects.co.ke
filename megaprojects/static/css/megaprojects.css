@@ -688,7 +688,7 @@ body {
 /* line 359, ../../../sass/_page.sass */
 .share_toolbox {
   background-color: whitesmoke;
-  border-top: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
   overflow: hidden;
   padding: 16px 32px;
 }
@@ -733,12 +733,10 @@ body {
 
 /* line 388, ../../../sass/_page.sass */
 .staged-sidebar .share_toolbox {
-  border-top: none;
-  border-bottom: 1px solid #dfdfdf;
   padding: 16px 18px;
 }
 
-/* line 393, ../../../sass/_page.sass */
+/* line 391, ../../../sass/_page.sass */
 #at15s,
 #at3win,
 #at3lb,
@@ -746,22 +744,22 @@ body {
   display: none !important;
 }
 
-/* line 399, ../../../sass/_page.sass */
+/* line 397, ../../../sass/_page.sass */
 #idc-container-parent {
   background-color: whitesmoke;
   border-top: 1px solid #dfdfdf;
   margin: 0;
   padding: 32px;
 }
-/* line 404, ../../../sass/_page.sass */
+/* line 402, ../../../sass/_page.sass */
 #idc-container-parent #idc-container {
   margin: 0;
 }
-/* line 406, ../../../sass/_page.sass */
+/* line 404, ../../../sass/_page.sass */
 #idc-container-parent #idc-container div * {
   font-weight: 300;
 }
-/* line 408, ../../../sass/_page.sass */
+/* line 406, ../../../sass/_page.sass */
 #idc-container-parent #idc-container .idc-message {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -770,7 +768,7 @@ body {
   border-radius: 0;
   margin: 0.5em 0 1.5em;
 }
-/* line 411, ../../../sass/_page.sass */
+/* line 409, ../../../sass/_page.sass */
 #idc-container-parent #idc-container .idc-text_noresize {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -784,7 +782,7 @@ body {
   line-height: 20px;
   width: auto;
 }
-/* line 419, ../../../sass/_page.sass */
+/* line 417, ../../../sass/_page.sass */
 #idc-container-parent #idc-container .idc-text {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -798,17 +796,17 @@ body {
   line-height: 20px;
   margin: 5px 0;
 }
-/* line 427, ../../../sass/_page.sass */
+/* line 425, ../../../sass/_page.sass */
 #idc-container-parent #idc-container.idc .idc-focus {
   border: 1px solid #bbbbbb !important;
 }
 
-/* line 430, ../../../sass/_page.sass */
+/* line 428, ../../../sass/_page.sass */
 a.comment-count-blue {
   color: #1f26b6;
 }
 
-/* line 433, ../../../sass/_page.sass */
+/* line 431, ../../../sass/_page.sass */
 a.comment-count-green {
   color: #0f5608;
 }
