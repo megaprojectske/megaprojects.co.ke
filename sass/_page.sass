@@ -98,6 +98,8 @@ body
   .teaser-heading
     font-size: 17.5px // H4
     line-height: 25px
+    a
+      color: $black
   .teaser-byline
     margin-bottom: 0
   .teaser-image
@@ -306,3 +308,40 @@ body
     background-color: #d14836
   .addthis_button_rss_follow
     background-color: #ff8300
+
+#idc-container-parent
+  background-color: $content-bg-gray
+  border-top: 1px dotted $content-border
+  margin: 0
+  padding: ($grid-row-width / 30)
+  #idc-container
+    margin: 0
+    div *
+      font-weight: 300
+    .idc-message
+      +border-radius(0)
+      margin: 0.5em 0 1.5em
+    .idc-text_noresize
+      +border-radius(0)
+      background: $white
+      border: 1px solid $gray
+      font-size: 14px
+      font: inherit
+      line-height: 20px
+      width: auto
+    .idc-text
+      +border-radius(0)
+      background: $white
+      border: 1px solid $gray
+      font-size: 14px
+      font: inherit
+      line-height: 20px
+      margin: 5px 0
+    &.idc .idc-focus
+      border: 1px solid $gray !important
+
+a.comment-count-blue
+  color: $blue-dark
+
+a.comment-count-green
+  color: $green
