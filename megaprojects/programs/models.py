@@ -19,7 +19,7 @@ class Program(TimeStampedModel, BaseModel, PublicModel):
     objects = ProgramManager()
 
     def get_absolute_url(self):
-        return reverse('program_latest', kwargs={'pk': self.pk})
+        return reverse('program_latest', kwargs={'code': self.id, 'slug': self.slug})
 
     @property
     def thumbnail(self):

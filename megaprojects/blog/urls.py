@@ -10,7 +10,7 @@ urlpatterns = patterns("",
                            name="post_list"
                        ),
                        url(
-                           regex=r"^(?P<pk>\d+)/$",
+                           regex=r"^(?P<id>[\d]+)(?:/(?P<slug>[\S]+))?/$",
                            view=PostDetailView.as_view(),
                            name="post_detail"
                        ),

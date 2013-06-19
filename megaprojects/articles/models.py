@@ -29,7 +29,7 @@ class Article(TimeStampedModel, BaseModel, AuthorModel, PublicModel):
     objects = ArticleManager()
 
     def get_absolute_url(self):
-        return reverse('article_detail', kwargs={'pk': self.pk})
+        return reverse('article_detail', kwargs={'code': self.id, 'slug': self.slug})
 
     @property
     def thumbnail(self):

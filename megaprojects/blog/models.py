@@ -23,7 +23,7 @@ class Post(TimeStampedModel, BaseModel, AuthorModel, PublicModel):
     objects = PostManager()
 
     def get_absolute_url(self):
-        return reverse('post_detail', kwargs={'pk': self.pk})
+        return reverse('post_detail', kwargs={'code': self.id, 'slug': self.slug})
 
     @property
     def thumbnail(self):

@@ -1,6 +1,6 @@
-from django.shortcuts import get_object_or_404
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 
+from core.views import PublicDetailView
 from .models import Article
 
 
@@ -14,12 +14,6 @@ class ArticleListView(ListView):
         return Article.objects.published()
 
 
-class ArticleDetailView(DetailView):
+class ArticleDetailView(PublicDetailView):
 
     model = Article
-
-    def get_queryset(self):
-        # Check that the status = 'p' (Published)
-        self.article = get_object_or_404(
-            Article, pk=self.kwargs.get('pk'), status='p')
-        return super(ArticleDetailView, self).get_queryset()

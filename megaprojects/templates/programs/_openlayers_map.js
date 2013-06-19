@@ -26,7 +26,7 @@ function init() {
   map = new OpenLayers.Map("openlayers", options);
   map.addLayer(layer);
   map.addControl(new OpenLayers.Control.Navigation({'zoomWheelEnabled': false}));
-  map.addControl(new OpenLayers.Control.ZoomPanel());
+  // map.addControl(new OpenLayers.Control.ZoomPanel());
   map.addControl(new OpenLayers.Control.Attribution());
   map.addControl(new OpenLayers.Control.ScaleLine());
   map.setCenter(

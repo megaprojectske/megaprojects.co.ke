@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView
 
 from articles.models import Article, Image
 
+from core.views import PublicDetailView
 from .models import Program
 
 
@@ -19,13 +20,13 @@ class ProgramListView(ListView):
 class ProgramArchiveView(ListView):
 
     model = Article
-    paginate_by = 10
+    paginate_by = 8
     template_name = 'programs/program_archive.html'
 
     def get_queryset(self):
         # Check that status = True (Published)
         self.program = get_object_or_404(
-            Program, pk=self.kwargs.get('pk'), status=True)
+            Program, pk=self.kwargs.get('id'), status=True)
         return Article.objects.published().filter(program=self.program)
 
     def get_context_data(self, **kwargs):
@@ -38,23 +39,29 @@ class ProgramDetailView(DetailView):
 
     model = Program
 
-    def get_queryset(self):
+    def get_object(self, queryset=None):
+        if queryset is None:
+            queryset = self.get_queryset()
+
         # Check that status = True (Published)
-        self.program = get_object_or_404(
-            Program, pk=self.kwargs.get('pk'), status=True)
-        return super(ProgramDetailView, self).get_queryset()
+        obj = get_object_or_404(
+            queryset, pk=self.kwargs.get('id'), status=True)
+        return obj
 
 
-class ProgramLatestView(DetailView):
+class ProgramLatestView(PublicDetailView):
 
     model = Program
     template_name = 'programs/program_latest.html'
 
-    def get_queryset(self):
+    def get_object(self, queryset=None):
+        if queryset is None:
+            queryset = self.get_queryset()
+
         # Check that status = True (Published)
-        self.program = get_object_or_404(
-            Program, pk=self.kwargs.get('pk'), status=True)
-        return super(ProgramLatestView, self).get_queryset()
+        obj = get_object_or_404(
+            queryset, pk=self.kwargs.get('id'), status=True)
+        return obj
 
     def get_context_data(self, **kwargs):
         context = super(ProgramLatestView, self).get_context_data(**kwargs)

@@ -10,7 +10,7 @@ urlpatterns = patterns("",
                            name="article_list"
                        ),
                        url(
-                           regex=r"^(?P<pk>\d+)/$",
+                           regex=r"^(?P<id>[\d]+)(?:/(?P<slug>[\S]+))?/$",
                            view=ArticleDetailView.as_view(),
                            name="article_detail"
                        ),

@@ -10,17 +10,17 @@ urlpatterns = patterns("",
                            name="program_list"
                        ),
                        url(
-                           regex=r"^(?P<pk>\d+)/archive$",
+                           regex=r"^(?P<id>[\d]+)/archive/$",
                            view=ProgramArchiveView.as_view(),
                            name="program_archive"
                        ),
                        url(
-                           regex=r"^(?P<pk>\d+)/details$",
+                           regex=r"^(?P<id>[\d]+)/details/$",
                            view=ProgramDetailView.as_view(),
                            name="program_detail"
                        ),
                        url(
-                           regex=r"^(?P<pk>\d+)/$",
+                           regex=r"^(?P<id>[\d]+)(?:/(?P<slug>[\S]+))?/$",
                            view=ProgramLatestView.as_view(),
                            name="program_latest"
                        ),
