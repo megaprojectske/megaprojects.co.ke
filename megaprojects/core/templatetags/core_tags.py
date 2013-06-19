@@ -34,8 +34,8 @@ def remove_images(value):
 
 
 # See: https://github.com/lettertwo/django-socialsharing
-@register.inclusion_tag('social/addthis_js.html', takes_context=True)
-def addthis_js(context, share_url=None, pubid=None, ga_tracker=None, ga_social=True, track_clickback=True, track_addressbar=True):
+@register.inclusion_tag('social/addthis/addthis_js.html', takes_context=True)
+def addthis_js(context, pubid=None, share_url=None, ga_tracker=None, ga_social=True, track_clickback=True, track_addressbar=True):
     from django.conf import settings
     from django.template import TemplateSyntaxError
 
@@ -95,10 +95,10 @@ def addthis_js(context, share_url=None, pubid=None, ga_tracker=None, ga_social=T
                 'The addthis template tag is configured to use Google Analytics, but a tracking code was not found. You must either pass it as an argument or set ADDTHIS_GA_TRACKER in settings.py')
 
     if pubid is None:
-        pubid = getattr(settings, 'ADDTHIS_PUBID', None)
+        pubid = getattr(settings, 'ADDTHIS_PUB_ID', None)
     if pubid is None:
         raise TemplateSyntaxError(
-            'The addthis template tag requires a pubid. You must either pass it as an argument or set ADDTHIS_PUBID in settings.py.')
+            'The addthis template tag requires a pubid. You must either pass it as an argument or set ADDTHIS_PUB_ID in settings.py.')
 
     return {
         'data_ga_property': ga_tracker,

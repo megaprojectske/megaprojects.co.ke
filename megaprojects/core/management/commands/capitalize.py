@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 
 import _titlecase as titlecase
 
@@ -9,23 +9,27 @@ from programs.models import Program
 
 # This command is silly if you think about it ...
 class Command(BaseCommand):
-    help = 'Uses the titlecase package to capitalize Article, Post & Program titles.'
+    args = 'a (Article), b (Post) or p (Program)'
+    help = 'Uses the titlecase package to capitalize article (a), post (b) or program (p) titles.'
 
     def handle(self, *args, **options):
-        for article in Article.objects.all():
-            article.title = titlecase.titlecase(article.title)
-            article.save()
 
-        self.stdout.write('Successfully processed Article')
+        if not len(args):
+            raise CommandError('No valid arguments specified')
 
-        for post in Post.objects.all():
-            post.title = titlecase.titlecase(post.title)
-            post.save()
+        kind = args[0]
 
-        self.stdout.write('Successfully processed Post')
+        if kind == 'a':
+            models = Article.objects.all()
+        elif kind == 'b':
+            models = Post.objects.all()
+        elif kind == 'p':
+            models = Program.objects.all()
+        else:
+            raise CommandError('No valid arguments specified')
 
-        for program in Program.objects.all():
-            program.title = titlecase.titlecase(program.title)
-            program.save()
+        for model in models:
+            model.title = titlecase.titlecase(model.title)
+            model.save()
 
-        self.stdout.write('Successfully processed Program')
+        self.stdout.write('Successfully capitalized titles!')

@@ -28,11 +28,11 @@ urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),
 
                        url(r'^$', FrontPageView.as_view(), name='frontpage'),
-                       url(r"^rss/index.xml$", FrontPageFeed()),
+                       url(r"^rss/index.xml$", FrontPageFeed(), name='rss'),
 
                        url(r'^articles/', include('articles.urls')),
                        url(r'^projects/', include('programs.urls')),
-                       url(r'^discover/', include('blog.urls')),
+                       url(r'^blog/', include('blog.urls')),
 
                        url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {
                            'sitemaps': sitemaps}),
