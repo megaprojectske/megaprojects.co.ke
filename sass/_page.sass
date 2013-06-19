@@ -293,7 +293,7 @@ body
   th
     border-left: 0
 
-.addthis_default_style
+.follow_toolbox
   a
     color: black
     cursor: pointer
@@ -314,9 +314,51 @@ body
   .addthis_button_rss_follow
     background-color: #ff8300
 
+.share_toolbox
+  background-color: $content-bg-gray
+  border-top: 1px solid $content-border
+  overflow: hidden
+  padding: ($grid-row-width / 30) / 2 ($grid-row-width / 30)
+  a
+    cursor: pointer
+    display: block
+    float: left
+    margin: 0 2px
+  .at300bs
+    height: 32px
+    width: 32px
+    line-height: 32px
+    display: block
+  .at_a11y
+    display: none
+  .addthis_counter
+    margin-left: 2px
+  .addthis_button_facebook
+    background-color: #3b5998
+  .addthis_button_twitter
+    background-color: #00aced
+  .addthis_button_google_plusone_share
+    background-color: #d14836
+  .addthis_button_pinterest_share
+    background-color: #cb2027
+  .addthis_button_email
+    background-color: #222
+
+.staged-sidebar
+  .share_toolbox
+    border-top: none
+    border-bottom: 1px solid $content-border
+    padding: ($grid-row-width / 30) / 2 18px
+
+#at15s, 
+#at3win, 
+#at3lb,
+#at20mc
+  display: none !important
+
 #idc-container-parent
   background-color: $content-bg-gray
-  border-top: 1px dotted $content-border
+  border-top: 1px solid $content-border
   margin: 0
   padding: ($grid-row-width / 30)
   #idc-container
@@ -349,4 +391,4 @@ a.comment-count-blue
   color: $blue-dark
 
 a.comment-count-green
-  color: $green
+  color: #0f5608 // Darkish green
