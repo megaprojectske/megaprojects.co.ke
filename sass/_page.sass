@@ -261,6 +261,48 @@ body
   .muted
     margin: 20px
 
+.article-render
+  border-bottom: 1px solid $content-border
+  border-top: 1px solid $content-border
+  margin: 40px 0
+  overflow: hidden
+  .image
+    border-right: 1px solid $content-border
+    position: relative
+  .left-arrow
+    +opacity(0.5)
+    background-color: #080808
+    border: 3px solid $white
+    color: $white
+    font-size: 60px
+    font-weight: 100
+    height: 40px
+    left: 55px
+    line-height: 26px
+    position: absolute
+    text-align: center
+    top: 55px
+    width: 40px
+    &:hover,
+    &:focus
+      +opacity(0.9)
+      color: $white
+      text-decoration: none
+  .caption
+    background-color: $content-bg-gray
+    border-bottom: 1px solid $content-border
+    overflow: hidden
+    padding: 5px 10px
+  .header
+    overflow: hidden
+    padding: 10px
+  .heading
+    font-size: 17.5px // H4
+    line-height: 25px
+    margin: 0 0 10px
+  .muted
+    margin: 20px
+
 .nan
   margin: 0 ($grid-row-width / 30)
 
@@ -331,8 +373,6 @@ body
     display: block
   .at_a11y
     display: none
-  .addthis_counter
-    margin-left: 2px
   .addthis_button_facebook
     background-color: #3b5998
   .addthis_button_twitter
