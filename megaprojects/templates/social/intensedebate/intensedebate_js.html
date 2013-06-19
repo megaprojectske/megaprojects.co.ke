@@ -1,0 +1,10 @@
+<script>
+  var idcomments_acct = '{{ account }}';
+  var idcomments_post_id = '{{ post_id }}';
+  {% if post_url %}
+    var idcomments_post_url = '{{ post_url }}';
+  {% else %}
+    var idcomments_post_url;
+  {% endif %}
+</script>
+<script src='//www.intensedebate.com/js/genericCommentWrapperV2.js'></script>

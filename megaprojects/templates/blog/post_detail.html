@@ -19,10 +19,22 @@
 
 {# Byline #}
 {% block byline %}
-  {{ post.pubdate|date:'F j, Y - f A' }} | <a href="{% url 'post_list' %}">Blog</a>
+  {{ post.pubdate|date:'F j, Y - f A' }} | <a href="{% url 'post_list' %}">Blog</a> | <a class="comment-count-green" href="#idc-container-parent">Comments</a>
 {% endblock byline %}
 
 {# Body #}  
 {% block body %}
   {{ post.body|render_images:post|safe }}
 {% endblock body %}
+
+{# Comments #}
+{% block comments %}
+  {% include "renders/comments.html" %}
+{% endblock comments %}
+
+{# ------------------------------------------------------------------------- #}
+
+{% block javascript %}
+  {{ block.super }}
+  {% intensedebate_js post_id=article.id post_id_prefix='post_' %}
+{% endblock javascript %}

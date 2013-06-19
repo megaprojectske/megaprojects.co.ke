@@ -8,7 +8,7 @@
         <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
       </h2>
       <p class="teaser-byline">
-        {{ post.pubdate|date:'F j, Y - f A' }}
+        {{ post.pubdate|date:'F j, Y - f A' }} | <a class="comment-count-green" href="{{ post.get_absolute_url }}#idc-container-parent">Comments</a>
       </p>
     </div>
     <div class="teaser-image">

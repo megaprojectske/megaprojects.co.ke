@@ -22,6 +22,7 @@
   {% if article.program %}
     | <a href="{{ article.program.get_absolute_url }}">{{ article.program.title }}</a>
   {% endif %}
+  | <a class="comment-count-green" href="#idc-container-parent">Comments</a>
 {% endblock byline %}
 
 {# Lead #}
@@ -35,3 +36,15 @@
 {% block body %}
   {{ article.body|render_images:article|safe }}
 {% endblock body %}
+
+{# Comments #}
+{% block comments %}
+  {% include "renders/comments.html" %}
+{% endblock comments %}
+
+{# ------------------------------------------------------------------------- #}
+
+{% block javascript %}
+  {{ block.super }}
+  {% intensedebate_js post_id=article.id post_id_prefix='article_' %}
+{% endblock javascript %}

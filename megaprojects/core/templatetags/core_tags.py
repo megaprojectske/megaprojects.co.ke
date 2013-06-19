@@ -108,3 +108,24 @@ def addthis_js(context, pubid=None, share_url=None, ga_tracker=None, ga_social=T
         'pubid': pubid,
         'share_url': share_url,
     }
+
+
+@register.inclusion_tag('social/intensedebate/intensedebate_js.html', takes_context=True)
+def intensedebate_js(context, post_id=None, post_url=None, post_id_prefix='', post_id_suffix=''):
+    from django.conf import settings
+    from django.template import TemplateSyntaxError
+
+    intensedebate_acct = getattr(settings, 'INTENSEDEBATE_ACCT', None)
+    if intensedebate_acct is None:
+        raise TemplateSyntaxError(
+            'The intensedebate template tag requires an account. You must set INTENSEDEBATE_ACCT in settings.py.')
+
+    if post_id is None:
+        raise TemplateSyntaxError(
+            'The intensedebate template tag requires a post ID. You must pass post_id as an argument.')
+
+    return {
+        'account': intensedebate_acct,
+        'post_id': "%s%s%s" % (post_id_prefix, post_id, post_id_suffix),
+        'post_url': post_url,
+    }
