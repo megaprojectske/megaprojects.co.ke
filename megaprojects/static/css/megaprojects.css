@@ -394,12 +394,10 @@ body {
   border-bottom: none;
 }
 /* line 172, ../../../sass/_page.sass */
-.post-content .pull-left {
-  margin: 0;
-}
-/* line 174, ../../../sass/_page.sass */
 .post-content .post-body {
-  margin: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 /* line 176, ../../../sass/_page.sass */
 .post-content .post-heading {
