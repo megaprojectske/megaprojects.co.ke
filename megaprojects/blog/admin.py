@@ -49,7 +49,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'status', 'pubdate', 'author']
     list_filter = ['status', 'pubdate', 'author__username']
     readonly_fields = [
-        'drupal_id', 'uuid', 'shortuuid', 'slug', 'code', 'created', 'changed']
+        'drupal_id', 'shortuuid', 'slug', 'code', 'created', 'changed']
     search_fields = ['title']
 
     form = PostAdminForm
@@ -62,7 +62,7 @@ class PostAdmin(admin.ModelAdmin):
         (None, {'fields': ['slug', 'code']}),
         ('Advanced', {
             'classes': ['collapse'],
-            'fields': ['drupal_id', 'uuid', 'shortuuid', 'created', 'changed']
+            'fields': ['drupal_id', 'shortuuid', 'created', 'changed']
         }),
     ]
 

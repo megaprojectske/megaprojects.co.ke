@@ -27,9 +27,9 @@ class BaseImageAdminForm(forms.ModelForm):
 class BaseImageInline(admin.TabularInline):
 
     extra = 1
-    fields = ['title', 'image', 'uuid', 'shortuuid', 'status', 'thumbnail', 'reviewed']
+    fields = ['title', 'image', 'shortuuid', 'status', 'thumbnail', 'reviewed']
     ordering = ['created']
-    readonly_fields = ['uuid', 'shortuuid']
+    readonly_fields = ['shortuuid']
 
 
 class MyFlatpageForm(FlatpageForm):
