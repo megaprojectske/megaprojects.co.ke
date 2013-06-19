@@ -33,6 +33,35 @@ def remove_images(value):
     return util.image_sub(value, _replace)
 
 
+@register.filter(is_safe=True)
+@stringfilter
+def render_articles(value):
+    from os.path import join
+    from django import template
+    from core import util
+
+    def _replace(match):
+        templates = [join('renders', 'article')]
+        tpl = template.loader.select_template(
+            ["%s.html" % p for p in templates])
+        return tpl.render(template.Context({
+            'article': util.article_parse(match)
+        }))
+
+    return util.article_sub(value, _replace)
+
+
+@register.filter(is_safe=True)
+@stringfilter
+def remove_articles(value):
+    from core import util
+
+    def _replace(match):
+        return ''
+
+    return util.article_sub(value, _replace)
+
+
 # See: https://github.com/lettertwo/django-socialsharing
 @register.inclusion_tag('social/addthis/addthis_js.html', takes_context=True)
 def addthis_js(context, pubid=None, share_url=None, ga_tracker=None, ga_social=True, track_clickback=True, track_addressbar=True):

@@ -24,7 +24,7 @@
 
 {# Body #}  
 {% block body %}
-  {{ post.body|render_images:post|safe }}
+  {{ post.body|render_images:post|render_articles|safe }}
 {% endblock body %}
 
 {# Comments #}
