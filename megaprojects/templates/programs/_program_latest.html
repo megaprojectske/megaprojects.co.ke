@@ -1,4 +1,5 @@
 {% if article_list|slice:':4' %}
+  <hr class="separator-solid">
   <div class="row columns columns-1">
     <div class="span12 column column-1">
       {# Recent #}
@@ -11,9 +12,9 @@
       </div>
     </div>
   </div>
-  <hr class="separator-solid">
 {% endif %}
 {% if article_list|slice:'4:6' or popular_list or article_list|slice:'6:8' %}
+  <hr class="separator-solid">
   <div class="row columns columns-3">
     <div class="span4 column column-1">
       {# Recent #}
@@ -40,18 +41,18 @@
       {% endfor %}
     </div>
   </div>
-  <hr class="separator-solid">
 {% endif %}
 {% if image_list %}
+  <hr class="separator-solid">
   <div class="row columns columns-1">
     <div class="span12 column column-1">
       {# Gallery #}
       {% include "programs/_gallery_carousel.html" %}
     </div>
   </div>
-  <hr class="separator-solid">
 {% endif %}
 {% if article_list|slice:'8:9' or article_list|slice:'9:10' or article_list|slice:'10:11' %}
+  <hr class="separator-solid">
   <div class="row columns columns-3">
     <div class="span4 column column-1">
       {# Recent #}
@@ -72,5 +73,4 @@
       {% endfor %}
     </div>
   </div>
-  <hr class="separator-solid">
 {% endif %}

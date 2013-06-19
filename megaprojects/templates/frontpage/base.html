@@ -27,9 +27,7 @@
       {% endfor %}
     </div>
   </div>
-
   <hr class="separator-solid">
-
   <div class="row columns columns-3">
     <div class="span4 column column-1">
       {% for article in article_list|slice:'4:6' %}
@@ -51,13 +49,9 @@
       {% endfor %}
     </div>
   </div>
-
   <hr class="separator-solid">
-
   {% include "frontpage/_gallery_carousel.html" %}
-
   <hr class="separator-solid">
-
   <div class="row columns columns-3">
     {% for article in article_list|slice:'8:9' %}
       <div class="span4 column column-1">
@@ -73,13 +67,8 @@
       </div>
     {% endfor %}
   </div>
-
   <hr class="separator-solid">
-
   {% include "frontpage/_archive_content.html" %}
-
-  <hr class="separator-solid">
-
   <div class="text-center next-page">
     FrontPage <a href="{% url 'article_list' %}">Archive</a>
   </div>

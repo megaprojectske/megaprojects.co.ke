@@ -68,13 +68,16 @@ class ProgramLatestView(PublicDetailView):
 
         popular_list = [article for article in Article.objects.published().filter(
             program=self.object)[:8]]
+        image_list = [image for image in Image.objects.published().filter(
+            article__program=self.object)[:12]]
 
         context['article_list'] = [
             article for article in Article.objects.published().filter(program=self.object)[:11]]
-        context['image_list'] = [image for image in Image.objects.published().filter(
-            article__program=self.object)[:12]]
-        # Only show popular list if more than 5 exist
+
+        # Only show list if more than 5 exist
         if len(popular_list) >= 5:
             context['popular_list'] = popular_list
+        if len(image_list) >= 5:
+            context['image_list'] = image_list
 
         return context
