@@ -87,12 +87,6 @@ ALLOWED_HOSTS = get_env_setting('ALLOWED_HOSTS')
 ########## END SECURITY CONFIGURATION
 
 
-########## STATIC FILE CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = get_env_setting('STATIC_ROOT')
-########## END STATIC FILE CONFIGURATION
-
-
 ########## DJANGO ANALYTICAL CONFIGURATION
 # See: http://pythonhosted.org/django-analytical/features.html#identifying-visitors
 ANALYTICAL_AUTO_IDENTIFY = get_env_setting('ANALYTICAL_AUTO_IDENTIFY')
