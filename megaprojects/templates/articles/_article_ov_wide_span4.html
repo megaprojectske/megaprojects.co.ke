@@ -5,8 +5,6 @@
   <div class="teaser-image">
     {% thumbnail article.thumbnail.image '320x240' crop='center' as im %}
       <img src="{{ im.url }}" alt="{{ article.thumbnail.title }}">
-    {% empty%}
-      <img data-src="holder.js/320x240/auto">
     {% endthumbnail %}
   </div>
   <div class="teaser-header">
