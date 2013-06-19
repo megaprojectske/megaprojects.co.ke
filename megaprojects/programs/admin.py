@@ -49,7 +49,8 @@ class ProgramAdmin(admin.ModelAdmin):
     inlines = [DetailInline, ImageInline]
     list_display = ['title', 'abbr', 'status', 'reviewed']
     list_filter = ['status']
-    readonly_fields = ['uuid', 'created', 'changed']
+    readonly_fields = [
+        'uuid', 'shortuuid', 'slug', 'code', 'created', 'changed']
     search_fields = ['title']
 
     form = ProgramAdminForm
@@ -58,9 +59,10 @@ class ProgramAdmin(admin.ModelAdmin):
         (None, {'fields': ['title', 'abbr']}),
         (None, {'fields': ['status']}),
         (None, {'fields': ['lead', 'body']}),
+        (None, {'fields': ['slug', 'code']}),
         ('Advanced', {
             'classes': ['collapse'],
-            'fields': ['uuid', 'created', 'changed']
+            'fields': ['uuid', 'shortuuid', 'created', 'changed']
         }),
     ]
 

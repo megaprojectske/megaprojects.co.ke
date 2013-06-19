@@ -49,7 +49,8 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'status', 'pubdate',
                     'program_abbr', 'author', 'reviewed']
     list_filter = ['status', 'pubdate', 'program', 'author__username']
-    readonly_fields = ['drupal_id', 'uuid', 'created', 'changed']
+    readonly_fields = [
+        'drupal_id', 'uuid', 'shortuuid', 'slug', 'code', 'created', 'changed']
     search_fields = ['title']
 
     form = ArticleAdminForm
@@ -59,10 +60,12 @@ class ArticleAdmin(admin.ModelAdmin):
         (None, {'fields': ['pubdate']}),
         (None, {'fields': ['status', 'program']}),
         (None, {'fields': ['lead', 'body']}),
+        (None, {'fields': ['slug', 'code']}),
         ('Advanced', {
             'classes': ['collapse'],
-            'fields': ['drupal_id', 'uuid', 'created', 'changed', 'reviewed']
+            'fields': ['drupal_id', 'uuid', 'shortuuid', 'created', 'changed']
         }),
+        (None, {'fields': ['reviewed']}),
     ]
 
     def program_abbr(self, obj):

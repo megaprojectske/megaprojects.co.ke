@@ -2,13 +2,16 @@ import uuid
 
 from django.conf import settings
 from django.db import models
+from django.utils import text
+
+import fields
 
 
 class TimeStampedModel(models.Model):
 
     """
     An abstract base class model that provides self-updating ``created`` and
-    ``modified`` fields.
+    ``modified`` field.
     """
 
     created = models.DateTimeField(
@@ -20,16 +23,19 @@ class TimeStampedModel(models.Model):
         abstract = True
 
 
-class BaseModel(TimeStampedModel):
+class BaseModel(models.Model):
 
     """
-    Abstract model for main entities. Provides a ``title`` and ``uuid`` field.
+    Abstract model for main entities. Provides a ``title`` and ``shortuuid``
+    field.
     """
 
     title = models.CharField(
         max_length=255, help_text='The title of this entity, always treated as non-markup plain text.')
     uuid = models.CharField('UUID', max_length=255, unique=True,
                             help_text='Unique Key: Universally unique identifier for this entity.')
+    shortuuid = fields.ShortUUIDField(
+        verbose_name='Short UUID', max_length=255, unique=True, blank=True, null=True, help_text='Unique Key: Universally unique identifier for this entity.')
 
     def __unicode__(self):
         return self.title
@@ -43,10 +49,10 @@ class BaseModel(TimeStampedModel):
         abstract = True
 
 
-class AuthorModel(BaseModel):
+class AuthorModel(models.Model):
 
     """
-    Builds upon ``BaseModel`` by adding a ``author`` field.
+    Abstract model for content entities. Provides a ``author`` field.
     """
 
     author = models.ForeignKey(
@@ -56,7 +62,29 @@ class AuthorModel(BaseModel):
         abstract = True
 
 
-class ImageModel(BaseModel):
+class PublicModel(models.Model):
+
+    """
+    Abstract model for public entities. Provides a ``slug``, ``reviewed``
+    field and code property.
+    """
+
+    slug = models.SlugField('SEO slug', max_length=255)
+    reviewed = models.BooleanField(help_text='Entity has been reviewed (QC).')
+
+    def save(self, *args, **kwargs):
+        self.slug = text.slugify(self.title)
+        super(PublicModel, self).save(*args, **kwargs)
+
+    @property
+    def code(self):
+        return "%04d" % self.id
+
+    class Meta:
+        abstract = True
+
+
+class ImageModel(models.Model):
 
     """
     Abstract base class model for Image fields.
@@ -64,10 +92,9 @@ class ImageModel(BaseModel):
 
     status = models.BooleanField(
         default=True, help_text='Boolean indicating whether the entity is published (visible to non-administrators).')
-    reviewed = models.BooleanField(
-        help_text='Object has been reviewed (quality control).')
+    reviewed = models.BooleanField(help_text='Entity has been reviewed (QC).')
     thumbnail = models.BooleanField(
-        help_text='Boolean indicating whether the entity is the main model thumbnail.')
+        help_text='Boolean indicating whether the entity is the main thumbnail.')
 
     def __unicode__(self):
         return self.uuid

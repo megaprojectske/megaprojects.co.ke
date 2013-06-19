@@ -2,7 +2,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
 
-from core.models import AuthorModel, ImageModel
+from core.models import TimeStampedModel, BaseModel, AuthorModel, PublicModel, ImageModel
 from core.util import unique_boolean
 
 from .managers import PostManager, ImageManager
@@ -12,7 +12,7 @@ import util
 STATUS_CHOICES = [('d', 'Draft'),  ('p', 'Published'), ('w', 'Withdrawn')]
 
 
-class Post(AuthorModel):
+class Post(TimeStampedModel, BaseModel, AuthorModel, PublicModel):
 
     pubdate = models.DateTimeField('publication date', default=timezone.now())
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
@@ -37,7 +37,7 @@ class Post(AuthorModel):
 
 # Keep the 'thumbnail' field unique for the images of each post
 @unique_boolean('thumbnail', subset=['post'])
-class Image(ImageModel):
+class Image(TimeStampedModel, BaseModel, ImageModel):
 
     image = models.ImageField(upload_to=util.get_image_path)
 

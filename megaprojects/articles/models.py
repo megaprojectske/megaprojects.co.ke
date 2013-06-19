@@ -2,7 +2,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
 
-from core.models import AuthorModel, ImageModel
+from core.models import TimeStampedModel, BaseModel, AuthorModel, PublicModel, ImageModel
 from core.util import unique_boolean
 from programs.models import Program
 
@@ -14,7 +14,7 @@ STATUS_CHOICES = [('d', 'Draft'),  ('p', 'Published'), ('w', 'Withdrawn')]
 KIND_CHOICES = [('a', 'Article'), ('f', 'Feature')]
 
 
-class Article(AuthorModel):
+class Article(TimeStampedModel, BaseModel, AuthorModel, PublicModel):
 
     pubdate = models.DateTimeField('publication date', default=timezone.now())
     kind = models.CharField(max_length=1, choices=KIND_CHOICES)
@@ -23,8 +23,6 @@ class Article(AuthorModel):
     body = models.TextField()
     drupal_id = models.IntegerField('drupal NID', unique=True, blank=True,
                                     null=True, help_text='Node ID from the previous Drupal website (imported).')
-    reviewed = models.BooleanField(
-        help_text='Article has been reviewed (quality control).')
 
     program = models.ForeignKey(Program, blank=True, null=True)
 
@@ -45,7 +43,7 @@ class Article(AuthorModel):
 
 # Keep the 'thumbnail' field unique for the images of each article
 @unique_boolean('thumbnail', subset=['article'])
-class Image(ImageModel):
+class Image(TimeStampedModel, BaseModel, ImageModel):
 
     image = models.ImageField(upload_to=util.get_image_path)
 

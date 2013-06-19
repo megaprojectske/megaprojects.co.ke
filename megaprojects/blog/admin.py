@@ -48,7 +48,8 @@ class PostAdmin(admin.ModelAdmin):
     inlines = [ImageInline]
     list_display = ['title', 'status', 'pubdate', 'author']
     list_filter = ['status', 'pubdate', 'author__username']
-    readonly_fields = ['drupal_id', 'uuid', 'created', 'changed']
+    readonly_fields = [
+        'drupal_id', 'uuid', 'shortuuid', 'slug', 'code', 'created', 'changed']
     search_fields = ['title']
 
     form = PostAdminForm
@@ -58,9 +59,10 @@ class PostAdmin(admin.ModelAdmin):
         (None, {'fields': ['pubdate']}),
         (None, {'fields': ['status']}),
         (None, {'fields': ['body']}),
+        (None, {'fields': ['slug', 'code']}),
         ('Advanced', {
             'classes': ['collapse'],
-            'fields': ['drupal_id', 'uuid', 'created', 'changed']
+            'fields': ['drupal_id', 'uuid', 'shortuuid', 'created', 'changed']
         }),
     ]
 

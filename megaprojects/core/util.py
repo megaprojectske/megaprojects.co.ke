@@ -1,6 +1,6 @@
 def image_parse(match, model):
     try:
-        image = model.image_set.get(uuid=match.group('uuid'))
+        image = model.image_set.get(shortuuid=match.group('shortuuid'))
     except model.image_set.model.DoesNotExist:
         image = None
 
@@ -10,16 +10,16 @@ def image_parse(match, model):
 def image_sub(content, repl):
     import re
 
-    IMAGE_RE = r'\[image (?P<uuid>[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12})\]'
+    IMAGE_RE = r'\[image (?P<shortuuid>[a-z\d]+)\]'
     return re.sub(IMAGE_RE, repl, content)
 
 
 def unique_boolean(field, subset=[]):
-    from functools import wraps
-
     """
     Allows to specify a unique boolean for a model.
     """
+
+    from functools import wraps
 
     def cls_factory(cls):
         def factory(func):
