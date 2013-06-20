@@ -23,3 +23,6 @@ build
 # Media and assets dir:
 media
 assets
+
+# Whoosh index
+whoosh_index
