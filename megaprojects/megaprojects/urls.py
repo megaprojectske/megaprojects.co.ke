@@ -21,11 +21,11 @@ sitemaps = {
 
 urlpatterns = patterns('',
                        # Uncomment the admin/doc line below to enable admin documentation:
-                       # url(r'^admin/doc/',
-                       # include('django.contrib.admindocs.urls')),
+                       url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
                        # Uncomment the next line to enable the admin:
                        url(r'^admin/', include(admin.site.urls)),
+                       url(r'^ckeditor/', include('ckeditor.urls')),
 
                        url(r'^$', FrontPageView.as_view(), name='frontpage'),
                        url(r"^rss/index.xml$", FrontPageFeed(), name='rss'),
@@ -33,14 +33,12 @@ urlpatterns = patterns('',
                        url(r'^articles/', include('articles.urls')),
                        url(r'^projects/', include('programs.urls')),
                        url(r'^blog/', include('blog.urls')),
+                       url(r'^search/', include('haystack.urls')),
 
                        url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {
-                           'sitemaps': sitemaps}),
+                           'sitemaps': sitemaps}, name='sitemap'),
                        url(r'^robots\.txt$', TemplateView.as_view(
                            template_name='robots.txt', content_type='text/plain')),
-
-                       url(r'^ckeditor/', include('ckeditor.urls')),
-                       url(r'^search/', include('haystack.urls')),
                        )
 
 import sys

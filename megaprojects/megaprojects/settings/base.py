@@ -151,7 +151,7 @@ TEMPLATE_DIRS = (
 ########## MIDDLEWARE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#middleware-classes
 MIDDLEWARE_CLASSES = (
-    # Cache Middleware
+    # Cache Middleware (First)
     'django.middleware.cache.UpdateCacheMiddleware',
 
     'django.middleware.gzip.GZipMiddleware',
@@ -163,7 +163,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 
-    # Cache Middleware
+    # Cache Middleware (Last)
     'django.middleware.cache.FetchFromCacheMiddleware',
 )
 ########## END MIDDLEWARE CONFIGURATION
@@ -177,12 +177,13 @@ ROOT_URLCONF = '%s.urls' % SITE_NAME
 
 ########## APP CONFIGURATION
 DJANGO_APPS = (
-    # Default Django apps:
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
+    'django.contrib.flatpages',
     'django.contrib.messages',
+    'django.contrib.sessions',
+    'django.contrib.sitemaps',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
 
     # Useful template tags:
@@ -190,10 +191,7 @@ DJANGO_APPS = (
 
     # Admin panel and documentation:
     'django.contrib.admin',
-    # 'django.contrib.admindocs',
-
-    'django.contrib.flatpages',
-    'django.contrib.sitemaps',
+    'django.contrib.admindocs',
 )
 
 THIRD_PARTY_APPS = (
