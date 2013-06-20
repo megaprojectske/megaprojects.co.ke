@@ -1,12 +1,19 @@
+{% load menu_tags %}
+
+
 <div class="container">
   <div class="row">
     <div class="span6">
       <a class="brand" title="Home" href="/"><img alt="Home" src="{{ STATIC_URL }}img/megaprojects-light.png"></a>
       {% include "_search.html" %}
     </div>
-    <div class="span2">
+    <div class="span3">
+      {% load_menu slug='page-menu' as pagemenu %}
+      {% if pagemenu %}
+        {% include "footer/page_menu.html" %}
+      {% endif %}
     </div>
-    <div class="span4">
+    <div class="span3">
     </div>
   </div>
 </div> <!-- /container -->
