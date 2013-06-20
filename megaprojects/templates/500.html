@@ -2,7 +2,7 @@
 
 
 {% block title %}
-  Whoops! Server Error - 500
+  Server Error - 500 | {{ block.super }}
 {% endblock title %}
 
 {% block breadcrumbs %}
@@ -11,10 +11,10 @@
 {% endblock breadcrumbs %}
 
 {% block headline %}
-  Whoops! Server Error - 500
+  Server Error - 500
 {% endblock headline %}
 
 {# Content #}
 {% block content_body %}
-  <p>:-S There's been an error. It's been reported to the site administrators and should be fixed shortly. Thanks for your patience.</p>
+  <p>There's been an error. It's been reported to the site administrators and should be fixed shortly. Thanks for your patience.</p>
 {% endblock content_body %}
