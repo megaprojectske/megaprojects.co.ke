@@ -35,8 +35,8 @@
       {% compress css %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" >
         <link rel="stylesheet" href="{{ STATIC_URL }}css/megaprojects.css">
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,700,400">
       {% endcompress %}
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,700,400">
     {% endblock stylesheet %}
 
     <!--[if lt IE 9]>
@@ -57,15 +57,14 @@
       {% include "_footer.html" %}
     </footer> <!-- /footer -->
 
-    <div id="script">
-      {% compress js %}
-        {% block javascript %}
+    <div id="script"> 
+      {% block javascript %}
+        {% compress js %}
           <script src="{{ STATIC_URL }}js/jquery.js"></script>
           <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
-          <script src="{{ STATIC_URL }}js/holder.js"></script>
           <script src="{{ STATIC_URL }}js/megaprojects.js"></script>
-        {% endblock javascript %}
-      {% endcompress %}
+        {% endcompress %}
+      {% endblock javascript %}
     </div> <!-- /script -->
   </body>
 </html>
