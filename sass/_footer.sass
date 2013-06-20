@@ -20,22 +20,54 @@
         border-color: #c8c8c8
     .input-append
       margin-bottom: 0
-  .block
-    // padding-left: 10px
-    .title
+  .block-render
+    margin-bottom: 20px
+    margin-right: 20px
+  .block-title
+    border-left: 46px solid #444
+    color: $white
+    line-height: 46px
+    margin: 0 0 20px
+    padding-left: 10px
+    text-transform: uppercase
+  .page-menu
+    margin: 0
+    font-size: 0.9em
+    li
+      border-bottom: 1px dotted #666
+      a
+        +link-colors(#c3c3c3, $white, $white, #c3c3c3, $white)
+        padding: 6px 0
+        &:hover
+          background: none
+      &:last-child
+        border-bottom: none
+  .follow_toolbox
+    a
+      // +transition(all 2s)
       color: $white
-      font-size: 1em
-      margin: 0 0 0.5em
-      text-transform: uppercase
-    .nav
-      font-size: .9em
-      margin: 0
-      li
-        border-bottom: 1px dotted #666
-        a
-          +link-colors(#c3c3c3, $white, $white, #c3c3c3, $white)
-          padding: 5px 0
-          &:hover
-            background: none
-        &:last-child
-          border-bottom: none
+      float: none
+      display: inline-block
+      margin-right: 5px
+      line-height: 46px
+      margin-bottom: 5px
+      background-color: #444
+    img
+      width: 32px
+      height: 32px
+  .separator-solid
+    border-top: 1px solid #222
+  .copyright
+    font-size: 0.9em
+    margin-top: 10px
+    color: $gray-dark
+    text-align: right
+  // &:hover
+  //   .addthis_button_twitter_follow
+  //     background-color: $twitter-icon-bg
+  //   .addthis_button_facebook_follow
+  //     background-color: $facebook-icon-bg
+  //   .addthis_button_google_follow
+  //     background-color: $googleplus-icon-bg
+  //   .addthis_button_rss_follow
+  //     background-color: $rss-icon-bg

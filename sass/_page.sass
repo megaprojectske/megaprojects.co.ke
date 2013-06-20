@@ -23,6 +23,11 @@ body
   .list-header
     border-bottom: 1px solid $content-border
     padding: 30px ($grid-row-width / 30)
+  .block-title
+    background-color: #fefefe
+    border-bottom: 2px solid $green
+    margin: 0
+    padding: 10px 20px
 
 #openlayers
   border-top: 1px solid $content-border
@@ -242,12 +247,6 @@ body
   line-height: 1.2
   margin: 0
 
-.block-title
-  background-color: #fefefe
-  border-bottom: 2px solid $green
-  margin: 0
-  padding: 10px 20px
-
 .image-render
   border-bottom: 1px solid $content-border
   border-top: 1px solid $content-border
@@ -337,24 +336,24 @@ body
 
 .follow_toolbox
   a
-    color: black
+    color: $black
     cursor: pointer
     display: block
     float: right
     line-height: 3em
     vertical-align: middle
   img
-    padding: 0 8px
+    padding: 0 7px
   .addthis_follow_label
     display: none
-  .addthis_button_facebook_follow
-    background-color: #3b5998
   .addthis_button_twitter_follow
-    background-color: #00aced
+    background-color: $twitter-icon-bg
+  .addthis_button_facebook_follow
+    background-color: $facebook-icon-bg
   .addthis_button_google_follow
-    background-color: #d14836
+    background-color: $googleplus-icon-bg
   .addthis_button_rss_follow
-    background-color: #ff8300
+    background-color: $rss-icon-bg
 
 .share_toolbox
   background-color: $content-bg-gray
@@ -376,15 +375,15 @@ body
   .addthis_counter
     margin: 0 2px
   .addthis_button_facebook
-    background-color: #3b5998
+    background-color: $facebook-icon-bg
   .addthis_button_twitter
-    background-color: #00aced
+    background-color: $twitter-icon-bg
   .addthis_button_google_plusone_share
-    background-color: #d14836
+    background-color: $googleplus-icon-bg
   .addthis_button_pinterest_share
-    background-color: #cb2027
+    background-color: $pinterest-icon-bg
   .addthis_button_email
-    background-color: #222
+    background-color: $email-icon-bg
 
 .staged-sidebar
   .share_toolbox
@@ -394,7 +393,7 @@ body
 #at3win, 
 #at3lb,
 #at20mc
-  display: none !important
+  display: none !important // TOOD: Fix this
 
 #idc-container-parent
   background-color: $content-bg-gray
