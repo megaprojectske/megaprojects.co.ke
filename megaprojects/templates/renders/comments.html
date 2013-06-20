@@ -1,9 +1,15 @@
-<span id="IDCommentsPostTitle" style="display: none">{{ object.title }}</span>
 <div id="idc-container-parent">
-  <noscript>
+  {% if object.enable_comments %}
+    <span id="IDCommentsPostTitle" style="display: none">{{ object.title }}</span>
+    <noscript>
+      <div class="text-center">
+        Please enable JavaScript to view the <b>comments</b> powered by <a href="//www.intensedebate.com" target="_blank">IntenseDebate.</a>
+      </div>
+    </noscript>  
+  {% else %}
     <div class="text-center">
-      Please enable JavaScript to view the <b>comments</b> powered by <a href="//www.intensedebate.com" target="_blank">IntenseDebate.</a>
+      Comments are closed.</a>
     </div>
-  </noscript>
+  {% endif %}
 </div>
 

@@ -18,7 +18,9 @@
         {% if not program and article.program %}
           | <a href="{{ article.program.get_absolute_url }}">{{ article.program.title }}</a>
         {% endif %}
-        | <a class="comment-count-green" href="{{ article.get_absolute_url }}#idc-container-parent">Comments</a>
+        {% if article.enable_comments %}
+          | <a class="comment-count-green" href="{{ article.get_absolute_url }}#idc-container-parent">Comments</a>
+        {% endif%}
       </p>
     </div>
     <div class="media-body teaser-body">

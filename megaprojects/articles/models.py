@@ -2,7 +2,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
 
-from core.models import TimeStampedModel, BaseModel, AuthorModel, PublicModel, ImageModel
+from core.models import TimeStampedModel, BaseModel, AuthorModel, PublicModel, ImageModel, CommentModel
 from core.util import unique_boolean
 from programs.models import Program
 
@@ -14,7 +14,7 @@ STATUS_CHOICES = [('d', 'Draft'),  ('p', 'Published'), ('w', 'Withdrawn')]
 KIND_CHOICES = [('a', 'Article'), ('f', 'Feature')]
 
 
-class Article(TimeStampedModel, BaseModel, AuthorModel, PublicModel):
+class Article(TimeStampedModel, BaseModel, AuthorModel, PublicModel, CommentModel):
 
     pubdate = models.DateTimeField('publication date', default=timezone.now())
     kind = models.CharField(max_length=1, choices=KIND_CHOICES)

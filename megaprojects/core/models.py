@@ -101,3 +101,15 @@ class ImageModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+class CommentModel(models.Model):
+
+    """
+    Abstract model for content entities. Provides a ``enable_comments`` field.
+    """
+
+    enable_comments = models.BooleanField(default=True)
+
+    class Meta:
+        abstract = True

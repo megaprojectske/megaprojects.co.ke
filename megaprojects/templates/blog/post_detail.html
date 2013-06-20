@@ -19,7 +19,10 @@
 
 {# Byline #}
 {% block byline %}
-  {{ post.pubdate|date:'F j, Y - f A' }} | <a href="{% url 'post_list' %}">Blog</a> | <a class="comment-count-green" href="#idc-container-parent">Comments</a>
+  {{ post.pubdate|date:'F j, Y - f A' }} | <a href="{% url 'post_list' %}">Blog</a>
+  {% if post.enable_comments %}
+    | <a class="comment-count-green" href="#idc-container-parent">Comments</a>
+  {% endif%}
 {% endblock byline %}
 
 {# Body #}  
@@ -36,10 +39,14 @@
 
 {% block javascript %}
   {{ block.super }}
-  {% intensedebate_config post_id=post.id post_id_prefix='post_' %}
+  {% if post.enable_comments %}
+    {% intensedebate_config post_id=post.id post_id_prefix='post_' %}
+  {% endif%}
 {% endblock javascript %}
 
 {% block external_js %}
   {{ block.super }}
-  {% intensedebate_cw %}
+  {% if post.enable_comments %}
+    {% intensedebate_cw %}
+  {% endif%}
 {% endblock external_js %}

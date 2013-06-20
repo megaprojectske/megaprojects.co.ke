@@ -2,7 +2,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
 
-from core.models import TimeStampedModel, BaseModel, AuthorModel, PublicModel, ImageModel
+from core.models import TimeStampedModel, BaseModel, AuthorModel, PublicModel, ImageModel, CommentModel
 from core.util import unique_boolean
 
 from .managers import PostManager, ImageManager
@@ -12,7 +12,7 @@ import util
 STATUS_CHOICES = [('d', 'Draft'),  ('p', 'Published'), ('w', 'Withdrawn')]
 
 
-class Post(TimeStampedModel, BaseModel, AuthorModel, PublicModel):
+class Post(TimeStampedModel, BaseModel, AuthorModel, PublicModel, CommentModel):
 
     pubdate = models.DateTimeField('publication date', default=timezone.now())
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)

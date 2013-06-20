@@ -62,7 +62,7 @@ class PostAdmin(admin.ModelAdmin):
         (None, {'fields': ['slug', 'code']}),
         ('Advanced', {
             'classes': ['collapse'],
-            'fields': ['drupal_id', 'shortuuid', 'created', 'changed']
+            'fields': ['enable_comments', 'drupal_id', 'shortuuid', 'created', 'changed']
         }),
     ]
 

@@ -15,7 +15,10 @@
         <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
       </h3>
       <p class="byline">
-        {{ article.pubdate|date:'F j, Y - f A' }} | <a class="comment-count-blue" href="{{ article.get_absolute_url }}#idc-container-parent">Comments</a>
+        {{ article.pubdate|date:'F j, Y - f A' }} 
+        {% if article.enable_comments %}
+          | <a class="comment-count-blue" href="{{ article.get_absolute_url }}#idc-container-parent">Comments</a>
+        {% endif%}
       </p>
     </div>
   {% else %}

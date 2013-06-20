@@ -63,7 +63,7 @@ class ArticleAdmin(admin.ModelAdmin):
         (None, {'fields': ['slug', 'code']}),
         ('Advanced', {
             'classes': ['collapse'],
-            'fields': ['drupal_id', 'uuid', 'shortuuid', 'created', 'changed']
+            'fields': ['enable_comments', 'drupal_id', 'uuid', 'shortuuid', 'created', 'changed']
         }),
         (None, {'fields': ['reviewed']}),
     ]

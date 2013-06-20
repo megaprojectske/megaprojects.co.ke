@@ -22,7 +22,9 @@
   {% if article.program %}
     | <a href="{{ article.program.get_absolute_url }}">{{ article.program.title }}</a>
   {% endif %}
-  | <a class="comment-count-green" href="#idc-container-parent">Comments</a>
+  {% if article.enable_comments %}
+    | <a class="comment-count-green" href="#idc-container-parent">Comments</a>
+  {% endif%}
 {% endblock byline %}
 
 {# Lead #}
@@ -46,10 +48,14 @@
 
 {% block javascript %}
   {{ block.super }}
-  {% intensedebate_config post_id=article.id post_id_prefix='article_' %}
+  {% if article.enable_comments %}
+    {% intensedebate_config post_id=article.id post_id_prefix='article_' %}
+  {% endif%}
 {% endblock javascript %}
 
 {% block external_js %}
   {{ block.super }}
-  {% intensedebate_cw %}
+  {% if article.enable_comments %}
+    {% intensedebate_cw %}
+  {% endif%}
 {% endblock external_js %}
