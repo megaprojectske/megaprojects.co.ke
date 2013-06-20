@@ -2,19 +2,19 @@
 
 
 {% block title %}
-  Whoops!
+  Whoops! Server Error - 500
 {% endblock title %}
 
 {% block breadcrumbs %}
   {% include "_breadcrumb.html" %}
-  <li class="active">500</li>
+  <li class="active">Server Error - 500</li>
 {% endblock breadcrumbs %}
 
 {% block heading %}
-  Whoops!
+  Whoops! Server Error - 500
 {% endblock heading %}
 
 {# Content #}
-{% block content_1_1 %}
-  <p>:-S</p>
-{% endblock content_1_1 %}
+{% block content_body %}
+  <p>:-S There's been an error. It's been reported to the site administrators and should be fixed shortly. Thanks for your patience.</p>
+{% endblock content_body %}
