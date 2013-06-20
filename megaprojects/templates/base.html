@@ -33,7 +33,7 @@
 
     {% block stylesheet %}
       {% compress css %}
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" >
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" >
         <link rel="stylesheet" href="{{ STATIC_URL }}css/megaprojects.css">
       {% endcompress %}
       <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,700,400">
@@ -59,13 +59,9 @@
 
     <div id="script"> 
       {% block javascript %}
-        {% if debug %}
-          <script src="{{ STATIC_URL }}js/jquery.js"></script>
-        {% else %} 
-          <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        {% endif %}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         {% compress js %}
-          <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+          <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
           <script src="{{ STATIC_URL }}js/megaprojects.js"></script>
         {% endcompress %}
       {% endblock javascript %}
