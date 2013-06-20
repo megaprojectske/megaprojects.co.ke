@@ -1,7 +1,4 @@
-{% load compress %}
-
-
-<!DOCTYPE html>
+<!DOCTYPE html>{% load compress %} {# '<!DOCTYPE html>' should be first! #}
 
 <!--
           .         .                                                                                                                                                                                                                              
@@ -36,12 +33,10 @@
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" >
         <link rel="stylesheet" href="{{ STATIC_URL }}css/megaprojects.css">
       {% endcompress %}
-      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,700,400">
     {% endblock stylesheet %}
 
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700">
   </head>
 
   <body>
@@ -58,13 +53,14 @@
     </footer> <!-- /footer -->
 
     <div id="script"> 
-      {% block javascript %}
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        {% compress js %}
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+      {% compress js %}
+        {% block javascript %}
           <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
           <script src="{{ STATIC_URL }}js/megaprojects.js"></script>
-        {% endcompress %}
-      {% endblock javascript %}
+        {% endblock javascript %}
+      {% endcompress %}
+      {% block external_js %}{% endblock external_js %}
     </div> <!-- /script -->
   </body>
 </html>

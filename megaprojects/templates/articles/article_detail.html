@@ -46,5 +46,10 @@
 
 {% block javascript %}
   {{ block.super }}
-  {% intensedebate_js post_id=article.id post_id_prefix='article_' %}
+  {% intensedebate_config post_id=article.id post_id_prefix='article_' %}
 {% endblock javascript %}
+
+{% block external_js %}
+  {{ block.super }}
+  {% intensedebate_cw %}
+{% endblock external_js %}

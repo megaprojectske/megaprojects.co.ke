@@ -26,6 +26,10 @@
 
 {% block javascript %}
   {{ block.super }}
-  {% analytics_js %}
-  {% addthis_js %}
+  {% addthis_config ui_use_css='False' twitter_via='megaprojectske' %}
 {% endblock javascript %}
+
+{% block external_js %}
+  {% analytics_load %}
+  {% addthis_widget %}
+{% endblock external_js %}

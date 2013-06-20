@@ -63,30 +63,19 @@ def remove_articles(value):
 
 
 # See: https://github.com/lettertwo/django-socialsharing
-@register.inclusion_tag('social/addthis/addthis_js.html', takes_context=True)
-def addthis_js(context, pubid=None, share_url=None, ga_tracker=None, ga_social=True, track_clickback=True, track_addressbar=True):
-    from django.conf import settings
-    from django.template import TemplateSyntaxError
-
+@register.inclusion_tag('social/addthis/config_js.html', takes_context=True)
+def addthis_config(context, share_url=None, ga_social=True, track_clickback=True, track_addressbar=True, ui_use_css=True, twitter_bitly=True, twitter_via=None):
     """
-    addthis
-    =======
-    The addthis templatetag will insert the necessary scripts to make use of
+    The addthis_js templatetag will insert the necessary scripts to make use of
     the [AddThis](http://www.addthis.com) widget.
 
     Basic usage:
     ------------
 
-        {% addthis_js pubid=xxxxxxxxxx %}
-
-    or with `ADDTHIS_PUBID` defined in settings.py:
-
         {% addthis_js %}
 
-    The only required argument is `pubid`. You may optionally provide a global
-    setting for this by adding `ADDTHIS_PUBID = xxxxxx` to your settings.py.
-    Setting this value means that you can omit the `pubid` argument when
-    invoking the templatetag.
+    The only required argument is a global setting for this by adding
+    `ADDTHIS_PUBID = xxxxxx` to your settings.py.
 
     Optional settings:
     ------------------
@@ -95,15 +84,18 @@ def addthis_js(context, pubid=None, share_url=None, ga_tracker=None, ga_social=T
 
         {% addthis_js 'http://myurl.com' %}
 
-    `track_clickback`: From the AddThis docs:
+    `track_clickback` (default = True): From the AddThis docs:
 
         Set to true to allow us to append a variable to your URLs upon sharing.
         We'll use this to track how many people come back to your content via
         links shared with AddThis. Highly recommended.
 
-    default value is `True`.
-    **Note:** You may optionally set
-    `ADDDTHIS_TRACK_CLICKBACK = False` to always force this value to `False`.
+    `track_addressbar` (default = True): TODO: Add doc
+    `twitter_via` (default = None): TODO: Add doc
+    `shorten_bitly` (default = None): TODO: Add doc
+
+    **Note:** You may optionally set `ADDDTHIS_TRACK_CLICKBACK = False` to
+    always force this value to `False`.
 
     To enable tracking via Google Analytics:
     ----------------------------------------
@@ -115,32 +107,47 @@ def addthis_js(context, pubid=None, share_url=None, ga_tracker=None, ga_social=T
     [django-analytical](http://github.com/jcassee/django-analytical)).
     """
 
+    from django.conf import settings
+    from django.template import TemplateSyntaxError
+
     if getattr(settings, 'ADDTHIS_GA_TRACKING_ENABLED', False):
-        if ga_tracker is None:
-            ga_tracker = getattr(settings, 'ADDTHIS_GA_TRACKER', getattr(
-                settings, 'GOOGLE_ANALYTICS_PROPERTY_ID', None))
+        ga_tracker = getattr(settings, 'ADDTHIS_GA_TRACKER', getattr(
+            settings, 'GOOGLE_ANALYTICS_PROPERTY_ID', None))
         if ga_tracker is None:
             raise TemplateSyntaxError(
-                'The addthis template tag is configured to use Google Analytics, but a tracking code was not found. You must either pass it as an argument or set ADDTHIS_GA_TRACKER in settings.py')
-
-    if pubid is None:
-        pubid = getattr(settings, 'ADDTHIS_PUB_ID', None)
-    if pubid is None:
-        raise TemplateSyntaxError(
-            'The addthis template tag requires a pubid. You must either pass it as an argument or set ADDTHIS_PUB_ID in settings.py.')
+                'The addthis template tag is configured to use Google Analytics, but a tracking code was not found. You must set ADDTHIS_GA_TRACKER in settings.py')
+    else:
+        ga_tracker = None
 
     return {
         'data_ga_property': ga_tracker,
         'data_ga_social': ga_social,
         'data_track_addressbar': track_addressbar,
         'data_track_clickback': track_clickback,
-        'pubid': pubid,
         'share_url': share_url,
+        'twitter_bitly': twitter_bitly,
+        'twitter_via': twitter_via,
+        'ui_use_css': ui_use_css,
     }
 
 
-@register.inclusion_tag('social/intensedebate/intensedebate_js.html', takes_context=True)
-def intensedebate_js(context, post_id=None, post_url=None, post_id_prefix='', post_id_suffix=''):
+@register.inclusion_tag('social/addthis/widget_js.html', takes_context=True)
+def addthis_widget(context):
+    from django.conf import settings
+    from django.template import TemplateSyntaxError
+
+    pubid = getattr(settings, 'ADDTHIS_PUB_ID', None)
+    if pubid is None:
+        raise TemplateSyntaxError(
+            'The addthis template tag requires a pubid. You must either pass it as an argument or set ADDTHIS_PUB_ID in settings.py.')
+
+    return {
+        'pubid': pubid,
+    }
+
+
+@register.inclusion_tag('social/intensedebate/config_js.html', takes_context=True)
+def intensedebate_config(context, post_id=None, post_url=None, post_id_prefix='', post_id_suffix=''):
     from django.conf import settings
     from django.template import TemplateSyntaxError
 
@@ -154,14 +161,24 @@ def intensedebate_js(context, post_id=None, post_url=None, post_id_prefix='', po
             'The intensedebate template tag requires a post ID. You must pass post_id as an argument.')
 
     return {
-        'account': intensedebate_acct,
-        'post_id': "%s%s%s" % (post_id_prefix, post_id, post_id_suffix),
-        'post_url': post_url,
+        'idcomments_acct': intensedebate_acct,
+        'idcomments_post_id': "%s%s%s" % (post_id_prefix, post_id, post_id_suffix),
+        'idcomments_post_url': post_url,
     }
 
 
+@register.inclusion_tag('social/intensedebate/comment_wrapper_js.html', takes_context=True)
+def intensedebate_cw(context):
+    return
+
+
+@register.inclusion_tag('social/intensedebate/link_wrapper_js.html', takes_context=True)
+def intensedebate_lw(context):
+    return
+
+
 @register.inclusion_tag('analytics/google_analytics/analytics_js.html', takes_context=True)
-def analytics_js(context):
+def analytics_load(context):
     from django.conf import settings
     from django.template import TemplateSyntaxError
 
@@ -170,7 +187,7 @@ def analytics_js(context):
 
     if tracking_id is None or site_domain is None:
         raise TemplateSyntaxError(
-            'The analytics template tag requires a tracking ID and a site domain. You must set GOOGLE_ANALYTICS_PROPERTY_ID and GOOGLE_ANALYTICS_SITE_DOMAIN in settings.py.')
+            'The analytics template tag requires a tracking ID and site domain. You must set GOOGLE_ANALYTICS_PROPERTY_ID and GOOGLE_ANALYTICS_SITE_DOMAIN in settings.py.')
 
     return {
         'tracking_id': tracking_id,
