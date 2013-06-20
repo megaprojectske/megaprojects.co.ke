@@ -1,5 +1,4 @@
 bpython==0.12
-django-analytical==0.15.0
 django-bootstrap-pagination==0.1.10
 django-braces==1.0.0
 django-ckeditor==4.0.2

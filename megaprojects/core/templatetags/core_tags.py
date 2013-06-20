@@ -158,3 +158,21 @@ def intensedebate_js(context, post_id=None, post_url=None, post_id_prefix='', po
         'post_id': "%s%s%s" % (post_id_prefix, post_id, post_id_suffix),
         'post_url': post_url,
     }
+
+
+@register.inclusion_tag('analytics/google_analytics/analytics_js.html', takes_context=True)
+def analytics_js(context):
+    from django.conf import settings
+    from django.template import TemplateSyntaxError
+
+    tracking_id = getattr(settings, 'GOOGLE_ANALYTICS_PROPERTY_ID', None)
+    site_domain = getattr(settings, 'GOOGLE_ANALYTICS_SITE_DOMAIN', None)
+
+    if tracking_id is None or site_domain is None:
+        raise TemplateSyntaxError(
+            'The analytics template tag requires a tracking ID and a site domain. You must set GOOGLE_ANALYTICS_PROPERTY_ID and GOOGLE_ANALYTICS_SITE_DOMAIN in settings.py.')
+
+    return {
+        'tracking_id': tracking_id,
+        'site_domain': site_domain,
+    }

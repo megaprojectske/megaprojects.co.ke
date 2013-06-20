@@ -87,16 +87,10 @@ ALLOWED_HOSTS = get_env_setting('ALLOWED_HOSTS')
 ########## END SECURITY CONFIGURATION
 
 
-########## DJANGO ANALYTICAL CONFIGURATION
-# See: http://pythonhosted.org/django-analytical/features.html#identifying-visitors
-ANALYTICAL_AUTO_IDENTIFY = get_env_setting('ANALYTICAL_AUTO_IDENTIFY')
-
-# See: http://pythonhosted.org/django-analytical/services/google_analytics.html#setting-the-property-id
+########## GOOGLE_ANALYTICS CONFIGURATION
 GOOGLE_ANALYTICS_PROPERTY_ID = get_env_setting('GOOGLE_ANALYTICS_PROPERTY_ID')
-
-# See: http://pythonhosted.org/django-analytical/services/google_analytics.html#tracking-multiple-domains
-GOOGLE_ANALYTICS_TRACKING_STYLE = get_env_setting('GOOGLE_ANALYTICS_TRACKING_STYLE')
-########## END DJANGO ANALYTICAL CONFIGURATION
+GOOGLE_ANALYTICS_SITE_DOMAIN = get_env_setting('GOOGLE_ANALYTICS_SITE_DOMAIN')
+########## END GOOGLE_ANALYTICS CONFIGURATION
 
 
 ########## ADDTHIS CONFIGURATION

@@ -1,11 +1,6 @@
 {% extends "base.html" %}
-{% load google_analytics core_tags %}
+{% load core_tags %}
 
-
-{% block extrahead %}
-  {{ block.super }}
-  {% google_analytics %}
-{% endblock extrahead %}
 
 {% block page %}
   <div id="navigation">
@@ -31,5 +26,6 @@
 
 {% block javascript %}
   {{ block.super }}
+  {% analytics_js %}
   {% addthis_js %}
 {% endblock javascript %}
