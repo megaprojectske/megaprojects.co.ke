@@ -20,5 +20,6 @@ build
 # SASS cache:
 .sass-cache
 
-# Media dir:
+# Media and assets dir:
 media
+assets
