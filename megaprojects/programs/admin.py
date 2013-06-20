@@ -1,10 +1,8 @@
-from django import forms
 from django.contrib import admin
 
-from ckeditor.widgets import CKEditorWidget
-
-from core.admin import BaseImageAdminForm, BaseImageInline
+from core.admin import BaseImageInline
 from .models import Program, Detail, Image
+from .forms import ProgramAdminForm, ImageAdminForm
 
 
 def make_published(modeladmin, request, queryset):
@@ -23,24 +21,10 @@ class DetailInline(admin.TabularInline):
     model = Detail
 
 
-class ImageAdminForm(BaseImageAdminForm):
-
-    class Meta:
-        model = Image
-
-
 class ImageInline(BaseImageInline):
 
     form = ImageAdminForm
     model = Image
-
-
-class ProgramAdminForm(forms.ModelForm):
-
-    body = forms.CharField(widget=CKEditorWidget())
-
-    class Meta:
-        model = Program
 
 
 class ProgramAdmin(admin.ModelAdmin):

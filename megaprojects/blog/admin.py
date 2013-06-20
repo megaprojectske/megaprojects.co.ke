@@ -1,10 +1,8 @@
-from django import forms
 from django.contrib import admin
 
-from ckeditor.widgets import CKEditorWidget
-
-from core.admin import BaseImageAdminForm, BaseImageInline
+from core.admin import BaseImageInline
 from .models import Post, Image
+from .forms import PostAdminForm, ImageAdminForm
 
 
 def make_draft(modeladmin, request, queryset):
@@ -22,24 +20,10 @@ def make_withdrawn(modeladmin, request, queryset):
 make_withdrawn.short_description = "Mark selected posts as Withdrawn"
 
 
-class ImageAdminForm(BaseImageAdminForm):
-
-    class Meta:
-        model = Image
-
-
 class ImageInline(BaseImageInline):
 
     form = ImageAdminForm
     model = Image
-
-
-class PostAdminForm(forms.ModelForm):
-
-    body = forms.CharField(widget=CKEditorWidget())
-
-    class Meta:
-        model = Post
 
 
 class PostAdmin(admin.ModelAdmin):
