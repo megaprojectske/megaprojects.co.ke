@@ -208,6 +208,7 @@ LOCAL_APPS = (
     'articles',
     'blog',
     'core',
+    'menu',
     'programs',
 )
 
