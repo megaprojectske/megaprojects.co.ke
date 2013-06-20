@@ -1,3 +1,6 @@
+{% load compress %}
+
+
 <!DOCTYPE html>
 
 <!--
@@ -13,9 +16,9 @@
  ,8'       `8        `8.`8888.  8 8888            8888     ,88'.888888888. `88888.  8 8888         8 8888   `8b.   ` 8888     ,88'     `88o.    8 88'  8 8888            8888     ,88'     8 8888    `8b.  ;8.`8888 8 8888   `Y8.   8 8888         
 ,8'         `         `8.`8888. 8 888888888888     `8888888P' .8'       `8. `88888. 8 8888         8 8888     `88.    `8888888P'         `Y888888 '    8 888888888888     `8888888P'       8 8888     `Y8888P ,88P' 8 8888     `Y8. 8 888888888888
 
-REF: +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |m|e|g|a|p|r|o|j|e|c|t|s|.|c|o|.|k|e|
-     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|m|e|g|a|p|r|o|j|e|c|t|s|.|c|o|.|k|e|
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 -->
 
 <html lang="en">
@@ -29,9 +32,11 @@ REF: +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     <title>{% block title %}MegaProjects Kenya{% endblock title %}</title>
 
     {% block stylesheet %}
-      <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" >
-      <link rel="stylesheet" href="{{ STATIC_URL }}css/megaprojects.css">
-      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,700,400">
+      {% compress css %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" >
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/megaprojects.css">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,700,400">
+      {% endcompress %}
     {% endblock stylesheet %}
 
     <!--[if lt IE 9]>
@@ -53,12 +58,14 @@ REF: +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     </footer> <!-- /footer -->
 
     <div id="script">
-      {% block javascript %}
-        <script src="{{ STATIC_URL }}js/jquery.js"></script>
-        <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
-        <script src="{{ STATIC_URL }}js/holder.js"></script>
-        <script src="{{ STATIC_URL }}js/megaprojects.js"></script>
-      {% endblock javascript %}
+      {% compress js %}
+        {% block javascript %}
+          <script src="{{ STATIC_URL }}js/jquery.js"></script>
+          <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+          <script src="{{ STATIC_URL }}js/holder.js"></script>
+          <script src="{{ STATIC_URL }}js/megaprojects.js"></script>
+        {% endblock javascript %}
+      {% endcompress %}
     </div> <!-- /script -->
   </body>
 </html>

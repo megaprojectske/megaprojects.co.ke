@@ -102,6 +102,8 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # Other finders ...
+    'compressor.finders.CompressorFinder',
 )
 ########## END STATIC FILE CONFIGURATION
 
@@ -197,6 +199,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'bootstrap-pagination',
     'ckeditor',
+    'compressor',
     'haystack',
     'sorl.thumbnail',
     'south',
