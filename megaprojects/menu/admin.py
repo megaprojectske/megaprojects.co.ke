@@ -14,12 +14,10 @@ def make_disabled(modeladmin, request, queryset):
 make_disabled.short_description = "Mark selected menus/links as Disabled"
 
 
-class MenuLinkInline(admin.TabularInline):
+class LinkInline(admin.TabularInline):
 
     extra = 1
-    fields = ['title', 'parent', 'order', 'url',
-              'view_name', 'kwargs', 'enabled']
-    ordering = ['parent', 'order']
+    fields = ['title', 'order', 'url', 'view_name', 'kwargs', 'enabled']
     model = Link
 
     form = LinkForm
@@ -28,7 +26,7 @@ class MenuLinkInline(admin.TabularInline):
 class MenuAdmin(admin.ModelAdmin):
 
     actions = [make_enabled, make_disabled]
-    inlines = [MenuLinkInline]
+    inlines = [LinkInline]
     list_display = ['title', 'slug', 'enabled']
     list_filter = ['enabled']
     prepopulated_fields = {'slug': ('title',)}
@@ -45,20 +43,10 @@ class MenuAdmin(admin.ModelAdmin):
     ]
 
 
-class LinkLinkInline(admin.TabularInline):
-
-    extra = 1
-    fields = ['title', 'order', 'url', 'view_name', 'kwargs', 'enabled']
-    ordering = ['parent', 'order']
-    model = Link
-
-    form = LinkForm
-
-
 class LinkAdmin(admin.ModelAdmin):
 
     actions = [make_enabled, make_disabled]
-    inlines = [LinkLinkInline]
+    inlines = [LinkInline]
     list_display = ['title', 'menu', 'parent',
                     'order', 'url', 'view_name', 'enabled']
     list_filter = ['enabled', 'menu']
