@@ -33,7 +33,7 @@ urlpatterns = patterns('',
                        url(r'^articles/', include('articles.urls')),
                        url(r'^projects/', include('programs.urls')),
                        url(r'^blog/', include('blog.urls')),
-                       url(r'^search/', include('haystack.urls')),
+                       url(r'^search/', include('haystack.urls'), name='search'),
 
                        url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {
                            'sitemaps': sitemaps}, name='sitemap'),

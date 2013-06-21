@@ -151,9 +151,7 @@ TEMPLATE_DIRS = (
 ########## MIDDLEWARE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#middleware-classes
 MIDDLEWARE_CLASSES = (
-    # Cache Middleware (First)
     'django.middleware.cache.UpdateCacheMiddleware',
-
     'django.middleware.gzip.GZipMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -162,8 +160,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-
-    # Cache Middleware (Last)
     'django.middleware.cache.FetchFromCacheMiddleware',
 )
 ########## END MIDDLEWARE CONFIGURATION
