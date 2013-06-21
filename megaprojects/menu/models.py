@@ -34,7 +34,7 @@ class Link(TimeStampedModel):
     enabled = models.BooleanField(default=True)
 
     parent = models.ForeignKey('self', blank=True, null=True)
-    menu = models.ForeignKey(Menu)
+    menu = models.ForeignKey(Menu, blank=True, null=True)
 
     def __unicode__(self):
         return "%s - %s" % (self.menu.title, self.title)
