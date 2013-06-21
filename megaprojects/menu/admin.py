@@ -16,7 +16,7 @@ make_disabled.short_description = "Mark selected menus/links as Disabled"
 
 class LinkInline(admin.TabularInline):
 
-    extra = 1
+    extra = 0
     fields = ['title', 'order', 'url', 'view_name', 'kwargs', 'enabled']
     model = Link
 

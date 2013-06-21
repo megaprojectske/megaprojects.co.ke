@@ -20,6 +20,16 @@ def make_withdrawn(modeladmin, request, queryset):
 make_withdrawn.short_description = "Mark selected articles as Withdrawn"
 
 
+def make_comments_enabled(modeladmin, request, queryset):
+    queryset.update(enable_comments=True)
+make_comments_enabled.short_description = "Mark selected articles with Comments Enabled"
+
+
+def make_comments_disabled(modeladmin, request, queryset):
+    queryset.update(enable_comments=False)
+make_comments_disabled.short_description = "Mark selected articles with Comments Disabled"
+
+
 class ImageInline(BaseImageInline):
 
     form = ImageAdminForm
@@ -28,13 +38,14 @@ class ImageInline(BaseImageInline):
 
 class ArticleAdmin(admin.ModelAdmin):
 
-    actions = [make_draft, make_published, make_withdrawn]
+    actions = [make_draft, make_published, make_withdrawn,
+               make_comments_enabled, make_comments_disabled]
     inlines = [ImageInline]
     list_display = ['title', 'status', 'pubdate',
-                    'program_abbr', 'author', 'reviewed']
+                    'program_abbr', 'author', 'enable_comments', 'reviewed']
     list_filter = ['status', 'pubdate', 'program', 'author__username']
     readonly_fields = [
-        'drupal_id', 'uuid', 'shortuuid', 'slug', 'code', 'created', 'changed']
+        'drupal_id', 'shortuuid', 'slug', 'code', 'created', 'changed']
     search_fields = ['title']
 
     form = ArticleAdminForm
@@ -47,7 +58,7 @@ class ArticleAdmin(admin.ModelAdmin):
         (None, {'fields': ['slug', 'code']}),
         ('Advanced', {
             'classes': ['collapse'],
-            'fields': ['enable_comments', 'drupal_id', 'uuid', 'shortuuid', 'created', 'changed']
+            'fields': ['enable_comments', 'drupal_id', 'shortuuid', 'created', 'changed']
         }),
         (None, {'fields': ['reviewed']}),
     ]
