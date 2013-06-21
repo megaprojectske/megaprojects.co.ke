@@ -48,8 +48,7 @@ class MenuAdmin(admin.ModelAdmin):
 class LinkLinkInline(admin.TabularInline):
 
     extra = 1
-    fields = ['title', 'menu', 'order', 'url',
-              'view_name', 'kwargs', 'enabled']
+    fields = ['title', 'order', 'url', 'view_name', 'kwargs', 'enabled']
     ordering = ['parent', 'order']
     model = Link
 
