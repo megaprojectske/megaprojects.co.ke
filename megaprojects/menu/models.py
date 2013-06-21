@@ -37,7 +37,12 @@ class Link(TimeStampedModel):
     menu = models.ForeignKey(Menu, blank=True, null=True)
 
     def __unicode__(self):
-        return "%s - %s" % (self.menu.title, self.title)
+        if self.parent:
+            return self.parent.title
+        if self.menu:
+            return "%s - %s" % (self.menu.title, self.title)
+        else:
+            return self.title
 
     @property
     def has_children(self):
