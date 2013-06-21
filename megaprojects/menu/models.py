@@ -38,7 +38,7 @@ class Link(TimeStampedModel):
 
     def __unicode__(self):
         if self.parent:
-            return self.parent.title
+            return "%s - %s" % (self.parent.title, self.title)
         if self.menu:
             return "%s - %s" % (self.menu.title, self.title)
         else:
