@@ -47,6 +47,12 @@ SERVER_EMAIL = EMAIL_HOST_USER
 ########## END EMAIL CONFIGURATION
 
 
+########## COMMON MIDDLEWARE CONFIGURATION
+# See: https://docs.djangoproject.com/en/1.5/ref/settings/#prepend-www
+PREPEND_WWW = True
+########## END COMMON MIDDLEWARE CONFIGURATION
+
+
 ########## DATABASE CONFIGURATION
 DATABASES = {
     'default': {
