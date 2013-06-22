@@ -25,7 +25,7 @@
 {# Body #}
 {% block body %}
   {% if program.body %}
-    <p>{{ program.body|remove_images|striptags|truncatewords:40 }} <a href="{% url 'program_detail' program.pk %}">Read More</a></p>
+    <p>{{ program.body|remove_images|striptags|truncatewords:40|safe }} <a href="{% url 'program_detail' program.pk %}">Read More</a></p>
   {% else %}
     <p class="muted">No description given.</p>
   {% endif %}

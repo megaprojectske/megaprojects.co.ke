@@ -4,4 +4,4 @@
 {% thumbnail obj.thumbnail.image '640x480' crop='center' as im %}
   <img src="//www.megaprojects.co.ke{{ im.url }}" alt="{{ obj.thumbnail.title }}">
 {% endthumbnail %}
-{{ obj.body|remove_images|striptags|linebreaks|truncatewords:60 }}
+{{ obj.body|remove_images|striptags|truncatewords:60|safe|linebreaks }}

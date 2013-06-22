@@ -24,7 +24,7 @@
       </p>
     </div>
     <div class="media-body teaser-body">
-      {{ article.body|remove_images|striptags|linebreaks|truncatewords:60 }}
+      {{ article.body|remove_images|striptags|truncatewords:60|safe|linebreaks }}
       <a href="{{ article.get_absolute_url }}">Read More</a>
     </div>
   </div>

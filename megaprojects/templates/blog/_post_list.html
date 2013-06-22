@@ -20,7 +20,7 @@
       {% endthumbnail %}
     </div>
     <div class="media-body teaser-body">
-      {{ post.body|remove_images|remove_articles|striptags|linebreaks|truncatewords:60 }}
+      {{ post.body|remove_images|remove_articles|striptags|truncatewords:60|safe|linebreaks }}
       <a href="{{ post.get_absolute_url }}">Read More</a>
     </div>
   </div>
