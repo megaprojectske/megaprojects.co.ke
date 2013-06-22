@@ -333,27 +333,6 @@ body
   th
     border-left: 0
 
-.follow_toolbox
-  a
-    color: $black
-    cursor: pointer
-    display: block
-    float: right
-    line-height: 3em
-    vertical-align: middle
-  img
-    padding: 0 7px
-  .addthis_follow_label
-    display: none
-  .addthis_button_twitter_follow
-    background-color: $twitter-icon-bg
-  .addthis_button_facebook_follow
-    background-color: $facebook-icon-bg
-  .addthis_button_google_follow
-    background-color: $googleplus-icon-bg
-  .addthis_button_rss_follow
-    background-color: $rss-icon-bg
-
 .share_toolbox
   background-color: $content-bg-gray
   border-bottom: 1px solid $content-border
@@ -364,15 +343,11 @@ body
     display: block
     float: left
     margin: 0 2px
-  .at300bs
-    height: 32px
-    width: 32px
-    line-height: 32px
-    display: block
-  .at_a11y
-    display: none
-  .addthis_counter
-    margin: 0 2px
+    img
+      height: 32px
+      width: 32px
+  .addthis_button_compact
+    margin: 0
   .addthis_button_facebook
     background-color: $facebook-icon-bg
   .addthis_button_twitter
@@ -387,12 +362,6 @@ body
 .staged-sidebar
   .share_toolbox
     padding: ($grid-row-width / 30) / 2 18px
-
-#at15s, 
-#at3win, 
-#at3lb,
-#at20mc
-  display: none !important // TOOD: Fix this
 
 #idc-container-parent
   background-color: $content-bg-gray

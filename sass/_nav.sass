@@ -8,6 +8,29 @@
   .container
     background-color: $white
     padding: 0
+  .follow_toolbox
+    a
+      color: $black
+      cursor: pointer
+      display: block
+      float: right
+      line-height: 46px
+      padding: 0
+      vertical-align: middle
+    img
+      height: 32px
+      padding: 0 7px
+      width: 32px
+    .addthis_follow_label
+      display: none
+    .addthis_button_twitter_follow
+      background-color: $twitter-icon-bg
+    .addthis_button_facebook_follow
+      background-color: $facebook-icon-bg
+    .addthis_button_google_follow
+      background-color: $googleplus-icon-bg
+    .addthis_button_rss_follow
+      background-color: $rss-icon-bg
     
 .primary-menu
   .primary-nav
@@ -25,7 +48,7 @@
   .primary-link
     color: $black
     font-weight: 400
-    line-height: 3em
+    line-height: 46px
     padding: 0 25px
     text-transform: uppercase
     .caret
@@ -39,10 +62,11 @@
     margin-left: -1px
     position: absolute
     z-index: 5001
-    ul
+    .nav
       margin: 0
-      padding: 8px 0
       width: ($grid-row-width / 4)
+      li
+        border-top: 1px solid $content-bg-gray
       a
         color: #555
         padding: 10px 30px
