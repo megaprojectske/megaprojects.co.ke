@@ -153,6 +153,7 @@ TEMPLATE_DIRS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.gzip.GZipMiddleware',
+    'pipeline.middleware.MinifyHTMLMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -195,6 +196,7 @@ THIRD_PARTY_APPS = (
     'ckeditor',
     'compressor',
     'haystack',
+    'pipeline',
     'sorl.thumbnail',
     'south',
 )
