@@ -1,4 +1,4 @@
-{% extends "base_site.html" %}
+{% extends "page.html" %}
 
 
 {% block title %}
@@ -6,15 +6,18 @@
 {% endblock title %}
 
 {% block breadcrumbs %}
-  {% include "_breadcrumb.html" %}
+  {% include "base/breadcrumb.html" %}
   <li class="active">Page Not Found - 404</li>
 {% endblock breadcrumbs %}
 
-{% block headline %}
-  Page Not Found - 404
-{% endblock headline %}
-
-{# Content #}
-{% block content_body %}
-  <p>This is not the page you were looking for.</p>
-{% endblock content_body %}
+{% block content %}
+  <div class="staged-page">
+    <div class="staged-header">
+      <h1 class="page-heading">Page Not Found - 404</h1>
+    </div>
+    <div class="staged-content">
+      <p>The page you were looking for isn't where you thought it was. Sorry about that. Maybe try using the search field?</p>
+      <p>In any case, if you really can't find what you're looking for, you should feel free to <a href="/about/contact/">contact us</a>.</p>
+    </div>
+  </div>
+{% endblock content %}

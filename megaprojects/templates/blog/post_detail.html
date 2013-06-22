@@ -11,7 +11,7 @@
 {% endblock title %}
 
 {% block breadcrumbs %}
-  {% include "_breadcrumb.html" %}
+  {% include "base/breadcrumb.html" %}
   <li><a href="{% url 'post_list' %}">Blog</a> <span class="divider">/</span></li>
   <li class="active">{{ post.title }}</li>
 {% endblock breadcrumbs %}

@@ -4,15 +4,12 @@
       data_ga_property: '{{ data_ga_property }}',
       data_ga_social: {{ data_ga_social|lower }},
     {% endif %}
-    data_track_addressbar: {{ data_track_addressbar|lower }},
-    data_track_clickback: {{ data_track_clickback|lower }},
-    ui_use_css: {{ ui_use_css|lower }},
+    data_track_addressbar: {{ data_track_addressbar|yesno:"true,false" }},
+    data_track_clickback: {{ data_track_clickback|yesno:"true,false" }},
+    ui_use_css: {{ ui_use_css|yesno:"true,false" }},
   };
 
   var addthis_share = {
-    {% if share_url %}
-      url: '{{ share_url }}',
-    {% endif %}
     {% if twitter_bitly %}
       url_transforms : {
         shorten: {

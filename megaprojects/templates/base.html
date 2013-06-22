@@ -1,22 +1,6 @@
-<!DOCTYPE html>{# {% load compress %} #}{# '<!DOCTYPE html>' should be first! #}
+<!DOCTYPE html>{% load compress %} {# '<!DOCTYPE html>' should be first! #}
 
-<!--
-          .         .
-         ,8.       ,8.          8 8888888888       ,o888888o.          .8.          8 888888888o   8 888888888o.      ,o888888o.                8 8888 8 8888888888       ,o888888o. 8888888 8888888888 d888888o.   8 8888     ,88' 8 8888888888   
-        ,888.     ,888.         8 8888            8888     `88.       .888.         8 8888    `88. 8 8888    `88.  . 8888     `88.              8 8888 8 8888            8888     `88.     8 8888     .`8888:' `88. 8 8888    ,88'  8 8888         
-       .`8888.   .`8888.        8 8888         ,8 8888       `8.     :88888.        8 8888     `88 8 8888     `88 ,8 8888       `8b             8 8888 8 8888         ,8 8888       `8.    8 8888     8.`8888.   Y8 8 8888   ,88'   8 8888         
-      ,8.`8888. ,8.`8888.       8 8888         88 8888              . `88888.       8 8888     ,88 8 8888     ,88 88 8888        `8b            8 8888 8 8888         88 8888              8 8888     `8.`8888.     8 8888  ,88'    8 8888         
-     ,8'8.`8888,8^8.`8888.      8 888888888888 88 8888             .8. `88888.      8 8888.   ,88' 8 8888.   ,88' 88 8888         88            8 8888 8 888888888888 88 8888              8 8888      `8.`8888.    8 8888 ,88'     8 888888888888 
-    ,8' `8.`8888' `8.`8888.     8 8888         88 8888            .8`8. `88888.     8 888888888P'  8 888888888P'  88 8888         88            8 8888 8 8888         88 8888              8 8888       `8.`8888.   8 8888 88'      8 8888         
-   ,8'   `8.`88'   `8.`8888.    8 8888         88 8888   8888888 .8' `8. `88888.    8 8888         8 8888`8b      88 8888        ,8P 88.        8 8888 8 8888         88 8888              8 8888        `8.`8888.  8 888888<       8 8888         
-  ,8'     `8.`'     `8.`8888.   8 8888         `8 8888       .8'.8'   `8. `88888.   8 8888         8 8888 `8b.    `8 8888       ,8P  `88.       8 888' 8 8888         `8 8888       .8'    8 8888    8b   `8.`8888. 8 8888 `Y8.     8 8888         
- ,8'       `8        `8.`8888.  8 8888            8888     ,88'.888888888. `88888.  8 8888         8 8888   `8b.   ` 8888     ,88'     `88o.    8 88'  8 8888            8888     ,88'     8 8888    `8b.  ;8.`8888 8 8888   `Y8.   8 8888         
-,8'         `         `8.`8888. 8 888888888888     `8888888P' .8'       `8. `88888. 8 8888         8 8888     `88.    `8888888P'         `Y888888 '    8 888888888888     `8888888P'       8 8888     `Y8888P ,88P' 8 8888     `Y8. 8 888888888888
-
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|m|e|g|a|p|r|o|j|e|c|t|s|.|c|o|.|k|e|
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
--->
+{% include "base/ascii_art.html" %}
 
 <html lang="en">
   <head>
@@ -26,42 +10,39 @@
     {% block extra_meta %}{% endblock extra_meta %}
 
     <title>{% block title %}MegaProjects Kenya{% endblock title %}</title>
-
+    
     <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico">
-    <link rel="publisher" href="//plus.google.com/116501014027154449947">
+    <link rel="publisher" href="//plus.google.com/116501014027154449947"> {# TODO: Move value to settings #}
 
-    {% block stylesheet %}
-      {# {% compress css %} #}
+    {% compress css %}
+      {% block stylesheet %}
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" >
         <link rel="stylesheet" href="{{ STATIC_URL }}css/megaprojects.css">
-      {# {% endcompress %} #}
-    {% endblock stylesheet %}
-
-    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+      {% endblock stylesheet %}
+    {% endcompress %}
+    {% block external_css %}{% endblock external_css %}
+    
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700">
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->  
   </head>
 
   <body>
-    <header id="header">
-      {% include "_header.html" %}
-    </header> <!-- /header -->
+    {% include "base/header.html" %}
 
     <div id="page">
       {% block page %}{% endblock page %}
     </div> <!-- /page -->
 
-    <footer id="footer">
-      {% include "_footer.html" %}
-    </footer> <!-- /footer -->
+    {% include "base/footer.html" %}
 
     <div id="script"> 
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-      {# {% compress js %} #}
+      {% compress js %}
         {% block javascript %}
           <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
           <script src="{{ STATIC_URL }}js/megaprojects.js"></script>
         {% endblock javascript %}
-      {# {% endcompress %} #}
+      {% endcompress %}
       {% block external_js %}{% endblock external_js %}
     </div> <!-- /script -->
   </body>

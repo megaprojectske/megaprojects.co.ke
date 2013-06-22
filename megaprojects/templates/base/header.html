@@ -1,0 +1,12 @@
+<header id="header">
+  <div class="container">
+    <div class="row">
+      <div class="span8">
+        <a class="brand" href="{% url 'frontpage' %}"><img alt="Home" src="{{ STATIC_URL }}img/megaprojects-dark.png"></a>
+      </div>
+      <div class="span4">
+        {% include "base/search.html" %}
+      </div>
+    </div>
+  </div> <!-- /container -->
+</header> <!-- /header -->

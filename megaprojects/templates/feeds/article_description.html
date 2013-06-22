@@ -2,6 +2,6 @@
 
 
 {% thumbnail obj.thumbnail.image '640x480' crop='center' as im %}
-  <img src="{{ im.url }}" title="{{ obj.thumbnail.title }}" alt="{% if obj.thumbnail.alt %}{{ obj.thumbnail.alt }}{% else %}{{ obj.thumbnail.title }}{% endif %}">
+  <img src="{{ im.url }}" alt="{{ obj.thumbnail.title }}">
 {% endthumbnail %}
 {{ obj.body|remove_images|striptags|linebreaks|truncatewords:60 }}

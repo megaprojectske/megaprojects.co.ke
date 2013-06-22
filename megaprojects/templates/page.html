@@ -3,11 +3,7 @@
 
 
 {% block page %}
-  <div id="navigation">
-    <div class="container">
-      {% include "_navigation.html" %}
-    </div> <!-- /container -->
-  </div> <!-- /navigation -->
+  {% include "base/nav.html" %}  
 
   <div id="content">
     <div class="container">
@@ -26,7 +22,7 @@
 
 {% block javascript %}
   {{ block.super }}
-  {% addthis_config ui_use_css='False' twitter_via='megaprojectske' %}
+  {% addthis_config twitter_via='megaprojectske' %}
 {% endblock javascript %}
 
 {% block external_js %}

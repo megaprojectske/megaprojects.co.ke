@@ -11,7 +11,7 @@
 {% endblock title %}
 
 {% block breadcrumbs %}
-  {% include "_breadcrumb.html" %}
+  {% include "base/breadcrumb.html" %}
   <li><a href="{% url 'program_list' %}">Projects</a> <span class="divider">/</span></li>
   <li class="active">{{ program.title }}</li>
   <li class="pull-right"><span class="active">Current</span> <span class="divider">|</span> <a href="{% url 'program_detail' program.pk %}">Details</a> <span class="divider">|</span> <a href="{% url 'program_archive' program.pk %}">Archive</a></li>
@@ -25,7 +25,7 @@
 {# Body #}
 {% block body %}
   {% if program.body %}
-    <p>{{ program.body|remove_images|striptags|linebreaks|truncatewords:40 }} <a href="{% url 'program_detail' program.pk %}">Read More</a></p>
+    <p>{{ program.body|remove_images|striptags|truncatewords:40 }} <a href="{% url 'program_detail' program.pk %}">Read More</a></p>
   {% else %}
     <p class="muted">No description given.</p>
   {% endif %}

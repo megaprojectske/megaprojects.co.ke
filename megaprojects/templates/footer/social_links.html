@@ -1,0 +1,15 @@
+{% extends "renders/block.html" %}
+
+
+{% block heading %}
+  <h3 class="block-title">Social</h3>
+{% endblock heading %}
+
+{% block content %}
+  <div class="addthis_toolbox addthis_default_style addthis_32x32_style follow_toolbox">
+    <div><a class="addthis_button_twitter_follow" href="//www.twitter.com/megaprojectske" target="_blank" addthis:userid="megaprojectske"><img src="{{ STATIC_URL }}img/twitter-32.png" alt="Follow"></a> Twitter</div>
+    <div><a class="addthis_button_facebook_follow" href="//www.facebook.com/megaprojectske" target="_blank" addthis:userid="megaprojectske"><img src="{{ STATIC_URL }}img/facebook-32.png" alt="Follow"></a> Facebook</div>
+    <div><a class="addthis_button_google_follow" href="//plus.google.com/116501014027154449947" target="_blank" addthis:userid="116501014027154449947"><img src="{{ STATIC_URL }}img/googleplus-32.png" alt="Follow"></a> Google+</div>
+    <div><a class="addthis_button_rss_follow" href="{% url 'rss' %}" target="_blank" addthis:userid="{% url 'rss' %}"><img src="{{ STATIC_URL }}img/rss-32.png" alt="Follow"></a> Subscribe</div>
+  </div>
+{% endblock content %}

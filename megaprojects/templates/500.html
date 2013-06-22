@@ -1,4 +1,4 @@
-{% extends "base_site.html" %}
+{% extends "page.html" %}
 
 
 {% block title %}
@@ -6,15 +6,17 @@
 {% endblock title %}
 
 {% block breadcrumbs %}
-  {% include "_breadcrumb.html" %}
+  {% include "base/breadcrumb.html" %}
   <li class="active">Server Error - 500</li>
 {% endblock breadcrumbs %}
 
-{% block headline %}
-  Server Error - 500
-{% endblock headline %}
-
-{# Content #}
-{% block content_body %}
-  <p>There's been an error. It's been reported to the site administrators and should be fixed shortly. Thanks for your patience.</p>
-{% endblock content_body %}
+{% block content %}
+  <div class="staged-page">
+    <div class="staged-header">
+      <h1 class="page-heading">Server Error - 500</h1>
+    </div>
+    <div class="staged-content">
+      <p>There's been an error. It's been reported and should be fixed shortly. Thanks for your patience.</p>
+    </div>
+  </div>
+{% endblock content %}
