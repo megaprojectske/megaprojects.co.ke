@@ -4,20 +4,30 @@
       "backgroundColor": "#000000",
       "buttonColor": "#098df4",
       "textColor": "#ffffff",
-      "buttonTextColor": "#ffffff"
+      "buttonTextColor": "#ffffff",
     },
     rules: [
+      {
+        "name": "AnyOther",
+        "message": "If you enjoy this page, do us a favor:",
+        "action": {
+          "type": "button",
+          "text": "Share this page",
+          "verb": "share",
+          "service": "preferred",
+        }
+      },
       {
         "name": "Twitter",
         "match": {
           "referringService": "twitter"
         },
-        "message": "If you find this page informative:",
+        "message": "If you find this page useful:",
         "action": {
           "type": "button",
           "text": "Tweet it!",
           "verb": "share",
-          "service": "twitter"
+          "service": "twitter",
         }
       },
       {
@@ -30,7 +40,7 @@
           "type": "button",
           "text": "Share on Facebook",
           "verb": "share",
-          "service": "facebook"
+          "service": "facebook",
         }
       },
       {
@@ -43,7 +53,7 @@
           "type": "button",
           "text": "+1",
           "verb": "share",
-          "service": "google_plusone_share"
+          "service": "google_plusone_share",
         }
       }
     ],
