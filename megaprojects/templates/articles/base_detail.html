@@ -33,3 +33,10 @@
     </div>
   </div>
 {% endblock content %}
+
+{# ------------------------------------------------------------------------- #}
+
+{% block external_js %}
+  {{ block.super }}
+  {% include "external/addthis/welcomebar_js.html" %}
+{% endblock external_js %}
