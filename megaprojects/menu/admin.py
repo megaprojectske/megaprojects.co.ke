@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import Menu, Link
-from .forms import LinkForm
+from .forms import LinkAdminForm
 
 
 def make_enabled(modeladmin, request, queryset):
@@ -19,8 +19,7 @@ class LinkInline(admin.TabularInline):
     extra = 0
     fields = ['title', 'order', 'url', 'view_name', 'kwargs', 'enabled']
     model = Link
-
-    form = LinkForm
+    form = LinkAdminForm
 
 
 class MenuAdmin(admin.ModelAdmin):
@@ -46,6 +45,7 @@ class MenuAdmin(admin.ModelAdmin):
 class LinkAdmin(admin.ModelAdmin):
 
     actions = [make_enabled, make_disabled]
+    form = LinkAdminForm
     inlines = [LinkInline]
     list_display = ['title', 'menu', 'parent',
                     'order', 'url', 'view_name', 'enabled']
@@ -64,8 +64,6 @@ class LinkAdmin(admin.ModelAdmin):
             'fields': ['created', 'changed']
         }),
     ]
-
-    form = LinkForm
 
 
 admin.site.register(Menu, MenuAdmin)

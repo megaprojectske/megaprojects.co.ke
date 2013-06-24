@@ -5,7 +5,7 @@ from .models import Link
 
 
 # See: from django.contrib.flatpages.forms.FlatpageForm
-class LinkForm(forms.ModelForm):
+class LinkAdminForm(forms.ModelForm):
 
     url = forms.RegexField(
         label='URL', max_length=255, regex=r'^[-\w/\.~]+$', required=False, help_text='Example: "/about/contact/". Make sure to have leading and trailing slashes.',
