@@ -1,5 +1,5 @@
 # See http://www.robotstxt.org/wc/norobots.html for documentation on how to use the robots.txt file
 
-Sitemap: {% url 'sitemap' %}
+Sitemap: http://www.megaprojects.co.ke{% url 'sitemap' %}
 User-agent: *
 Disallow: /admin
