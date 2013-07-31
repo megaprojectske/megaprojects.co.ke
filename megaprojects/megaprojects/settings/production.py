@@ -1,6 +1,7 @@
 """Production settings and globals."""
 
 
+import ast
 from os import environ
 
 from base import *
@@ -12,11 +13,18 @@ from django.core.exceptions import ImproperlyConfigured
 
 def get_env_setting(setting):
     """ Get the environment setting or return exception """
+
     try:
-        return environ[setting]
+        value = environ[setting]
+        # Try convert values to their python objects
+        try:
+            return ast.literal_eval(value)
+        except (SyntaxError, ValueError):
+            return value
     except KeyError:
         error_msg = "Set the %s env variable" % setting
         raise ImproperlyConfigured(error_msg)
+
 
 INSTALLED_APPS += ('gunicorn',)
 

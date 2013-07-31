@@ -1,4 +1,5 @@
-<!DOCTYPE html>{% load compress %} {# '<!DOCTYPE html>' should be first! #}
+<!DOCTYPE html> {# '<!DOCTYPE html>' should be first! #}
+
 
 {% include "base/ascii_art.html" %}
 
@@ -7,23 +8,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noarchive">
+
     {% block extra_meta %}{% endblock extra_meta %}
 
     <title>{% block title %}MegaProjects Kenya{% endblock title %}</title>
-
     <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico">
     <link rel="publisher" href="//plus.google.com/109981342737497724556"> {# TODO: Move value to settings #}
 
-    {% compress css %}
-      {% block stylesheet %}
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" >
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/megaprojects.css">
-      {% endblock stylesheet %}
-    {% endcompress %}
+    {% block stylesheet %}
+      <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
+      <link rel="stylesheet" href="{{ STATIC_URL }}css/structure.min.css">
+    {% endblock stylesheet %}
+
+
     {% block external_css %}{% endblock external_css %}
-    
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700">
-    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->  
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   </head>
 
   <body>
@@ -35,15 +35,13 @@
 
     {% include "base/footer.html" %}
 
-    <div id="script"> 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-      {% compress js %}
-        {% block javascript %}
-          <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-          <script src="{{ STATIC_URL }}js/megaprojects.js"></script>
-        {% endblock javascript %}
-      {% endcompress %}
       {% block external_js %}{% endblock external_js %}
+    <div id="script">
+      {% block javascript %}
+        <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+        <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+        <script src="{{ STATIC_URL }}js/functions.min.js"></script>
+      {% endblock javascript %}
     </div> <!-- /script -->
   </body>
 </html>

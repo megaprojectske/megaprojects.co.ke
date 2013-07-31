@@ -1,6 +1,11 @@
 {% extends "flatpages/base.html" %}
 
 
+{% block extra_meta %}
+  {{ block.super }}
+  <meta name="description" content="{{ flatpage.content|striptags|truncatechars:160 }}">
+{% endblock extra_meta %}
+
 {% block title %}
   {{ flatpage.title }} | {{ block.super }}
 {% endblock title %}
@@ -10,12 +15,10 @@
   <li class="active">{{ flatpage.title }}</li>
 {% endblock breadcrumbs %}
 
-{# Headline #}
 {% block headline %}
   {{ flatpage.title }}
 {% endblock headline %}
 
-{# Body #}
 {% block body %}
   {{ flatpage.content|safe }}
 {% endblock body %}

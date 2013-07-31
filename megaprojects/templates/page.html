@@ -2,8 +2,13 @@
 {% load core_tags %}
 
 
+{% block extra_meta %}
+  {{ block.super }}
+  <link rel="publisher" href="//plus.google.com/{% gplus_publisher %}">
+{% endblock extra_meta %}
+
 {% block page %}
-  {% include "base/nav.html" %}  
+  {% include "base/navigation.html" %}
 
   <div id="content">
     <div class="container">
@@ -18,7 +23,6 @@
   </div> <!-- /content -->
 {% endblock page %}
 
-{# ------------------------------------------------------------------------- #}
 
 {% block javascript %}
   {{ block.super }}

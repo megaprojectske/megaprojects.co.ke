@@ -9,12 +9,9 @@ from .models import Program
 
 class ProgramListView(ListView):
 
-    model = Program
+    # Check that status = 'p' (Published)
+    queryset = Program.objects.published()
     paginate_by = 5
-
-    def get_queryset(self):
-        # Check that status = True (Published)
-        return Program.objects.published()
 
 
 class ProgramArchiveView(ListView):
@@ -27,11 +24,13 @@ class ProgramArchiveView(ListView):
         # Check that status = True (Published)
         self.program = get_object_or_404(
             Program, pk=self.kwargs.get('id'), status=True)
+
         return Article.objects.published().filter(program=self.program)
 
     def get_context_data(self, **kwargs):
         context = super(ProgramArchiveView, self).get_context_data(**kwargs)
         context['program'] = self.program
+
         return context
 
 
@@ -46,6 +45,7 @@ class ProgramDetailView(DetailView):
         # Check that status = True (Published)
         obj = get_object_or_404(
             queryset, pk=self.kwargs.get('id'), status=True)
+
         return obj
 
 
@@ -61,6 +61,7 @@ class ProgramLatestView(PublicDetailView):
         # Check that status = True (Published)
         obj = get_object_or_404(
             queryset, pk=self.kwargs.get('id'), status=True)
+
         return obj
 
     def get_context_data(self, **kwargs):

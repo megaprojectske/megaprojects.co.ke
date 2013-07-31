@@ -102,8 +102,6 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # Other finders ...
-    'compressor.finders.CompressorFinder',
 )
 ########## END STATIC FILE CONFIGURATION
 
@@ -174,6 +172,8 @@ ROOT_URLCONF = '%s.urls' % SITE_NAME
 
 ########## APP CONFIGURATION
 DJANGO_APPS = (
+    'django.contrib.admin',
+    'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.flatpages',
@@ -182,26 +182,18 @@ DJANGO_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.sites',
     'django.contrib.staticfiles',
-
-    # Useful template tags:
     # 'django.contrib.humanize',
-
-    # Admin panel and documentation:
-    'django.contrib.admin',
-    'django.contrib.admindocs',
 )
 
 THIRD_PARTY_APPS = (
     'bootstrap-pagination',
     'ckeditor',
-    'compressor',
     'haystack',
     'pipeline',
     'sorl.thumbnail',
     'south',
 )
 
-# Apps specific for this project go here.
 LOCAL_APPS = (
     'articles',
     'blog',
@@ -286,7 +278,7 @@ CKEDITOR_CONFIGS = {
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': normpath(join(DJANGO_ROOT, 'whoosh_index')),
+        'PATH': normpath(join(SITE_ROOT, 'whoosh_index')),
     },
 }
 ########## END HAYSTACK CONFIGURATION

@@ -3,8 +3,14 @@
 
 
 {% block extra_meta %}
-  <meta name="description" content="{{ program.body|remove_images|striptags|truncatechars:150 }}">
+  {{ block.super }}
+  <meta name="description" content="{{ program.body|remove_images|striptags|truncatechars:160 }}">
 {% endblock extra_meta %}
+
+{% block stylesheet %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{{ STATIC_URL }}openlayers/theme/default/style.css">
+{% endblock stylesheet %}
 
 {% block title %}
   {{ program.title }} - Details | {{ block.super }}
@@ -17,19 +23,16 @@
   <li class="pull-right"><a href="{{ program.get_absolute_url }}">Current</a> <span class="divider">|</span> <span class="active">Details</span> <span class="divider">|</span> <a href="{% url 'program_archive' program.pk %}">Archive</a></li>
 {% endblock breadcrumbs %}
 
-{# Headline #}
 {% block headline %}
   {{ program.title }} <small>Details</small>
 {% endblock headline %}
 
-{# Lead #}
 {% block lead %}
   {% if program.lead %}
     <p class="lead">{{ program.lead }}</p>
   {% endif %}
 {% endblock lead %}
 
-{# Body #}
 {% block body %}
   {% if program.body %}
     {{ program.body|render_images:program|safe }}
@@ -38,29 +41,18 @@
   {% endif %}
 {% endblock body %}
 
-{# Sidebar #}
 {% block sidebar %}
   {% if program.detail_set.all %}
     {% include "programs/_program_details.html" %}
   {% endif %}
 {% endblock sidebar %}
 
-{# Geo/Map #}
 {% block map %}
   <div id="openlayers"></div>
 {% endblock map %}
 
-{# ------------------------------------------------------------------------- #}
-
-{% block stylesheet %}
-  {{ block.super }}
-  <link rel="stylesheet" href="{{ STATIC_URL }}openlayers/theme/default/style.css">
-{% endblock stylesheet %}
-
 {% block javascript %}
   {{ block.super }}
   <script src="{{ STATIC_URL }}openlayers/openlayers.js"></script>
-  <script>
-    {% include "programs/_openlayers_map.js" %}
-  </script>
+  <script>{% include "programs/_openlayers_map.js" %}</script>
 {% endblock javascript %}

@@ -29,42 +29,6 @@ def import_drupal_nodes(file_path):
             ).save()
 
 
-# def import_drupal_files(file_path):
-#     import csv
-#     import os.path
-#     from django.core.files.base import ContentFile
-#     from articles.models import Article, Image
-#     from articles import util
-
-#     with open(file_path, 'r') as csv_file:
-#         for counter, row in enumerate(csv.reader(csv_file, delimiter=';', quotechar='"')):
-#             row_fid = int(row[0])
-#             row_uri = row[1]
-#             row_nid = int(row[2])
-
-#             try:
-#                 article = Article.objects.get(drupal_id=row_nid)
-#             except Article.DoesNotExist:
-#                 print "NID does not exist %d" % (counter + 1)
-#                 continue
-
-#             if article.image_set.all():
-#                 print "Other image(s) exist %d" % (counter + 1)
-#                 continue
-
-#             if os.path.isfile(row_uri):
-#                 with open(row_uri, 'r') as content_file:
-#                     content = ContentFile(content_file.read())
-#                     image_model = Image()
-#                     image_model.article = article
-#                     image_model.save()
-#                     image_model.image.save(util.get_image_path(
-#                         image_model, content_file.name), content)
-#                     print "Success %d" % (counter + 1)
-#             else:
-#                 print "Does not exist %d " % (counter + 1)
-
-
 def migrate_uuid_shortuuid(model):
     from articles import models as amodels
     from blog import models as bmodels

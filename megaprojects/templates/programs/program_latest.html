@@ -3,7 +3,8 @@
 
 
 {% block extra_meta %}
-  <meta name="description" content="{{ program.body|remove_images|striptags|truncatechars:150 }}">
+  {{ block.super }}
+  <meta name="description" content="{{ program.body|remove_images|striptags|truncatechars:160 }}">
 {% endblock extra_meta %}
 
 {% block title %}
@@ -17,12 +18,10 @@
   <li class="pull-right"><span class="active">Current</span> <span class="divider">|</span> <a href="{% url 'program_detail' program.pk %}">Details</a> <span class="divider">|</span> <a href="{% url 'program_archive' program.pk %}">Archive</a></li>
 {% endblock breadcrumbs %}
 
-{# Headline #}
 {% block headline %}
   {{ program.title }}
 {% endblock headline %}
 
-{# Body #}
 {% block body %}
   {% if program.body %}
     <p>{{ program.body|remove_images|striptags|truncatewords:40|safe }} <a href="{% url 'program_detail' program.pk %}">Read More</a></p>
@@ -31,12 +30,10 @@
   {% endif %}
 {% endblock body %}
 
-{# Latest #}
 {% block latest %}
   {% include "programs/_program_latest.html" %}
 {% endblock latest %}
 
-{# Bottom #}
 {% block bottom %}
   <div class="text-center next-page">
     {{ program.title }} <a href="{% url 'program_archive' program.pk %}">Archive</a>

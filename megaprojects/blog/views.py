@@ -6,12 +6,9 @@ from .models import Post
 
 class PostListView(ListView):
 
-    model = Post
+    # Check that status = 'p' (Published)
+    queryset = Post.objects.published()
     paginate_by = 5
-
-    def get_queryset(self):
-        # Check that status = 'p' (Published)
-        return Post.objects.published()
 
 
 class PostDetailView(PublicDetailView):

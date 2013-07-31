@@ -3,7 +3,8 @@
 
 
 {% block extra_meta %}
-  <meta name="description" content="{{ post.body|remove_images|remove_articles|striptags|truncatechars:150 }}">
+  {{ block.super }}
+  <meta name="description" content="{{ post.body|remove_images|remove_articles|striptags|truncatechars:160 }}">
 {% endblock extra_meta %}
 
 {% block title %}
@@ -16,12 +17,10 @@
   <li class="active">{{ post.title }}</li>
 {% endblock breadcrumbs %}
 
-{# Headline #}
 {% block headline %}
   {{ post.title }}
 {% endblock headline %}
 
-{# Byline #}
 {% block byline %}
   {{ post.pubdate|date:'F j, Y - f A' }} | <a href="{% url 'post_list' %}">Blog</a>
   {% if post.enable_comments %}
@@ -29,17 +28,14 @@
   {% endif%}
 {% endblock byline %}
 
-{# Body #}  
 {% block body %}
   {{ post.body|render_images:post|render_articles|safe }}
 {% endblock body %}
 
-{# Comments #}
 {% block comments %}
   {% include "renders/comments.html" %}
 {% endblock comments %}
 
-{# ------------------------------------------------------------------------- #}
 
 {% block javascript %}
   {{ block.super }}

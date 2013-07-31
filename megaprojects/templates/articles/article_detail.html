@@ -2,7 +2,8 @@
 {% load core_tags %}
 
 {% block extra_meta %}
-  <meta name="description" content="{{ article.body|remove_images|striptags|truncatechars:150 }}">
+  {{ block.super }}
+  <meta name="description" content="{{ article.body|remove_images|striptags|truncatechars:160 }}">
 {% endblock extra_meta %}
 
 {% block title %}
@@ -14,14 +15,12 @@
   <li class="active">{{ article.title }}</li>
 {% endblock breadcrumbs %}
 
-{# Headline #}
 {% block headline %}
   {{ article.title }}
 {% endblock headline %}
 
-{# Byline #}
 {% block byline %}
-  {{ article.pubdate|date:'F j, Y - f A' }} 
+  {{ article.pubdate|date:'F j, Y - f A' }}
   {% if article.program %}
     | <a href="{{ article.program.get_absolute_url }}">{{ article.program.title }}</a>
   {% endif %}
@@ -30,24 +29,20 @@
   {% endif%}
 {% endblock byline %}
 
-{# Lead #}
 {% block lead %}
   {% if article.lead %}
     <p class="lead">{{ article.lead }}</p>
   {% endif %}
 {% endblock lead %}
 
-{# Body #}  
 {% block body %}
   {{ article.body|render_images:article|safe }}
 {% endblock body %}
 
-{# Comments #}
 {% block comments %}
   {% include "renders/comments.html" %}
 {% endblock comments %}
 
-{# ------------------------------------------------------------------------- #}
 
 {% block javascript %}
   {{ block.super }}
