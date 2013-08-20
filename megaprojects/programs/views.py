@@ -84,13 +84,16 @@ class ProgramLatestView(PublicDetailView):
     def get_context_data(self, **kwargs):
         context = super(ProgramLatestView, self).get_context_data(**kwargs)
 
-        image_list = [image for image in Image.objects.published().filter(
-            article__program=self.object)[:12]]
+        image_list = Image.objects.published().filter(
+            article__program=self.object)[:12]
+        image_list = [image for image in image_list]
 
-        if len(image_list) >= 5: # Only show list if more than 5 exist
+        # Only show list if more than 5 exist
+        if len(image_list) >= 5:
             context['image_list'] = image_list
 
-        context['article_list'] = [
-            article for article in Article.objects.published().filter(program=self.object)[:11]]
+        article_list = Article.objects.published().filter(
+            program=self.object)[:11]
+        context['article_list'] = [article for article in article_list]
 
         return context
