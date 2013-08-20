@@ -16,34 +16,38 @@ admin.autodiscover()
 sitemaps = {
     'articles': GenericSitemap({'queryset': Article.objects.published(), 'date_field': 'pubdate'}),
     'projects': GenericSitemap({'queryset': Program.objects.published(), 'date_field': 'created'}),
-    'discover': GenericSitemap({'queryset': Post.objects.published(), 'date_field': 'pubdate'}),
+    'blog': GenericSitemap({'queryset': Post.objects.published(), 'date_field': 'pubdate'}),
 }
 
-urlpatterns = patterns('',
-                       # Uncomment the admin/doc line below to enable admin documentation:
-                       url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+urlpatterns = patterns(
+    '',
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^ckeditor/', include('ckeditor.urls')),
 
-                       # Uncomment the next line to enable the admin:
-                       url(r'^admin/', include(admin.site.urls)),
-                       url(r'^ckeditor/', include('ckeditor.urls')),
+    url(r'^$', FrontPageView.as_view(), name='frontpage'),
+    url(r"^rss/index.xml$", FrontPageFeed(), name='rss'),
 
-                       url(r'^$', FrontPageView.as_view(), name='frontpage'),
-                       url(r"^rss/index.xml$", FrontPageFeed(), name='rss'),
+    url(r'^articles/', include('articles.urls')),
+    url(r'^projects/', include('programs.urls')),
+    url(r'^blog/', include('blog.urls')),
+    url(r'^search/', include(
+        'haystack.urls'), name='search'),
 
-                       url(r'^articles/', include('articles.urls')),
-                       url(r'^projects/', include('programs.urls')),
-                       url(r'^blog/', include('blog.urls')),
-                       url(r'^search/', include('haystack.urls'), name='search'),
+    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
+        {'sitemaps': sitemaps}, name='sitemap'),
+    url(r'^robots\.txt$', TemplateView.as_view(
+        template_name='robots.txt', content_type='text/plain')),
+)
 
-                       url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {
-                           'sitemaps': sitemaps}, name='sitemap'),
-                       url(r'^robots\.txt$', TemplateView.as_view(
-                           template_name='robots.txt', content_type='text/plain')),
-                       )
 
 import sys
 import settings.base as settings
 
+
 if 'runserver' in sys.argv:
-    urlpatterns += patterns('', url(r'^media/(.*)$', 'django.views.static.serve', kwargs={
-                            'document_root': settings.MEDIA_ROOT}),)
+    urlpatterns += patterns(
+        '',
+        url(r'^media/(.*)$', 'django.views.static.serve',
+            kwargs={'document_root': settings.MEDIA_ROOT}),
+    )
