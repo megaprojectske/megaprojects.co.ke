@@ -1,11 +1,11 @@
 {% load thumbnail %}
 
 
-<div class="image-render">
+<div class="render-image">
   {% if image and image.status %}
     {% thumbnail image.image '640' crop='center' as im %}
       <img id="{{ image.shortuuid }}" src="{{ im.url }}" alt="{{ image.title }}">
-      <div class="caption">
+      <div class="render-image-caption">
         <p>{{ image.title }}</p>
       </div>
     {% empty %}
@@ -15,11 +15,7 @@
     {% endthumbnail %}
   {% else %}
     <div class="muted text-center">
-      {% if image %}
-        Image is not available
-      {% else %}
-        Error loading image (404)
-      {% endif %}
+      {% if image %}Image is not available{% else %}Error loading image (404){% endif %}
     </div>
   {% endif %}
 </div>

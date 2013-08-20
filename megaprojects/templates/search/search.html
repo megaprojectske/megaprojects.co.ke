@@ -9,21 +9,19 @@
 {% block breadcrumbs %}
   {% include "base/breadcrumb.html" %}
   {% if query %}
-    <li><a href="/search">Search</a> <span class="divider">/</span></li>
-    <li class="active">"{{ query|truncatechars:40 }}"</li>
+    <li><a href="{% url 'haystack_search' %}">Search</a> <span class="divider">/</span></li>
+    <li class="active">"{{ query|truncatechars:60 }}"</li>
   {% else %}
     <li class="active">Search</li>
   {% endif %}
 {% endblock %}
 
 {% block content %}
-  <div class="staged-page">
-    <div class="staged-header">
-      <h1 class="page-heading">
-        {% if query %}Search Results{% else %}Search{% endif %}
-      </h1>
+  <div class="base-model base-detail">
+    <div class="base-header">
+      <h1 class="base-heading">{% if query %}Search Results{% else %}Search{% endif %}</h1>
     </div>
-    <div class="staged-content">
+    <div class="base-content">
       <p class="muted">Search currently unavailable - check back later.</p>
     </div>
   </div>

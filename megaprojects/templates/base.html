@@ -1,47 +1,49 @@
-<!DOCTYPE html> {# '<!DOCTYPE html>' should be first! #}
+<!DOCTYPE html>
 
 
 {% include "base/ascii_art.html" %}
 
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noarchive">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {% block extra_meta %}{% endblock extra_meta %}
-
-    <title>{% block title %}MegaProjects Kenya{% endblock title %}</title>
-    <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico">
-    <link rel="publisher" href="//plus.google.com/109981342737497724556"> {# TODO: Move value to settings #}
+    {# TODO: Move title to settings #}
+    <title>{% block title %}MegaProjects Kenya{% endblock %}</title>
 
     {% block stylesheet %}
+      <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico">
       <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
       <link rel="stylesheet" href="{{ STATIC_URL }}css/structure.min.css">
-    {% endblock stylesheet %}
+    {% endblock %}
+    {% block extra_head %}{% endblock %}
 
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,300,400,600">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,600' rel='stylesheet' type='text/css'>
 
-    {% block external_css %}{% endblock external_css %}
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700">
-    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
 
   <body>
     {% include "base/header.html" %}
-
     <div id="page">
+      {% include "base/navigation.html" %}
       {% block page %}{% endblock page %}
     </div> <!-- /page -->
-
     {% include "base/footer.html" %}
 
-      {% block external_js %}{% endblock external_js %}
     <div id="script">
       {% block javascript %}
         <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
         <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
         <script src="{{ STATIC_URL }}js/functions.min.js"></script>
-      {% endblock javascript %}
+      {% endblock %}
+      {% block extra_script %}{% endblock %}
     </div> <!-- /script -->
   </body>
+
 </html>

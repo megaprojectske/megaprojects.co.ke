@@ -1,11 +1,13 @@
 {% extends "renders/block.html" %}
+{% load menu_tags %}
 
 
 {% block heading %}
-  <h3 class="block-title">Links</h3>
+  <h3 class="render-block-title">Links</h3>
 {% endblock heading %}
 
 {% block content %}
+  {% load_menu slug='page-menu' as pagemenu %}
   <ul class="nav page-menu">
     {% for link in pagemenu %}
       <li><a href="{{ link.href }}">{{ link.title }}</a></li>

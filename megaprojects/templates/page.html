@@ -1,35 +1,30 @@
 {% extends "base.html" %}
-{% load core_tags %}
+{% load addthis ganalytics core_tags %}
 
 
-{% block extra_meta %}
+{% block extra_head %}
   {{ block.super }}
+  {# TODO: Move title / link to settings #}
+  <link rel="alternate" type="application/rss+xml" title="MegaProjects Kenya - All Posts" href="http://feeds.feedburner.com/megaprojectske">
   <link rel="publisher" href="//plus.google.com/{% gplus_publisher %}">
-{% endblock extra_meta %}
+  {% addthis_config %}
+{% endblock %}
 
 {% block page %}
-  {% include "base/navigation.html" %}
-
   <div id="content">
     <div class="container">
       <ul class="breadcrumb">
         {% block breadcrumbs %}
           <li class="active">Front Page</li>
           <li class="pull-right">{% now 'l, j<\s\up>S</\s\up> F Y' %}</li>
-        {% endblock breadcrumbs %}
+        {% endblock %}
       </ul>
-      {% block content %}{% endblock content %}
+      {% block content %}{% endblock %}
     </div> <!-- /container -->
   </div> <!-- /content -->
-{% endblock page %}
+{% endblock %}
 
-
-{% block javascript %}
-  {{ block.super }}
-  {% addthis_config twitter_via='megaprojectske' %}
-{% endblock javascript %}
-
-{% block external_js %}
-  {% analytics_load %}
+{% block extra_script %}
+  {% ganalytics_load %}
   {% addthis_widget %}
-{% endblock external_js %}
+{% endblock %}

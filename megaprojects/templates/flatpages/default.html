@@ -1,24 +1,24 @@
 {% extends "flatpages/base.html" %}
 
 
-{% block extra_meta %}
+{% block extra_head %}
   {{ block.super }}
   <meta name="description" content="{{ flatpage.content|striptags|truncatechars:160 }}">
-{% endblock extra_meta %}
+{% endblock %}
 
 {% block title %}
   {{ flatpage.title }} | {{ block.super }}
-{% endblock title %}
+{% endblock %}
 
 {% block breadcrumbs %}
   {% include "base/breadcrumb.html" %}
   <li class="active">{{ flatpage.title }}</li>
-{% endblock breadcrumbs %}
+{% endblock %}
 
 {% block headline %}
   {{ flatpage.title }}
-{% endblock headline %}
+{% endblock %}
 
 {% block body %}
   {{ flatpage.content|safe }}
-{% endblock body %}
+{% endblock %}
