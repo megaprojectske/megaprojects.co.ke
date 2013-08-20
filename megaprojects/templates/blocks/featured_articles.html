@@ -1,0 +1,28 @@
+{% extends "renders/block.html" %}
+{% load thumbnail article_tags %}
+
+
+{% block heading %}
+  <h3 class="render-block-title">Featured Articles</h3>
+{% endblock heading %}
+
+{% block content %}
+  <ul class="unstyled">
+    {% loadarticles 12 as article_list %}
+    {% for article in article_list|slice:'6:' %}
+      <li class="media block-list-item">
+        <a class="pull-left" href="{{ article.get_absolute_url }}">
+          {% thumbnail article.thumbnail.image '95x95' crop='center' as im %}
+            <img class="media-object" src="{{ im.url }}" alt="{{ article.thumbnail.title }}">
+          {% endthumbnail %}
+        </a>
+        <div class="media-body block-list-item-content">
+          <div class="block-list-item-header">
+            <h2 class="media-heading block-list-item-heading"><a href="{{ article.get_absolute_url }}">{{ article.title|truncatechars:50 }}</a></h2>
+            <p class="block-list-item-byline">{{ article.pubdate|date:'F j, Y' }}</p>
+          </div>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

@@ -2,38 +2,22 @@
 
 
 {% block content %}
-  <div class="staged-page">
-    <div class="staged-header">
-      {# Headline #}
-      <h1 class="page-heading">
-        {% block headline %}{% endblock headline %}
-      </h1>
-      {# Byline #}
-      <p class="staged-byline">
-        {% block byline %}{% endblock byline %}
-      </p>
+  <div class="base-model base-detail page-detail">
+    <div class="base-header">
+      <h1 class="base-heading">{% block headline %}{% endblock %}</h1>
+      <p class="base-byline">{% block byline %}{% endblock %}</p>
     </div>
     <div class="row columns columns-2">
       <div class="span8 column column-1">
-        {% include "external/addthis/toolbox_default.html" %}
-        {# Body #}
-        <div class="staged-content">
-          {% block body %}{% endblock body %}
+        {# {% include "external/addthis/toolbox_default.html" %} #}
+        <div class="base-content">
+          {% block body %}{% endblock %}
         </div>
-        {# Comments #}
-        {% block comments %}{% endblock comments %}
+        {% block comments %}{% endblock %}
       </div>
-      <div class="span4 column column-2">
-        {# Sidebar #}
-        <div class="staged-sidebar">
-          {% block sidebar %}{% endblock sidebar %}
-        </div>
+      <div id="sidebar" class="span4 column column-2">
+        {% block sidebar %}{% endblock %}
       </div>
     </div>
   </div>
-{% endblock content %}
-
-{% block external_js %}
-  {{ block.super }}
-  {% include "external/addthis/welcomebar_js.html" %}
-{% endblock external_js %}
+{% endblock %}

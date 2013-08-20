@@ -16,3 +16,6 @@ shortuuid==0.3
 sorl-thumbnail==11.12
 South==0.7.6
 Whoosh==2.4.1
+git+https://bitbucket.org/raymondwanyoike/django-addthis.git#egg=django-addthis
+git+https://bitbucket.org/raymondwanyoike/django-ganalytics.git#egg=django-ganalytics
+git+https://bitbucket.org/raymondwanyoike/django-intensedebate.git#egg=django-intensedebate

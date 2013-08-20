@@ -6,9 +6,8 @@ from .models import Post
 
 class PostListView(ListView):
 
-    # Check that status = 'p' (Published)
     queryset = Post.objects.published()
-    paginate_by = 5
+    paginate_by = 8
 
 
 class PostDetailView(PublicDetailView):

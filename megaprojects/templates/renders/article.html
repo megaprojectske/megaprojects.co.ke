@@ -4,7 +4,6 @@
 <div class="render-article">
   {% if article and  article.status == 'p' %}
     <div class="pull-left render-article-image">
-      <a class="render-article-arrow" href="{{ article.get_absolute_url }}">&lsaquo;</a>
       {% thumbnail article.thumbnail.image '150x150' crop='center' as im %}
         <img src="{{ im.url }}" alt="{{ article.thumbnail.title }}">
       {% endthumbnail %}

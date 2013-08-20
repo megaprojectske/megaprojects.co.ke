@@ -7,7 +7,7 @@
       <div class="span9">
         <div class="primary-menu">
           <ul class="nav primary-nav">
-            {% load_menu slug='main-menu' as mainmenu %}
+            {% loadmenu slug='main-menu' as mainmenu %}
             {% for link in mainmenu %}
               <li class="primary-li">
                 <a class="primary-link" href="{{ link.href }}">{{ link.title }}{% if link.has_children %} <b class="caret"></b>{% endif %}</a>

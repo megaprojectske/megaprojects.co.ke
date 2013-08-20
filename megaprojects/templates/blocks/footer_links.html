@@ -7,7 +7,7 @@
 {% endblock heading %}
 
 {% block content %}
-  {% load_menu slug='page-menu' as pagemenu %}
+  {% loadmenu slug='page-menu' as pagemenu %}
   <ul class="nav page-menu">
     {% for link in pagemenu %}
       <li><a href="{{ link.href }}">{{ link.title }}</a></li>

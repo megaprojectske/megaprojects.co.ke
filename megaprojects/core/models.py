@@ -23,22 +23,29 @@ class TimeStampedModel(models.Model):
         abstract = True
 
 
-class BaseModel(models.Model):
+class TitleModel(models.Model):
+
+    title = models.CharField(
+        max_length=255, help_text='The title of this entity, always treated as non-markup plain text.')
+
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        abstract = True
+
+
+class BaseModel(TitleModel):
 
     """
     Abstract model for main entities. Provides a ``title`` and ``shortuuid``
     field.
     """
 
-    title = models.CharField(
-        max_length=255, help_text='The title of this entity, always treated as non-markup plain text.')
     uuid = models.CharField('UUID', max_length=255, unique=True,
                             help_text='Unique Key: Universally unique identifier for this entity.')
     shortuuid = fields.ShortUUIDField(
         verbose_name='Short UUID', max_length=255, unique=True, blank=True, null=True, help_text='Unique Key: Universally unique identifier for this entity.')
-
-    def __unicode__(self):
-        return self.title
 
     def save(self, *args, **kwargs):
         if not self.uuid:

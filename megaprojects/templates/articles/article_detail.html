@@ -1,59 +1,57 @@
 {% extends "articles/base_detail.html" %}
-{% load core_tags %}
+{% load intensedebate core_tags %}
 
-{% block extra_meta %}
+{% block extra_head %}
   {{ block.super }}
-  <meta name="description" content="{{ article.body|remove_images|striptags|truncatechars:160 }}">
-{% endblock extra_meta %}
+  <meta name="description" content="{{ object.body|striptokens|striptags|truncatechars:160 }}">
+  {% if object.enable_comments %}
+    {% intensedebate_config post_id=object.id post_id_prefix='article_' %}
+  {% endif%}
+{% endblock %}
 
 {% block title %}
-  {{ article.title }} | {{ block.super }}
-{% endblock title %}
+  {{ object.title }} | {{ block.super }}
+{% endblock %}
 
 {% block breadcrumbs %}
   {% include "base/breadcrumb.html" %}
-  <li class="active">{{ article.title }}</li>
-{% endblock breadcrumbs %}
+  <li><a href="{% url 'article_list' %}">Articles</a> <span class="divider">/</span></li>
+  <li class="active">{{ object.title }}</li>
+{% endblock %}
 
 {% block headline %}
-  {{ article.title }}
-{% endblock headline %}
+  {{ object.title }}
+{% endblock %}
 
 {% block byline %}
-  {{ article.pubdate|date:'F j, Y - f A' }}
-  {% if article.program %}
-    | <a href="{{ article.program.get_absolute_url }}">{{ article.program.title }}</a>
+  {{ object.pubdate|date:'F j, Y - f A' }}
+  {% if object.program %}
+    | <a href="{{ object.program.get_absolute_url }}">{{ object.program.title }}</a>
   {% endif %}
-  {% if article.enable_comments %}
+  {% if object.enable_comments %}
     | <a class="comment-count-green" href="#idc-container-parent">Comments</a>
   {% endif%}
-{% endblock byline %}
-
-{% block lead %}
-  {% if article.lead %}
-    <p class="lead">{{ article.lead }}</p>
-  {% endif %}
-{% endblock lead %}
+{% endblock %}
 
 {% block body %}
-  {{ article.body|render_images:article|safe }}
-{% endblock body %}
+  {% if object.lead %}
+    <p class="lead">{{ object.lead }}</p>
+  {% endif %}
+  {{ object.body|loadimages:object|safe }}
+{% endblock %}
 
 {% block comments %}
   {% include "renders/comments.html" %}
-{% endblock comments %}
+{% endblock %}
 
-
-{% block javascript %}
+{% block sidebar %}
   {{ block.super }}
-  {% if article.enable_comments %}
-    {% intensedebate_config post_id=article.id post_id_prefix='article_' %}
-  {% endif%}
-{% endblock javascript %}
+  {% include "blocks/featured_articles.html" %}
+{% endblock %}
 
-{% block external_js %}
+{% block extra_script %}
   {{ block.super }}
-  {% if article.enable_comments %}
+  {% if object.enable_comments %}
     {% intensedebate_cw %}
   {% endif%}
-{% endblock external_js %}
+{% endblock %}

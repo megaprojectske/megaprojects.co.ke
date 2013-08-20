@@ -5,11 +5,11 @@ from articles.models import Article
 
 class FrontPageFeed(Feed):
 
-    title = "MegaProjects Kenya - All Posts"
-    link = "/"
-    description = "Updates on changes and additions to megaprojects.co.ke."
-
-    description_template = 'feeds/article_description.html'
+    description = 'Updates on changes and additions to www.megaprojects.co.ke'
+    description_template = 'feeds/article_body.html'
+    link = '/'
+    # TODO: Move title to settings
+    title = 'MegaProjects Kenya - All Posts'
 
     def items(self):
         return Article.objects.published()[:10]

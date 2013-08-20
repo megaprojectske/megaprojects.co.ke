@@ -5,7 +5,7 @@ register = template.Library()
 
 
 @register.assignment_tag()
-def load_menu(slug):
+def loadmenu(slug):
     from menu.models import Menu
 
     try:

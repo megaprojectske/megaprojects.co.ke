@@ -1,52 +1,47 @@
 {% extends "blog/base_detail.html" %}
-{% load core_tags %}
+{% load intensedebate core_tags %}
 
 
-{% block extra_meta %}
+{% block extra_head %}
   {{ block.super }}
-  <meta name="description" content="{{ post.body|remove_images|remove_articles|striptags|truncatechars:160 }}">
-{% endblock extra_meta %}
+  <meta name="description" content="{{ object.body|striptokens|striptags|truncatechars:160 }}">
+  {% if object.enable_comments %}
+    {% intensedebate_config post_id=object.id post_id_prefix='post_' %}
+  {% endif%}
+{% endblock %}
 
 {% block title %}
-  {{ post.title }} | {{ block.super }}
-{% endblock title %}
+  {{ object.title }} | {{ block.super }}
+{% endblock %}
 
 {% block breadcrumbs %}
   {% include "base/breadcrumb.html" %}
   <li><a href="{% url 'post_list' %}">Blog</a> <span class="divider">/</span></li>
-  <li class="active">{{ post.title }}</li>
-{% endblock breadcrumbs %}
+  <li class="active">{{ object.title }}</li>
+{% endblock %}
 
 {% block headline %}
-  {{ post.title }}
-{% endblock headline %}
+  {{ object.title }}
+{% endblock %}
 
 {% block byline %}
-  {{ post.pubdate|date:'F j, Y - f A' }} | <a href="{% url 'post_list' %}">Blog</a>
-  {% if post.enable_comments %}
+  {{ object.pubdate|date:'F j, Y - f A' }} | <a href="{% url 'post_list' %}">Blog</a>
+  {% if object.enable_comments %}
     | <a class="comment-count-green" href="#idc-container-parent">Comments</a>
   {% endif%}
-{% endblock byline %}
+{% endblock %}
 
 {% block body %}
-  {{ post.body|render_images:post|render_articles|safe }}
+  {{ object.body|loadimages:object|loadarticles|safe }}
 {% endblock body %}
 
 {% block comments %}
   {% include "renders/comments.html" %}
-{% endblock comments %}
+{% endblock %}
 
-
-{% block javascript %}
+{% block extra_script %}
   {{ block.super }}
-  {% if post.enable_comments %}
-    {% intensedebate_config post_id=post.id post_id_prefix='post_' %}
-  {% endif%}
-{% endblock javascript %}
-
-{% block external_js %}
-  {{ block.super }}
-  {% if post.enable_comments %}
+  {% if object.enable_comments %}
     {% intensedebate_cw %}
   {% endif%}
-{% endblock external_js %}
+{% endblock %}

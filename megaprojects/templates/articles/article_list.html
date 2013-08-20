@@ -4,24 +4,24 @@
 
 {% block title %}
   Articles | {{ block.super }}
-{% endblock title %}
+{% endblock %}
 
 {% block breadcrumbs %}
   {% include "base/breadcrumb.html" %}
   <li class="active">Articles</li>
-{% endblock breadcrumbs %}
+{% endblock %}
 
 {% block headline %}
   Articles
-{% endblock headline %}
+{% endblock %}
 
 {% block list %}
-  {% if article_list %}
-    {% for article in article_list %}
-      {% include "articles/_article_list.html" %}
+  {% if object_list %}
+    {% for article in object_list %}
+      {% include "articles/snippets/article_list_item.html" %}
     {% endfor %}
     {% bootstrap_paginate page_obj range=8 show_first_last='true' %}
   {% else %}
     <p class="muted nan">Nothing available - check back later.</p>
   {% endif %}
-{% endblock list %}
+{% endblock %}

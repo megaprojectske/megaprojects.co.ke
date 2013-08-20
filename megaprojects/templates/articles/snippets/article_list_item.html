@@ -1,20 +1,14 @@
 {% load thumbnail core_tags %}
 
 
-<div class="media teaser-list">
-  <a class="pull-left" href="{{ article.get_absolute_url }}">
-    {% thumbnail article.thumbnail.image '168x168' crop='center' as im %}
-      <img class="media-object" src="{{ im.url }}" alt="{{ article.thumbnail.title }}">
-    {% endthumbnail %}
-  </a>
+<div class="media page-list-item">
   <div class="media-body">
-    <div class="teaser-header">
-      <h2 class="media-heading teaser-heading">
+    <div class="page-list-item-header">
+      <h2 class="media-heading page-list-item-heading">
         <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
       </h2>
-      <p class="teaser-byline">
+      <p class="page-list-item-byline">
         {{ article.pubdate|date:'F j, Y - f A' }}
-        {# Hide if the 'program' object is available #}
         {% if not program and article.program %}
           | <a href="{{ article.program.get_absolute_url }}">{{ article.program.title }}</a>
         {% endif %}
@@ -23,8 +17,13 @@
         {% endif%}
       </p>
     </div>
-    <div class="media-body teaser-body">
-      {{ article.body|remove_images|striptags|truncatewords:60|safe|linebreaks }}
+    <div class="page-list-item-image">
+      {% thumbnail article.thumbnail.image '576x168' crop='center' as im %}
+        <img class="media-object" src="{{ im.url }}" alt="{{ article.thumbnail.title }}">
+      {% endthumbnail %}
+    </div>
+    <div class="media-body page-list-item-body">
+      {{ article.body|striptokens|striptags|truncatewords:60|safe|linebreaks }}
       <a href="{{ article.get_absolute_url }}">Read More</a>
     </div>
   </div>

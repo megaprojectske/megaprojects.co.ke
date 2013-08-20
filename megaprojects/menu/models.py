@@ -3,17 +3,13 @@ import ast
 from django.core.urlresolvers import reverse, NoReverseMatch
 from django.db import models
 
-from core.models import TimeStampedModel
+from core.models import TimeStampedModel, TitleModel
 
 
-class Menu(TimeStampedModel):
+class Menu(TimeStampedModel, TitleModel):
 
-    title = models.CharField(max_length=255)
     slug = models.CharField(max_length=255, unique=True)
     enabled = models.BooleanField(default=True)
-
-    def __unicode__(self):
-        return self.title
 
     @property
     def links(self):
@@ -23,15 +19,15 @@ class Menu(TimeStampedModel):
         ordering = ['title']
 
 
-class Link(TimeStampedModel):
+class Link(TimeStampedModel, TitleModel):
 
-    title = models.CharField(max_length=255)
     url = models.CharField('URL', max_length=255, blank=True)
+    order = models.IntegerField(default=0)
+    enabled = models.BooleanField(default=True)
+
     view_name = models.CharField(max_length=255, blank=True)
     args = models.CharField(max_length=255, default='[]', blank=True)
     kwargs = models.CharField(max_length=255, default='{}', blank=True)
-    order = models.IntegerField(default=0)
-    enabled = models.BooleanField(default=True)
 
     parent = models.ForeignKey('self', blank=True, null=True)
     menu = models.ForeignKey(Menu, blank=True, null=True)

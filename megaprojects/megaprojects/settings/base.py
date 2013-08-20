@@ -151,7 +151,7 @@ TEMPLATE_DIRS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.gzip.GZipMiddleware',
-    'pipeline.middleware.MinifyHTMLMiddleware',
+    'core.middleware.MinifyHTMLMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -186,10 +186,12 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
+    'addthis',
     'bootstrap-pagination',
     'ckeditor',
+    'ganalytics',
     'haystack',
-    'pipeline',
+    'intensedebate',
     'sorl.thumbnail',
     'south',
 )

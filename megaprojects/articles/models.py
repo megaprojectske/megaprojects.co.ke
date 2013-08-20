@@ -25,7 +25,6 @@ class Article(TimeStampedModel, BaseModel, AuthorModel, PublicModel, CommentMode
                                     null=True, help_text='Node ID from the previous Drupal website (imported).')
 
     program = models.ForeignKey(Program, blank=True, null=True)
-
     objects = ArticleManager()
 
     def get_absolute_url(self):
@@ -48,7 +47,6 @@ class Image(TimeStampedModel, BaseModel, ImageModel):
     image = models.ImageField(upload_to=util.get_image_path)
 
     article = models.ForeignKey(Article)
-
     objects = ImageManager()
 
     class Meta:

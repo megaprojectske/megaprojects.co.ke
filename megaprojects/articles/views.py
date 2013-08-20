@@ -6,7 +6,6 @@ from .models import Article
 
 class ArticleListView(ListView):
 
-    # Check that status = 'p' (Published)
     queryset = Article.objects.published()
     paginate_by = 8
 

@@ -6,11 +6,13 @@ from .forms import LinkAdminForm
 
 def make_enabled(modeladmin, request, queryset):
     queryset.update(enabled=True)
+
 make_enabled.short_description = "Mark selected menus/links as Enabled"
 
 
 def make_disabled(modeladmin, request, queryset):
     queryset.update(enabled=False)
+
 make_disabled.short_description = "Mark selected menus/links as Disabled"
 
 

@@ -11,7 +11,7 @@ class ProgramListView(ListView):
 
     # Check that status = 'p' (Published)
     queryset = Program.objects.published()
-    paginate_by = 5
+    paginate_by = 6
 
 
 class ProgramArchiveView(ListView):
