@@ -52,7 +52,6 @@ class Image(TimeStampedModel, BaseModel, ImageModel):
     image = models.ImageField(upload_to=util.get_image_path)
 
     program = models.ForeignKey(Program)
-
     objects = ImageManager()
 
     class Meta:

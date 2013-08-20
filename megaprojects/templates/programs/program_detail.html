@@ -2,57 +2,56 @@
 {% load core_tags %}
 
 
-{% block extra_meta %}
+{% block extra_head %}
   {{ block.super }}
-  <meta name="description" content="{{ program.body|remove_images|striptags|truncatechars:160 }}">
-{% endblock extra_meta %}
+  {% if object.body %}
+    <meta name="description" content="{{ object.body|striptokens|striptags|truncatechars:160 }}">
+  {% endif %}
+{% endblock %}
 
 {% block stylesheet %}
   {{ block.super }}
   <link rel="stylesheet" href="{{ STATIC_URL }}openlayers/theme/default/style.css">
-{% endblock stylesheet %}
+{% endblock %}
 
 {% block title %}
-  {{ program.title }} - Details | {{ block.super }}
-{% endblock title %}
+  {{ object.title }} - Details | {{ block.super }}
+{% endblock %}
 
 {% block breadcrumbs %}
   {% include "base/breadcrumb.html" %}
   <li><a href="{% url 'program_list' %}">Projects</a> <span class="divider">/</span></li>
-  <li class="active">{{ program.title }}</li>
-  <li class="pull-right"><a href="{{ program.get_absolute_url }}">Current</a> <span class="divider">|</span> <span class="active">Details</span> <span class="divider">|</span> <a href="{% url 'program_archive' program.pk %}">Archive</a></li>
-{% endblock breadcrumbs %}
+  <li class="active">{{ object.title }}</li>
+  <li class="pull-right"><a href="{{ object.get_absolute_url }}">Current</a> <span class="divider">|</span> <span class="active">Details</span> <span class="divider">|</span> <a href="{% url 'program_archive' object.pk object.slug %}">Archive</a></li>
+{% endblock %}
 
 {% block headline %}
-  {{ program.title }} <small>Details</small>
-{% endblock headline %}
-
-{% block lead %}
-  {% if program.lead %}
-    <p class="lead">{{ program.lead }}</p>
-  {% endif %}
-{% endblock lead %}
+  {{ object.title }} <small>Details</small>
+{% endblock %}
 
 {% block body %}
-  {% if program.body %}
-    {{ program.body|render_images:program|safe }}
+  {% if object.lead %}
+    <p class="lead">{{ object.lead }}</p>
+  {% endif %}
+  {% if object.body %}
+    {{ object.body|loadimages:object|safe }}
   {% else %}
     <p class="muted">No description given.</p>
   {% endif %}
-{% endblock body %}
+{% endblock %}
 
 {% block sidebar %}
-  {% if program.detail_set.all %}
-    {% include "programs/_program_details.html" %}
+  {% if object.detail_set.all %}
+    {% include "blocks/program_details.html" %}
   {% endif %}
-{% endblock sidebar %}
+{% endblock %}
 
 {% block map %}
   <div id="openlayers"></div>
-{% endblock map %}
+{% endblock %}
 
-{% block javascript %}
+{% block extra_script %}
   {{ block.super }}
   <script src="{{ STATIC_URL }}openlayers/openlayers.js"></script>
   <script>{% include "programs/_openlayers_map.js" %}</script>
-{% endblock javascript %}
+{% endblock %}

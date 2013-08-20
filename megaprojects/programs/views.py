@@ -1,4 +1,5 @@
-from django.shortcuts import get_object_or_404
+from django.core.urlresolvers import reverse
+from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
 
 from articles.models import Article, Image
@@ -9,9 +10,34 @@ from .models import Program
 
 class ProgramListView(ListView):
 
-    # Check that status = 'p' (Published)
     queryset = Program.objects.published()
     paginate_by = 6
+
+
+class ProgramDetailView(DetailView):
+
+    model = Program
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        url = reverse('program_detail', kwargs={
+                      'id': self.object.id, 'slug': self.object.slug})
+
+        if url != self.request.path:
+            return redirect(url, permanent=True)
+
+        # See: super(ProgramDetailView, self).get(request, *args, **kwargs)
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
+
+    def get_object(self, queryset=None):
+        if queryset is None:
+            queryset = self.get_queryset()
+
+        obj = get_object_or_404(
+            queryset, pk=self.kwargs.get('id'), status=True)
+
+        return obj
 
 
 class ProgramArchiveView(ListView):
@@ -20,11 +46,18 @@ class ProgramArchiveView(ListView):
     paginate_by = 8
     template_name = 'programs/program_archive.html'
 
-    def get_queryset(self):
-        # Check that status = True (Published)
+    def get(self, request, *args, **kwargs):
         self.program = get_object_or_404(
             Program, pk=self.kwargs.get('id'), status=True)
+        url = reverse('program_archive', kwargs={
+                      'id': self.program.id, 'slug': self.program.slug})
 
+        if url != self.request.path:
+            return redirect(url, permanent=True)
+
+        return super(ProgramArchiveView, self).get(request, *args, **kwargs)
+
+    def get_queryset(self):
         return Article.objects.published().filter(program=self.program)
 
     def get_context_data(self, **kwargs):
@@ -32,21 +65,6 @@ class ProgramArchiveView(ListView):
         context['program'] = self.program
 
         return context
-
-
-class ProgramDetailView(DetailView):
-
-    model = Program
-
-    def get_object(self, queryset=None):
-        if queryset is None:
-            queryset = self.get_queryset()
-
-        # Check that status = True (Published)
-        obj = get_object_or_404(
-            queryset, pk=self.kwargs.get('id'), status=True)
-
-        return obj
 
 
 class ProgramLatestView(PublicDetailView):
@@ -58,7 +76,6 @@ class ProgramLatestView(PublicDetailView):
         if queryset is None:
             queryset = self.get_queryset()
 
-        # Check that status = True (Published)
         obj = get_object_or_404(
             queryset, pk=self.kwargs.get('id'), status=True)
 
@@ -67,18 +84,13 @@ class ProgramLatestView(PublicDetailView):
     def get_context_data(self, **kwargs):
         context = super(ProgramLatestView, self).get_context_data(**kwargs)
 
-        popular_list = [article for article in Article.objects.published().filter(
-            program=self.object)[:8]]
         image_list = [image for image in Image.objects.published().filter(
             article__program=self.object)[:12]]
 
+        if len(image_list) >= 5: # Only show list if more than 5 exist
+            context['image_list'] = image_list
+
         context['article_list'] = [
             article for article in Article.objects.published().filter(program=self.object)[:11]]
-
-        # Only show list if more than 5 exist
-        if len(popular_list) >= 5:
-            context['popular_list'] = popular_list
-        if len(image_list) >= 5:
-            context['image_list'] = image_list
 
         return context

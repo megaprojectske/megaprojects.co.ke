@@ -7,12 +7,14 @@ from .forms import ProgramAdminForm, ImageAdminForm
 
 def make_published(modeladmin, request, queryset):
     queryset.update(status=True)
-make_published.short_description = "Mark selected projects as Published"
+
+make_published.short_description = 'Mark selected projects as Published'
 
 
 def make_unpublished(modeladmin, request, queryset):
     queryset.update(status=False)
-make_unpublished.short_description = "Mark selected projects as Unpublished"
+
+make_unpublished.short_description = 'Mark selected projects as Unpublished'
 
 
 class DetailInline(admin.TabularInline):
