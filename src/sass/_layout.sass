@@ -59,9 +59,11 @@
         border-bottom: 1px solid $content-border
       &>div:last-child
         border-bottom: none
-  &.overlay-list
+  &.project-list
     .base-content
       padding-top: 0
+    .overlay-list-item
+      border-bottom: 1px solid $content-border
 
 .base-detail
   .base-byline
@@ -200,6 +202,12 @@
     img
       height: 32px
       width: 32px
+  .share-label
+    background-color: #dfdfdf
+    float: left
+    font-weight: bold
+    margin: 0 2px 0 0
+    padding: 6px
   .addthis_button_compact
     margin: 0
   .addthis_button_facebook

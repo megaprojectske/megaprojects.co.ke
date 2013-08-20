@@ -17,12 +17,11 @@
 
 {% block list %}
   {% if object_list %}
-    {% for program in object_list %}
-      {% include "programs/snippets/program_list_item.html" %}
-      {% if not forloop.last %}
-        <hr class="separator-solid">
-      {% endif %}
-    {% endfor %}
+    <div class="row">
+      {% for program in object_list %}
+        {% include "programs/snippets/program_list_item.html" %}
+      {% endfor %}
+    </div>
     {% bootstrap_paginate page_obj range=8 show_first_last='true' %}
   {% else %}
     <p class="muted nan">Nothing available - check back later.</p>
