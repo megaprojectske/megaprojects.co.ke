@@ -33,7 +33,7 @@
 
 {% block body %}
   {{ object.body|loadimages:object|loadarticles|safe }}
-{% endblock body %}
+{% endblock %}
 
 {% block comments %}
   {% include "renders/comments.html" %}
