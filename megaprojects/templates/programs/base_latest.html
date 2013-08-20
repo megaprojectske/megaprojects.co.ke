@@ -2,24 +2,13 @@
 
 
 {% block content %}
-  <div class="staged-page">
-    <div class="staged-header">
-      {# Headline #}
-      <h1 class="page-heading">
-        {% block headline %}{% endblock headline %}
-      </h1>
+  <div class="base-model base-detail project-detail">
+    <div class="base-header">
+      <h1 class="base-heading">{% block headline %}{% endblock %}</h1>
     </div>
-    <div class="row columns columns-1">
-      <div class="span12 column column-1">
-        <div class="staged-content">
-          {# Body #}
-          {% block body %}{% endblock body %}
-        </div>
-      </div>
+    <div class="base-content">
+      {% block body %}{% endblock %}
     </div>
-    {# Latest #}
-    {% block latest %}{% endblock latest %}
-    {# Bottom #}
-    {% block bottom %}{% endblock bottom %}
+    {% block bottom %}{% endblock %}
   </div>
-{% endblock content %}
+{% endblock %}

@@ -2,20 +2,12 @@
 
 
 {% block content %}
-  <div class="list-page">
-    <div class="list-header">
-      {# Headline #}
-      <h1 class="page-heading">
-        {% block headline %}{% endblock headline %}
-      </h1>
+  <div class="base-model base-list">
+    <div class="base-header">
+      <h1 class="base-heading">{% block headline %}{% endblock %}</h1>
     </div>
-    <div class="row columns columns-2">
-      <div class="span12 column column-1">
-        {# List #}
-        <div class="list-content">
-          {% block list %}{% endblock list %}
-        </div>
-      </div>
+    <div class="base-content">
+      {% block list %}{% endblock %}
     </div>
   </div>
-{% endblock content %}
+{% endblock %}

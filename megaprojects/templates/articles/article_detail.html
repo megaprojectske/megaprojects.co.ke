@@ -16,7 +16,7 @@
 {% block breadcrumbs %}
   {% include "base/breadcrumb.html" %}
   <li><a href="{% url 'article_list' %}">Articles</a> <span class="divider">/</span></li>
-  <li class="active">{{ object.title }}</li>
+  <li class="active">{{ object.title|truncatechars:100 }}</li>
 {% endblock %}
 
 {% block headline %}

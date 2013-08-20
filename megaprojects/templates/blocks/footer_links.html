@@ -4,7 +4,7 @@
 
 {% block heading %}
   <h3 class="render-block-title">Links</h3>
-{% endblock heading %}
+{% endblock %}
 
 {% block content %}
   {% loadmenu slug='page-menu' as pagemenu %}
@@ -13,4 +13,4 @@
       <li><a href="{{ link.href }}">{{ link.title }}</a></li>
     {% endfor %}
   </ul>
-{% endblock content %}
+{% endblock %}

@@ -21,7 +21,7 @@
 {% block breadcrumbs %}
   {% include "base/breadcrumb.html" %}
   <li><a href="{% url 'program_list' %}">Projects</a> <span class="divider">/</span></li>
-  <li class="active">{{ object.title }}</li>
+  <li class="active">{{ object.title|truncatechars:60 }}</li>
   <li class="pull-right"><a href="{{ object.get_absolute_url }}">Current</a> <span class="divider">|</span> <span class="active">Details</span> <span class="divider">|</span> <a href="{% url 'program_archive' object.pk object.slug %}">Archive</a></li>
 {% endblock %}
 
@@ -42,7 +42,7 @@
 
 {% block sidebar %}
   {% if object.detail_set.all %}
-    {% include "blocks/program_details.html" %}
+    {% include "blocks/program_info.html" %}
   {% endif %}
 {% endblock %}
 
@@ -52,6 +52,6 @@
 
 {% block extra_script %}
   {{ block.super }}
-  <script src="{{ STATIC_URL }}openlayers/openlayers.js"></script>
-  <script>{% include "programs/_openlayers_map.js" %}</script>
+  <script src="{{ STATIC_URL }}openlayers/openlayers.light.js"></script>
+  {% include "programs/_openlayers_map.html" %}
 {% endblock %}

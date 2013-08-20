@@ -1,25 +1,23 @@
 {% load thumbnail core_tags %}
 
 
-<div class="teaser-simple">
-  <div class="teaser-header">
-    <h2 class="teaser-heading">
-      <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-    </h2>
-    <p class="teaser-byline">
-      {{ article.pubdate|date:'F j, Y - f A' }} 
+<div class="article-teaser-item">
+  <div class="article-teaser-item-header">
+    <h2 class="article-teaser-item-heading"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
+    <p class="article-teaser-item-byline">
+      {{ article.pubdate|date:'F j, Y - f A' }}
       {% if article.enable_comments %}
         | <a class="comment-count-blue" href="{{ article.get_absolute_url }}#idc-container-parent">Comments</a>
       {% endif%}
     </p>
   </div>
-  <div class="teaser-image">
+  <div class="article-teaser-item-image">
     {% thumbnail article.thumbnail.image '280x210' crop='center' as im %}
       <img src="{{ im.url }}" alt="{{ article.thumbnail.title }}">
     {% endthumbnail %}
   </div>
-  <div class="teaser-body">
-    {{ article.body|remove_images|striptags|truncatewords:30|safe|linebreaks }}
+  <div class="article-teaser-item-content">
+    {{ article.body|striptokens|striptags|truncatewords:30|safe|linebreaks }}
     <a href="{{ article.get_absolute_url }}">Read More</a>
   </div>
 </div>

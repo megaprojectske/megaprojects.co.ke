@@ -4,21 +4,21 @@
 
 {% block title %}
   Projects | {{ block.super }}
-{% endblock title %}
+{% endblock %}
 
 {% block breadcrumbs %}
   {% include "base/breadcrumb.html" %}
   <li class="active">Projects</li>
-{% endblock breadcrumbs %}
+{% endblock %}
 
 {% block headline %}
   Projects
-{% endblock headline %}
+{% endblock %}
 
 {% block list %}
-  {% if program_list %}
-    {% for program in program_list %}
-      {% include "programs/_program_list.html" %}
+  {% if object_list %}
+    {% for program in object_list %}
+      {% include "programs/snippets/program_list_item.html" %}
       {% if not forloop.last %}
         <hr class="separator-solid">
       {% endif %}
@@ -27,4 +27,4 @@
   {% else %}
     <p class="muted nan">Nothing available - check back later.</p>
   {% endif %}
-{% endblock list %}
+{% endblock %}
