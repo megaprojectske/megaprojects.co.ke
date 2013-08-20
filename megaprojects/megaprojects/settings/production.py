@@ -28,37 +28,47 @@ def get_env_setting(setting):
 
 INSTALLED_APPS += ('gunicorn',)
 
-########## EMAIL CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host
-EMAIL_HOST = environ.get('EMAIL_HOST', 'smtp.gmail.com')
+########## FILE STORAGE CONFIGURATION
+# See: http://django-storages.readthedocs.org/en/latest/backends/amazon-S3.html#settings
+DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host-password
-EMAIL_HOST_PASSWORD = environ.get('EMAIL_HOST_PASSWORD', '')
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-host-user
-EMAIL_HOST_USER = environ.get('EMAIL_HOST_USER', 'your_email@example.com')
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-port
-EMAIL_PORT = environ.get('EMAIL_PORT', 587)
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
-EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-use-tls
-EMAIL_USE_TLS = True
-
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#server-email
-SERVER_EMAIL = EMAIL_HOST_USER
-########## END EMAIL CONFIGURATION
+# See: http://django-storages.readthedocs.org/en/latest/backends/amazon-S3.html#settings
+STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
+########## END FILE STORAGE CONFIGURATION
 
 
 ########## COMMON MIDDLEWARE CONFIGURATION
-# See: https://docs.djangoproject.com/en/1.5/ref/settings/#prepend-www
+# See: http://docs.djangoproject.com/en/1.5/ref/settings/#prepend-www
 PREPEND_WWW = True
 ########## END COMMON MIDDLEWARE CONFIGURATION
+
+
+########## EMAIL CONFIGURATION
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#email-backend
+EMAIL_BACKEND = 'django_ses.SESBackend'
+
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#email-host
+# EMAIL_HOST = environ.get('EMAIL_HOST', 'smtp.gmail.com')
+
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#email-host-password
+# EMAIL_HOST_PASSWORD = environ.get('EMAIL_HOST_PASSWORD', '')
+
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#email-host-user
+# EMAIL_HOST_USER = environ.get('EMAIL_HOST_USER', 'your_email@example.com')
+
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#email-port
+# EMAIL_PORT = environ.get('EMAIL_PORT', 587)
+
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
+# EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
+
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#email-use-tls
+# EMAIL_USE_TLS = True
+
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#server-email
+SERVER_EMAIL = get_env_setting('SERVER_EMAIL')
+########## END EMAIL CONFIGURATION
 
 
 ########## DATABASE CONFIGURATION
@@ -76,7 +86,7 @@ DATABASES = {
 
 
 ########## CACHE CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#caches
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
@@ -84,33 +94,91 @@ CACHES = {
     }
 }
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#cache-middleware-anonymous-only
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#cache-middleware-anonymous-only
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 ########## END CACHE CONFIGURATION
 
 
 ########## SECRET CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = get_env_setting('SECRET_KEY')
 ########## END SECRET CONFIGURATION
 
 
 ########## SECURITY CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = get_env_setting('ALLOWED_HOSTS')
 ########## END SECURITY CONFIGURATION
 
 
+########## AWS CONFIGURATION
+AWS_ACCESS_KEY_ID = get_env_setting('AWS_ACCESS_KEY_ID')
+
+AWS_SECRET_ACCESS_KEY = get_env_setting('AWS_SECRET_ACCESS_KEY')
+########## AWS CONFIGURATION
+
+
+########## STORAGES CONFIGURATION
+AWS_STORAGE_BUCKET_NAME = get_env_setting('AWS_STORAGE_BUCKET_NAME')
+
+# See: http://www.eliotk.net/05/30/force-http-with-django-storages-and-s3boto/
+AWS_S3_SECURE_URLS = get_env_setting('AWS_S3_SECURE_URLS')
+
+# See: django-storages (storages.backends.s3boto)
+AWS_S3_CUSTOM_DOMAIN = get_env_setting('AWS_S3_CUSTOM_DOMAIN')
+
+# See: django-storages (storages.backends.s3boto)
+AWS_IS_GZIPPED = get_env_setting('AWS_IS_GZIPPED')
+
+# See: http://docs.aws.amazon.com/AmazonS3/latest/dev/S3_QSAuth.html/
+AWS_QUERYSTRING_AUTH = get_env_setting('AWS_QUERYSTRING_AUTH')
+########## END STORAGES CONFIGURATION
+
+
+########## S3 FOLDER STORAGE CONFIGURATION
+# See: http://github.com/jamstooks/django-s3-folder-storage#configuration
+DEFAULT_S3_PATH = get_env_setting('DEFAULT_S3_PATH')
+
+# See: http://github.com/jamstooks/django-s3-folder-storage#configuration
+STATIC_S3_PATH = get_env_setting('STATIC_S3_PATH')
+########## END S3 FOLDER STORAGE CONFIGURATION
+
+
+########## MEDIA CONFIGURATION
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#media-root
+MEDIA_ROOT = "/%s/" % DEFAULT_S3_PATH
+
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#media-url
+MEDIA_URL = "//%s/media/" % AWS_STORAGE_BUCKET_NAME
+########## END MEDIA CONFIGURATION
+
+
+########## STATIC FILE CONFIGURATION
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#static-root
+STATIC_ROOT = "/%s/" % STATIC_S3_PATH
+
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#static-url
+STATIC_URL = "//%s/static/" % AWS_STORAGE_BUCKET_NAME
+########## END STATIC FILE CONFIGURATION
+
+
 ########## GOOGLE_ANALYTICS CONFIGURATION
 GOOGLE_ANALYTICS_PROPERTY_ID = get_env_setting('GOOGLE_ANALYTICS_PROPERTY_ID')
+
 GOOGLE_ANALYTICS_SITE_DOMAIN = get_env_setting('GOOGLE_ANALYTICS_SITE_DOMAIN')
+
+GOOGLE_PLUS_PUBLISHER = get_env_setting('GOOGLE_PLUS_PUBLISHER')
 ########## END GOOGLE_ANALYTICS CONFIGURATION
 
 
 ########## ADDTHIS CONFIGURATION
+ADDTHIS_GA_TRACKING_ENABLED = get_env_setting('ADDTHIS_GA_TRACKING_ENABLED')
+
 ADDTHIS_PUB_ID = get_env_setting('ADDTHIS_PUB_ID')
 
-ADDTHIS_GA_TRACKING_ENABLED = get_env_setting('ADDTHIS_GA_TRACKING_ENABLED')
+ADDTHIS_TWITTER_BITLY = get_env_setting('ADDTHIS_TWITTER_BITLY')
+
+ADDTHIS_TWITTER_VIA = get_env_setting('ADDTHIS_TWITTER_VIA')
 ########## END ADDTHIS CONFIGURATION
 
 

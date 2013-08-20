@@ -194,6 +194,7 @@ THIRD_PARTY_APPS = (
     'intensedebate',
     'sorl.thumbnail',
     'south',
+    'storages'
 )
 
 LOCAL_APPS = (
