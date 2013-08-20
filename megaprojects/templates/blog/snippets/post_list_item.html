@@ -2,22 +2,20 @@
 
 
 <div class="media page-list-item">
+  <a class="pull-left" href="{{ post.get_absolute_url }}">
+   {% thumbnail post.thumbnail.image '168x168' crop='center' as im %}
+     <img class="media-object" src="{{ im.url }}" alt="{{ post.thumbnail.title }}">
+   {% endthumbnail %}
+  </a>
   <div class="media-body">
     <div class="page-list-item-header">
-      <h2 class="media-heading page-list-item-heading">
-        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-      </h2>
+      <h2 class="media-heading page-list-item-heading"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
       <p class="page-list-item-byline">
         {{ post.pubdate|date:'F j, Y - f A' }}
         {% if post.enable_comments %}
           | <a class="comment-count-green" href="{{ post.get_absolute_url }}#idc-container-parent">Comments</a>
         {% endif%}
       </p>
-    </div>
-    <div class="page-list-item-image">
-      {% thumbnail post.thumbnail.image '576x168' crop='center' as im %}
-        <img class="media-object" src="{{ im.url }}" alt="{{ post.thumbnail.title }}">
-      {% endthumbnail %}
     </div>
     <div class="media-body page-list-item-body">
       {{ post.body|striptokens|striptags|truncatewords:60|safe|linebreaks }}

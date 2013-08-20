@@ -3,11 +3,11 @@
 
 
 {% block heading %}
-  <h3 class="render-block-title">Featured Articles</h3>
+  <h3 class="render-block-title">Must Read <small>Articles</small></h3>
 {% endblock %}
 
 {% block content %}
-  <ul class="unstyled">
+  <ul class="unstyled nomargin">
     {% loadarticles 12 as article_list %}
     {% for article in article_list|slice:'6:' %}
       <li class="media block-list-item">

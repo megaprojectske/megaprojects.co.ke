@@ -7,9 +7,9 @@
 {% endblock %}
 
 {% block content %}
-  <ul class="unstyled">
-    {% loadposts 12 as post_list %}
-    {% for post in post_list|slice:'6:' %}
+  <ul class="unstyled nomargin">
+    {% loadposts 5 as post_list %}
+    {% for post in post_list %}
       <li class="media block-list-item">
         <a class="pull-left" href="{{ post.get_absolute_url }}">
           {% thumbnail post.thumbnail.image '95x95' crop='center' as im %}

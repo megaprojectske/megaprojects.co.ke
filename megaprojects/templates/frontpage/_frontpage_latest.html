@@ -1,36 +1,50 @@
 <div class="row">
-  <div class="span8">
-    {% for article in article_list|slice:':1' %}
-      <div class="span8">
-        {% include "articles/snippets/article_ov_wide_span8.html" %}
-      </div>
-    {% endfor %}
-  </div>
-  <div class="span4">
-    {% for article in article_list|slice:'1:2' %}
-      <div class="span4">
-        {% include "articles/snippets/article_ov_wide_span4.html" %}
-      </div>
-    {% endfor %}
-  </div>
-  <div class="span4">
-    {% for article in article_list|slice:'2:3' %}
-      <div class="span4">
-        {% include "articles/snippets/article_ov_wide_span4.html" %}
-      </div>
-    {% endfor %}
-  </div>
-  <div class="span8">
-    {% for article in article_list|slice:'3:4' %}
-      <div class="span8">
-        {% include "articles/snippets/article_ov_wide_span8.html" %}
-      </div>
-    {% endfor %}
-  </div>
+  {% for article in article_list|slice:':1' %}
+    <div class="span8">
+      {% include "articles/snippets/article_ov_wide_span8.html" %}
+    </div>
+  {% endfor %}
+  {% for article in article_list|slice:'1:2' %}
+    <div class="span4">
+      {% include "articles/snippets/article_ov_wide_span4.html" %}
+    </div>
+  {% endfor %}
+  {% for article in article_list|slice:'2:3' %}
+    <div class="span4">
+      {% include "articles/snippets/article_ov_wide_span4.html" %}
+    </div>
+  {% endfor %}
+  {% for article in article_list|slice:'3:4' %}
+    <div class="span8">
+      {% include "articles/snippets/article_ov_wide_span8.html" %}
+    </div>
+  {% endfor %}
 </div>
 <div class="row columns columns-3">
   <div class="span4 column column-1">
-    {% for article in article_list|slice:'4:6' %}
+    {% for article in article_list|slice:'4:5' %}
+      {% include "articles/snippets/article_teaser_item.html" %}
+    {% endfor %}
+  </div>
+  <div class="span4 column column-2">
+    {% include "blocks/articles_popular_content.html" %}
+  </div>
+  <div class="span4 column column-3">
+    {% for article in article_list|slice:'5:6' %}
+      {% include "articles/snippets/article_teaser_item.html" %}
+    {% endfor %}
+  </div>
+</div>
+<div class="row">
+  {% for article in article_list|slice:'6:7' %}
+    <div class="span12">
+      {% include "articles/snippets/article_ov_wide_span12.html" %}
+    </div>
+  {% endfor %}
+</div>
+<div class="row columns columns-3">
+  <div class="span4 column column-1">
+    {% for article in article_list|slice:'6:7' %}
       {% include "articles/snippets/article_teaser_item.html" %}
       {% if not forloop.last %}
         <hr class="separator-dotted">
@@ -38,10 +52,10 @@
     {% endfor %}
   </div>
   <div class="span4 column column-2">
-    {% include "blocks/popular_content.html" %}
+    {% include "blocks/programs_explore.html" %}
   </div>
   <div class="span4 column column-3">
-    {% for article in article_list|slice:'6:8' %}
+    {% for article in article_list|slice:'7:8' %}
       {% include "articles/snippets/article_teaser_item.html" %}
       {% if not forloop.last %}
         <hr class="separator-dotted">
@@ -57,7 +71,7 @@
     </div>
   {% endfor %}
   <div class="span4 column column-2">
-    {% include "blocks/recent_posts.html" %}
+    {% include "blocks/posts_from_the_blog.html" %}
   </div>
   {% for article in article_list|slice:'9:10' %}
     <div class="span4 column column-3">
@@ -65,4 +79,10 @@
     </div>
   {% endfor %}
 </div>
-{% include "blocks/missed_articles.html" %}
+<div class="row background-dark">
+  {% for article in article_list|slice:'10:14' %}
+    <span class="span3">
+      {% include "articles/snippets/article_ov_wide_span3.html" %}
+    </span>
+  {% endfor %}
+</div>

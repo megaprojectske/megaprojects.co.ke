@@ -39,6 +39,11 @@
   {% include "renders/comments.html" %}
 {% endblock %}
 
+{% block sidebar %}
+  {{ block.super }}
+  {% include "blocks/articles_must_read.html" %}
+{% endblock %}
+
 {% block extra_script %}
   {{ block.super }}
   {% if object.enable_comments %}

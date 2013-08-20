@@ -51,7 +51,7 @@
   &.article-detail
     .base-heading
       margin: 0
-  &.frontpage-detail, &.project-detail
+  &.frontpage-detail, &.program-detail
     .base-content
       padding: 0
       margin: 0
@@ -59,7 +59,7 @@
         border-bottom: 1px solid $content-border
       &>div:last-child
         border-bottom: none
-  &.project-list
+  &.program-list
     .base-content
       padding-top: 0
     .overlay-list-item
@@ -126,7 +126,7 @@
   .page-list-item-header
     margin-bottom: 10px
   .page-list-item-heading
-    font-size: 17.5px // H4
+    font-size: 19.5px
     line-height: 25px
     a
       color: $black
@@ -146,6 +146,16 @@
     .overlay-list-item-image,
     .overlay-list-item-header
       height: ($grid-row-width / 2)
+  &.sidebar
+    border-bottom: 1px solid $content-border
+    &:last-child
+      border-bottom: none
+    .overlay-list-item-image,
+    .overlay-list-item-header
+      height: ($grid-row-width / 10)
+    .overlay-list-item-heading
+      font-size: 17.5px
+      line-height: 1.25em
   .overlay-list-item-header
     background-color: rgba(0, 0, 0, .5)
     bottom: 0
@@ -284,3 +294,6 @@
 .pagination
   margin: 0
   padding: 20px 0
+
+.nomargin
+  margin: 0

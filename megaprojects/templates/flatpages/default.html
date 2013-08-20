@@ -22,3 +22,8 @@
 {% block body %}
   {{ flatpage.content|safe }}
 {% endblock %}
+
+{% block sidebar %}
+  {{ block.super }}
+  {% include "blocks/programs_explore.html" %}
+{% endblock %}

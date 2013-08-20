@@ -25,3 +25,9 @@
     <p class="muted nan">Nothing available - check back later.</p>
   {% endif %}
 {% endblock %}
+
+{% block sidebar %}
+  {{ block.super }}
+  {% include "blocks/posts_from_the_blog.html" %}
+  {% include "blocks/programs_explore.html" %}
+{% endblock %}
