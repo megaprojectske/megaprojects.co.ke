@@ -1,0 +1,25 @@
+{% extends "page.html" %}
+
+
+{% block content %}
+  <div class="base-model base-detail">
+    <div class="base-header">
+      <h1 class="base-heading">{% block headline %}{% endblock %}</h1>
+    </div>
+    <div class="row columns columns-2">
+      <div class="span8 column column-1">
+        {% include "base/_share_toolbox.html" %}
+        <div class="base-content">
+          {% block body %}{% endblock %}
+        </div>
+        {% block comments %}{% endblock %}
+      </div>
+      <div id="sidebar" class="span4 column column-2">
+        {% block sidebar %}{% endblock %}
+      </div>
+    </div>
+    <div class="base-map">
+      {% block map %}{% endblock %}
+    </div>
+  </div>
+{% endblock %}

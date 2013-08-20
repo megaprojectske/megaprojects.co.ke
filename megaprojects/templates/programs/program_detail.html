@@ -1,0 +1,57 @@
+{% extends "programs/base_detail.html" %}
+{% load core_tags %}
+
+
+{% block extra_head %}
+  {{ block.super }}
+  {% if object.body %}
+    <meta name="description" content="{{ object.body|striptokens|striptags|truncatechars:160 }}">
+  {% endif %}
+{% endblock %}
+
+{% block stylesheet %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{{ STATIC_URL }}openlayers/theme/default/style.css">
+{% endblock %}
+
+{% block title %}
+  {{ object.title }} - Details | {{ block.super }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  {% include "base/breadcrumb.html" %}
+  <li><a href="{% url 'program_list' %}">Projects</a> <span class="divider">/</span></li>
+  <li class="active">{{ object.title|truncatechars:60 }}</li>
+  <li class="pull-right"><a href="{{ object.get_absolute_url }}">Current</a> <span class="divider">|</span> <span class="active">Details</span> <span class="divider">|</span> <a href="{% url 'program_archive' object.pk object.slug %}">Archive</a></li>
+{% endblock %}
+
+{% block headline %}
+  {{ object.title }} <small>Details</small>
+{% endblock %}
+
+{% block body %}
+  {% if object.lead %}
+    <p class="lead">{{ object.lead }}</p>
+  {% endif %}
+  {% if object.body %}
+    {{ object.body|loadimages:object|safe }}
+  {% else %}
+    <p class="muted">No description given.</p>
+  {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+  {% if object.detail_set.all %}
+    {% include "blocks/program_info.html" %}
+  {% endif %}
+{% endblock %}
+
+{% block map %}
+  <div id="openlayers"></div>
+{% endblock %}
+
+{% block extra_script %}
+  {{ block.super }}
+  <script src="{{ STATIC_URL }}openlayers/openlayers.light.js"></script>
+  {% include "programs/_openlayers_map.html" %}
+{% endblock %}

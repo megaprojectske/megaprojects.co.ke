@@ -1,0 +1,13 @@
+{% extends "page.html" %}
+
+
+{% block content %}
+  <div class="base-model base-list program-list">
+    <div class="base-header">
+      <h1 class="base-heading">{% block headline %}{% endblock %}</h1>
+    </div>
+    <div class="base-content">
+      {% block list %}{% endblock %}
+    </div>
+  </div>
+{% endblock %}

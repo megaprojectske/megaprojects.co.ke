@@ -1,0 +1,26 @@
+{% extends "frontpage/base.html" %}
+
+
+
+{% block extra_head %}
+  {{ block.super }}
+  <meta name="description" content="Kenya's largest source of infrastructure information with an aspect for progressive documentation of infrastructure projects around the country.">
+{% endblock %}
+
+{% block title %}
+  {{ block.super }} | Kenya's Premier Infrastructure Development Website
+{% endblock %}
+
+{% block headline %}
+  MegaProjects Kenya
+{% endblock %}
+
+{% block body %}
+  {% include "frontpage/_frontpage_latest.html" %}
+{% endblock %}
+
+{% block bottom %}
+  <div class="text-center next-page">
+    FrontPage <a href="{% url 'article_list' %}">Archive</a>
+  </div>
+{% endblock %}

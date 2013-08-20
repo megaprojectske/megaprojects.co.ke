@@ -1,1 +1,39 @@
-<h1>Whoops!</h1>
+{% extends "page.html" %}
+{% load ganalytics %}
+
+
+{% block stylesheet %}
+  <link rel="shortcut icon" href="//cdn.megaprojects.co.ke/static/img/favicon.ico">
+  <link rel="stylesheet" href="//cdn.megaprojects.co.ke/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.megaprojects.co.ke/static/css/structure.min.css">
+{% endblock %}
+
+{% block title %}
+  Server Error - 500 | {{ block.super }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  {% include "base/breadcrumb.html" %}
+  <li class="active">Server Error - 500</li>
+{% endblock %}
+
+{% block content %}
+  <div class="base-model base-detail">
+    <div class="base-header">
+      <h1 class="base-heading">Server Error - 500</h1>
+    </div>
+    <div class="base-content">
+      <p>There's been an error. It's been reported and should be fixed shortly. Thanks for your patience.</p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascript %}
+  <script src="//cdn.megaprojects.co.ke/static/js/jquery.min.js"></script>
+  <script src="//cdn.megaprojects.co.ke/static/js/bootstrap.min.js"></script>
+  <script src="//cdn.megaprojects.co.ke/static/js/functions.min.js"></script>
+{% endblock- %}
+
+{% block extra_script %}
+  {% ganalytics_load %}
+{% endblock %}

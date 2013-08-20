@@ -1,0 +1,20 @@
+{% extends "page.html" %}
+
+
+{% block content %}
+  <div class="base-model base-list">
+    <div class="base-header">
+      <h1 class="base-heading">{% block headline %}{% endblock %}</h1>
+    </div>
+    <div class="row columns columns-2">
+      <div class="span8 column column-1">
+        <div class="base-content">
+          {% block list %}{% endblock %}
+        </div>
+      </div>
+      <div id="sidebar" class="span4 column column-2">
+        {% block sidebar %}{% endblock %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

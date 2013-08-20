@@ -1,0 +1,76 @@
+// Navigation stylesheet //
+
+
+$nav-secondary: #333
+
+
+#navigation
+  border-bottom: 2px solid $black
+  .container
+    background-color: $white
+    padding: 0
+
+.primary-menu
+  .primary-nav
+    margin-bottom: 0
+  .primary-li
+    float: left
+    &:hover
+      // border-left: 1px solid $content-border
+      // border-right: 1px solid $content-border
+      background-color: $nav-secondary
+      .primary-link
+        background: none
+        color: $white
+        .caret
+          border-top: 4px solid $white
+      .primary-block
+        display: block
+  .primary-link
+    color: $black
+    font-weight: 400
+    line-height: 46px
+    padding: 0 25px
+    text-transform: uppercase
+    .caret
+      margin: 1.4em 0 0 0.4em
+  .primary-block
+    background-color: $white
+    border-bottom: 2px solid $nav-secondary
+    border-left: 2px solid $nav-secondary
+    border-right: 2px solid $nav-secondary
+    display: none
+    position: absolute
+    z-index: 5001
+    .nav
+      margin: 0
+      width: ($grid-row-width / 4)
+      li
+        border-top: 1px solid #f5f5f5
+      a
+        color: #555
+        padding: 12px 30px
+        // border-left: 2px solid $black
+        // border-right: 2px solid $black
+
+.secondary-menu
+  background-color: $nav-secondary
+  height: 1.8em
+  .secondary-title
+    +float-left
+    color: $white
+    font-size: 0.9em
+    font-weight: bold
+    line-height: 2em
+    margin: 0
+    padding: 0 10px
+    text-transform: uppercase
+  ul
+    +inline-block-list
+    font-size: 0.9em
+    a
+      +link-colors($gray-lighter, $gray, $gray, $gray-lighter, $gray)
+      line-height: 2em
+      padding: 0 10px
+      &:hover
+        background: none

@@ -1,0 +1,20 @@
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="span6">
+        <a class="brand" href="{% url 'frontpage' %}"><img alt="Home" src="{{ STATIC_URL }}img/megaprojects-light.png"></a>
+        {% include "base/search.html" %}
+      </div>
+      <div class="span3">
+        {% include "blocks/footer_links.html" %}
+      </div>
+      <div class="span3">
+        {% include "blocks/footer_social.html" %}
+      </div>
+    </div>
+    <hr class="separator">
+    <div class="copyright">
+      v1.10 "Caliban's Dream" | &copy; {% now 'Y' %} Infra Systems Limited. All rights reserved.
+    </div>
+  </div> <!-- /container -->
+</footer> <!-- /footer -->

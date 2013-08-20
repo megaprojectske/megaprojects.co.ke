@@ -149,12 +149,17 @@ TEMPLATE_DIRS = (
 ########## MIDDLEWARE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#middleware-classes
 MIDDLEWARE_CLASSES = (
-    # Default Django middleware.
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
+    'core.middleware.MinifyHTMLMiddleware',
+    'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 ########## END MIDDLEWARE CONFIGURATION
 
@@ -167,29 +172,37 @@ ROOT_URLCONF = '%s.urls' % SITE_NAME
 
 ########## APP CONFIGURATION
 DJANGO_APPS = (
-    # Default Django apps:
+    'django.contrib.admin',
+    'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
+    'django.contrib.flatpages',
     'django.contrib.messages',
+    'django.contrib.sessions',
+    'django.contrib.sitemaps',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
-
-    # Useful template tags:
     # 'django.contrib.humanize',
-
-    # Admin panel and documentation:
-    'django.contrib.admin',
-    # 'django.contrib.admindocs',
 )
 
 THIRD_PARTY_APPS = (
-    # Database migration helpers:
+    'addthis',
+    'bootstrap-pagination',
+    'ckeditor',
+    'ganalytics',
+    'haystack',
+    'intensedebate',
+    'sorl.thumbnail',
     'south',
+    'storages'
 )
 
-# Apps specific for this project go here.
 LOCAL_APPS = (
+    'articles',
+    'blog',
+    'core',
+    'menu',
+    'programs',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -234,3 +247,51 @@ LOGGING = {
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = 'wsgi.application'
 ########## END WSGI CONFIGURATION
+
+
+########## CKEDITOR CONFIGURATION
+# See: https://github.com/shaunsephton/django-ckeditor#required
+CKEDITOR_UPLOAD_PATH = normpath(join(SITE_ROOT, 'ckeditor'))
+
+# See: https://github.com/shaunsephton/django-ckeditor#optional
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar_Full': [
+            ['Source', '-', 'Save', 'NewPage', 'DocProps', 'Preview', 'Print'],
+            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'],
+            ['Find', 'Replace', '-', 'SelectAll', '-', 'SpellChecker', 'Scayt'],
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Table', 'HorizontalRule', 'SpecialChar'],
+            ['Format'],
+            ['Maximize', 'ShowBlocks', '-', 'About'],
+        ],
+        'forcePasteAsPlainText': True,
+        'scayt_autoStartup': True,
+        'scayt_sLang': 'en_GB',
+        'startupOutlineBlocks': True,
+    },
+}
+########## END CKEDITOR CONFIGURATION
+
+
+########## HAYSTACK CONFIGURATION
+# See: http://django-haystack.readthedocs.org/en/latest/tutorial.html#configuration
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': normpath(join(SITE_ROOT, 'whoosh_index')),
+    },
+}
+########## END HAYSTACK CONFIGURATION
+
+
+########## THUMBNAIL CONFIGURATION
+# See: http://sorl-thumbnail.readthedocs.org/en/latest/reference/settings.html#thumbnail-progressive
+THUMBNAIL_PROGRESSIVE = False
+# See: http://sorl-thumbnail.readthedocs.org/en/latest/reference/settings.html#thumbnail-upscale
+THUMBNAIL_UPSCALE = False
+# See: http://sorl-thumbnail.readthedocs.org/en/latest/reference/settings.html#thumbnail-format
+THUMBNAIL_FORMAT = 'PNG'
+########## THUMBNAIL CONFIGURATION

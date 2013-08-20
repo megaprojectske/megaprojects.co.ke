@@ -1,23 +1,26 @@
 <!DOCTYPE html>
+
+
+{% include "base/ascii_art.html" %}
+
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
+    <meta name="robots" content="noarchive">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="robots" content="noarchive" />
 
-    <title>{% block title %}MegaProjects Kenya{% endblock title %}</title>
+    {# TODO: Move title to settings #}
+    <title>{% block title %}MegaProjects Kenya{% endblock %}</title>
 
     {% block stylesheet %}
-      {% if debug %}
-        <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
-        <link href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" rel="stylesheet">
-      {% else %}
-        <link href="//netdna.bootstrapcdn.com/bootswatch/2.3.1/cosmo/bootstrap.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
-      {% endif %}
-    {% endblock stylesheet %}
+      <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico">
+      <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
+      <link rel="stylesheet" href="{{ STATIC_URL }}css/structure.min.css">
+    {% endblock %}
+    {% block extra_head %}{% endblock %}
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,600italic,300,400,600">
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -25,18 +28,21 @@
   </head>
 
   <body>
-    <div class="container">
-      <h1>{% block page_title %}{% endblock page_title %}</h1>
-      {% block content %}{% endblock content %}
-    </div> <!-- /container -->
-    {% block javascript %}
-      {% if debug %}
-          <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
-          <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-      {% else %}
-          <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
-          <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-      {% endif %}
-    {% endblock javascript %}
+    {% include "base/header.html" %}
+    <div id="page">
+      {% include "base/navigation.html" %}
+      {% block page %}{% endblock %}
+    </div> <!-- /page -->
+    {% include "base/footer.html" %}
+
+    <div id="script">
+      {% block javascript %}
+        <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+        <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+        <script src="{{ STATIC_URL }}js/functions.min.js"></script>
+      {% endblock %}
+      {% block extra_script %}{% endblock %}
+    </div> <!-- /script -->
   </body>
+
 </html>

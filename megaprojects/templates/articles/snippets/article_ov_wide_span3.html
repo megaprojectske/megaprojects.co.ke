@@ -1,0 +1,14 @@
+{% load thumbnail %}
+
+
+<div class="overlay-list-item wide">
+  <div class="overlay-list-item-image">
+    {% thumbnail article.thumbnail.image '240x240' crop='center' as im %}
+      <img src="{{ im.url }}" alt="{{ article.thumbnail.title }}">
+    {% endthumbnail %}
+  </div>
+  <div class="overlay-list-item-header">
+    <h2 class="overlay-list-item-heading"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
+    <p class="overlay-list-item-byline">{{ article.pubdate|date:'F j, Y - f A' }}</p>
+  </div>
+</div>

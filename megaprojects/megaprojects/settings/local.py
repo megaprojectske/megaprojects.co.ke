@@ -7,22 +7,22 @@ from base import *
 
 
 ########## DEBUG CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = True
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#template-debug
 TEMPLATE_DEBUG = DEBUG
 ########## END DEBUG CONFIGURATION
 
 
 ########## EMAIL CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ########## END EMAIL CONFIGURATION
 
 
 ########## DATABASE CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -37,7 +37,7 @@ DATABASES = {
 
 
 ########## CACHE CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
+# See: http://docs.djangoproject.com/en/dev/ref/settings/#caches
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
@@ -47,21 +47,42 @@ CACHES = {
 
 
 ########## TOOLBAR CONFIGURATION
-# See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
+# See: http://github.com/django-debug-toolbar/django-debug-toolbar#installation
 INSTALLED_APPS += (
     'debug_toolbar',
 )
 
-# See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
+# See: http://github.com/django-debug-toolbar/django-debug-toolbar#installation
 INTERNAL_IPS = ('127.0.0.1',)
 
-# See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
+# See: http://github.com/django-debug-toolbar/django-debug-toolbar#installation
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }
 
-# See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
+# See: http://github.com/django-debug-toolbar/django-debug-toolbar#installation
 MIDDLEWARE_CLASSES += (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 ########## END TOOLBAR CONFIGURATION
+
+
+########## SORL THUMBNAIL CONFIGURATION
+# See: http://sorl-thumbnail.readthedocs.org/en/latest/logging.html#errors-logging
+THUMBNAIL_DEBUG = DEBUG
+########## END SORL THUMBNAIL CONFIGURATION
+
+
+GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-000000-1'
+GOOGLE_ANALYTICS_SITE_DOMAIN = 'example.com'
+
+ADDTHIS_PUB_ID = 'ra-0000000000000000'
+ADDTHIS_GA_TRACKING_ENABLED = False
+ADDTHIS_TWITTER_BITLY=True
+ADDTHIS_TWITTER_VIA='twitter'
+
+INTENSEDEBATE_ACCT = '00000000000000000000000000000000'
+
+ALLOWED_HOSTS = ['*']
+
+GOOGLE_PLUS_PUBLISHER='000000000000000000001'

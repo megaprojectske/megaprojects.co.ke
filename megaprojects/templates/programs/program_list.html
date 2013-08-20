@@ -1,0 +1,29 @@
+{% extends "programs/base_list.html" %}
+{% load bootstrap_pagination %}
+
+
+{% block title %}
+  Projects | {{ block.super }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  {% include "base/breadcrumb.html" %}
+  <li class="active">Projects</li>
+{% endblock %}
+
+{% block headline %}
+  Projects
+{% endblock %}
+
+{% block list %}
+  {% if object_list %}
+    <div class="row">
+      {% for program in object_list %}
+        {% include "programs/snippets/program_list_item.html" %}
+      {% endfor %}
+    </div>
+    {% bootstrap_paginate page_obj range=8 show_first_last='true' %}
+  {% else %}
+    <p class="muted nan">Nothing available - check back later.</p>
+  {% endif %}
+{% endblock %}

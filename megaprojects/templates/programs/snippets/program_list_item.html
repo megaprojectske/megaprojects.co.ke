@@ -1,0 +1,13 @@
+{% load thumbnail core_tags %}
+
+
+<div class="span6 overlay-list-item wide">
+  <div class="overlay-list-item-image">
+    {% thumbnail program.thumbnail.image '480x240' crop='center' as im %}
+      <img src="{{ im.url }}" alt="{{ program.thumbnail.title }}">
+    {% endthumbnail %}
+  </div>
+  <div class="overlay-list-item-header">
+    <h2 class="overlay-list-item-heading"><a href="{{ program.get_absolute_url }}">{{ program.title }}</a></h2>
+  </div>
+</div>

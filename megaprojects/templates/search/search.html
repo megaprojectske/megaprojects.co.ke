@@ -1,0 +1,28 @@
+{% extends 'page.html' %}
+{% load bootstrap_pagination %}
+
+
+{% block title %}
+  {% if query %}Search Results{% else %}Search{% endif %} | {{ block.super }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  {% include "base/breadcrumb.html" %}
+  {% if query %}
+    <li><a href="{% url 'haystack_search' %}">Search</a> <span class="divider">/</span></li>
+    <li class="active">"{{ query|truncatechars:60 }}"</li>
+  {% else %}
+    <li class="active">Search</li>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="base-model base-detail">
+    <div class="base-header">
+      <h1 class="base-heading">{% if query %}Search Results{% else %}Search{% endif %}</h1>
+    </div>
+    <div class="base-content">
+      <p class="muted">Search currently unavailable - check back later.</p>
+    </div>
+  </div>
+{% endblock %}

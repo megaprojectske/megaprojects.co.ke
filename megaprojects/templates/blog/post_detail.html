@@ -1,0 +1,52 @@
+{% extends "blog/base_detail.html" %}
+{% load intensedebate core_tags %}
+
+
+{% block extra_head %}
+  {{ block.super }}
+  <meta name="description" content="{{ object.body|striptokens|striptags|truncatechars:160 }}">
+  {% if object.enable_comments %}
+    {% intensedebate_config post_id=object.id post_id_prefix='post_' %}
+  {% endif%}
+{% endblock %}
+
+{% block title %}
+  {{ object.title }} | {{ block.super }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  {% include "base/breadcrumb.html" %}
+  <li><a href="{% url 'post_list' %}">Blog</a> <span class="divider">/</span></li>
+  <li class="active">{{ object.title|truncatechars:100 }}</li>
+{% endblock %}
+
+{% block headline %}
+  {{ object.title }}
+{% endblock %}
+
+{% block byline %}
+  {{ object.pubdate|date:'F j, Y - f A' }} | <a href="{% url 'post_list' %}">Blog</a>
+  {% if object.enable_comments %}
+    | <a class="comment-count-green" href="#idc-container-parent">Comments</a>
+  {% endif%}
+{% endblock %}
+
+{% block body %}
+  {{ object.body|loadimages:object|loadarticles|safe }}
+{% endblock %}
+
+{% block comments %}
+  {% include "renders/comments.html" %}
+{% endblock %}
+
+{% block sidebar %}
+  {{ block.super }}
+  {% include "blocks/articles_must_read.html" %}
+{% endblock %}
+
+{% block extra_script %}
+  {{ block.super }}
+  {% if object.enable_comments %}
+    {% intensedebate_cw %}
+  {% endif%}
+{% endblock %}

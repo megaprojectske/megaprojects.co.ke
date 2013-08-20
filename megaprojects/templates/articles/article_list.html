@@ -1,0 +1,33 @@
+{% extends "articles/base_list.html" %}
+{% load bootstrap_pagination %}
+
+
+{% block title %}
+  Articles | {{ block.super }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  {% include "base/breadcrumb.html" %}
+  <li class="active">Articles</li>
+{% endblock %}
+
+{% block headline %}
+  Articles
+{% endblock %}
+
+{% block list %}
+  {% if object_list %}
+    {% for article in object_list %}
+      {% include "articles/snippets/article_list_item.html" %}
+    {% endfor %}
+    {% bootstrap_paginate page_obj range=8 show_first_last='true' %}
+  {% else %}
+    <p class="muted nan">Nothing available - check back later.</p>
+  {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+  {{ block.super }}
+  {% include "blocks/posts_from_the_blog.html" %}
+  {% include "blocks/programs_explore.html" %}
+{% endblock %}

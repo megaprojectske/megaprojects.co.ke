@@ -1,13 +1,28 @@
-{% extends "base.html" %}
+{% extends "page.html" %}
+{% load ganalytics %}
+
 
 {% block title %}
-Page Not found
+  Page Not Found - 404 | {{ block.super }}
 {% endblock %}
 
-{% block page_title %}
-Page Not found
-{% endblock page_title %}
+{% block breadcrumbs %}
+  {% include "base/breadcrumb.html" %}
+  <li class="active">Page Not Found - 404</li>
+{% endblock %}
 
 {% block content %}
-<p>This is not the page you were looking for.</p>
-{% endblock content %}
+  <div class="base-model base-detail">
+    <div class="base-header">
+      <h1 class="base-heading">Page Not Found - 404</h1>
+    </div>
+    <div class="base-content">
+      <p>The page you were looking for isn't where you thought it was. Sorry about that. Maybe try <a href="{% url 'haystack_search' %}">searching</a> for it?</p>
+      <p>In any case, if you really can't find what you're looking for, you should feel free to <a href="/about/contact/">contact us</a>.</p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_script %}
+  {% ganalytics_load %}
+{% endblock %}

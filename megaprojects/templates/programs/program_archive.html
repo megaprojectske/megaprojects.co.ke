@@ -1,0 +1,36 @@
+{% extends "programs/base_archive.html" %}
+{% load bootstrap_pagination %}
+
+
+{% block title %}
+  {{ program.title }} - Archive | {{ block.super }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  {% include "base/breadcrumb.html" %}
+  <li><a href="{% url 'program_list' %}">Projects</a> <span class="divider">/</span></li>
+  <li class="active">{{ program.title|truncatechars:60 }}</li>
+  <li class="pull-right"><a href="{{ program.get_absolute_url }}">Current</a> <span class="divider">|</span> <a href="{% url 'program_detail' program.pk program.slug %}">Details</a> <span class="divider">|</span> <span class="active">Archive</span></li>
+{% endblock %}
+
+{% block headline %}
+  {{ program.title }} <small>Archive</small>
+{% endblock %}
+
+{% block list %}
+  {% if object_list %}
+    {# TODO: List all model types related to {{ program }}, not just 'articles' #}
+    {% for article in object_list %}
+      {% include "articles/snippets/article_list_item.html" %}
+    {% endfor %}
+    {% bootstrap_paginate page_obj range=8 show_first_last='true' %}
+  {% else %}
+    <p class="muted nan">Nothing available - check back later.</p>
+  {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+  {{ block.super }}
+  {% include "blocks/posts_from_the_blog.html" %}
+  {% include "blocks/programs_explore.html" %}
+{% endblock %}

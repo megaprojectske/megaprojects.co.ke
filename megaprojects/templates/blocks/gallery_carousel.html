@@ -1,0 +1,35 @@
+{% extends "renders/block.html" %}
+
+
+{% block heading %}
+  <h3 class="render-block-title">Latest Images</h3>
+{% endblock %}
+
+{% block content %}
+  <div id="carousel" class="carousel slide carousel-image background-dark" data-interval="false">
+    <ol class="carousel-indicators">
+      <li data-target="#carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel" data-slide-to="1"></li>
+      <li data-target="#carousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="active item">
+        {% for image in image_list|slice:':4' %}
+          {% include "blocks/_carousel_image_item.html" %}
+        {% endfor %}
+      </div>
+      <div class="item">
+        {% for image in image_list|slice:'4:8' %}
+          {% include "blocks/_carousel_image_item.html" %}
+        {% endfor %}
+      </div>
+      <div class="item">
+        {% for image in image_list|slice:'8:12' %}
+          {% include "blocks/_carousel_image_item.html" %}
+        {% endfor %}
+      </div>
+    </div>
+    <a class="carousel-control left" href="#carousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#carousel" data-slide="next">&rsaquo;</a>
+  </div>
+{% endblock %}
