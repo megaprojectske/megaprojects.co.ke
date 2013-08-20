@@ -1,6 +1,7 @@
-//
-// Navs
-//
+// Navigation stylesheet //
+
+
+$nav-secondary: #333
 
 
 #navigation
@@ -8,29 +9,6 @@
   .container
     background-color: $white
     padding: 0
-  .follow_toolbox
-    a
-      color: $black
-      cursor: pointer
-      display: block
-      float: right
-      line-height: 46px
-      padding: 0
-      vertical-align: middle
-    img
-      height: 32px
-      padding: 0 7px
-      width: 32px
-    .addthis_follow_label
-      display: none
-    .addthis_button_twitter_follow
-      background-color: $twitter-icon-bg
-    .addthis_button_facebook_follow
-      background-color: $facebook-icon-bg
-    .addthis_button_google_follow
-      background-color: $googleplus-icon-bg
-    .addthis_button_rss_follow
-      background-color: $rss-icon-bg
 
 .primary-menu
   .primary-nav
@@ -38,11 +16,14 @@
   .primary-li
     float: left
     &:hover
-      border-left: 1px solid $content-border
-      border-right: 1px solid $content-border
+      // border-left: 1px solid $content-border
+      // border-right: 1px solid $content-border
+      background-color: $nav-secondary
       .primary-link
         background: none
-        padding: 0 24px
+        color: $white
+        .caret
+          border-top: 4px solid $white
       .primary-block
         display: block
   .primary-link
@@ -55,24 +36,25 @@
       margin: 1.4em 0 0 0.4em
   .primary-block
     background-color: $white
-    border-bottom: 1px solid $content-border
-    border-left: 1px solid $content-border
-    border-right: 1px solid $content-border
+    border-bottom: 2px solid $nav-secondary
+    border-left: 2px solid $nav-secondary
+    border-right: 2px solid $nav-secondary
     display: none
-    margin-left: -1px
     position: absolute
     z-index: 5001
     .nav
       margin: 0
       width: ($grid-row-width / 4)
       li
-        border-top: 1px solid $content-bg-gray
+        border-top: 1px solid #f5f5f5
       a
         color: #555
-        padding: 10px 30px
+        padding: 12px 30px
+        // border-left: 2px solid $black
+        // border-right: 2px solid $black
 
 .secondary-menu
-  background-color: $black
+  background-color: $nav-secondary
   height: 1.8em
   .secondary-title
     +float-left

@@ -1,0 +1,205 @@
+#navigation
+  .follow-toolbox
+    a
+      color: $black
+      cursor: pointer
+      display: block
+      float: right
+      line-height: 46px
+      padding: 0
+      vertical-align: middle
+    img
+      height: 32px
+      padding: 0 7px
+      width: 32px
+    .addthis_follow_label
+      display: none
+    .addthis_button_twitter_follow
+      background-color: $twitter-icon-bg
+    .addthis_button_facebook_follow
+      background-color: $facebook-icon-bg
+    .addthis_button_google_follow
+      background-color: $googleplus-icon-bg
+    .addthis_button_rss_follow
+      background-color: $rss-icon-bg
+
+#content
+  .render-block
+    .render-block-title
+      background-color: #fefefe
+      border-bottom: 2px solid $green
+      margin: 0
+      padding: 10px 20px
+    .render-block-content
+      margin-bottom: 10px
+      padding: 0 20px
+
+#sidebar
+  .render-block
+    border-bottom: 1px solid $content-border
+    &:last-child
+      border-bottom: none
+
+.base-model
+  .base-header
+    border-bottom: 1px solid $content-border
+    padding: 30px ($grid-row-width / 30)
+  .base-heading
+    line-height: 1.2
+  .base-content
+    padding: ($grid-row-width / 30) 0
+  &.page-detail
+    .base-heading
+      margin: 0
+  &.overlay-list
+    .base-content
+      padding-top: 0
+
+.base-detail
+  .base-byline
+    margin-bottom: 0
+    margin-top: 20px
+  .base-content
+    margin-left: ($grid-row-width / 30)
+    margin-right: ($grid-row-width / 30)
+    p:last-child
+      margin-bottom: 0
+
+.page-list-item
+  border-bottom: 1px dotted $content-border
+  margin: 0
+  padding: 20px ($grid-row-width / 30)
+  &:first-child
+    padding-top: 0
+  .page-list-item-header
+    margin-bottom: 10px
+  .page-list-item-heading
+    font-size: 17.5px // H4
+    line-height: 25px
+    a
+      color: $black
+  .page-list-item-byline
+    margin-bottom: 0
+  .page-list-item-content
+    p:last-child
+      margin-bottom: 0
+
+.overlay-list-item
+  position: relative
+  &.wide
+    .overlay-list-item-image,
+    .overlay-list-item-header
+      height: ($grid-row-width / 4)
+  &.tall
+    .overlay-list-item-image,
+    .overlay-list-item-header
+      height: ($grid-row-width / 2)
+  .overlay-list-item-header
+    background-color: rgba(0, 0, 0, .5)
+    bottom: 0
+    left: 0
+    position: absolute
+    right: 0
+    &:hover
+      background-color: rgba(0, 0, 0, .25)
+  .overlay-list-item-heading
+    +text-shadow(0 1px 1px $black)
+    font-size: 24.5px // H3
+    line-height: 1.25em
+    margin: 0
+    padding: 10px
+    a
+      color: $white
+      &:hover
+        text-decoration: none
+  .overlay-list-item-byline
+    +text-shadow(0 1px 1px $black)
+    color: $white
+    margin-bottom: 0
+    padding: 0 10px
+
+.block-list-item
+  border-bottom: 1px dashed $content-border
+  margin-top: 0
+  &:last-child
+    border-bottom: none
+  .block-list-item-heading
+    font-size: 1.1em
+    line-height: 1.5
+    margin: 0 0 5px
+    a
+      color: $black
+      text-decoration: none
+  .block-list-item-byline
+    margin: 0
+  .block-list-item-content
+    margin-bottom: 10px
+    margin-right: 10px
+    margin-top: 10px
+
+.share-toolbox
+  background-color: $content-bg-gray
+  border-bottom: 1px solid $content-border
+  overflow: hidden
+  padding: (($grid-row-width / 30) / 2) ($grid-row-width / 30)
+  a
+    cursor: pointer
+    display: block
+    float: left
+    margin: 0 2px
+    img
+      height: 32px
+      width: 32px
+  .addthis_button_compact
+    margin: 0
+  .addthis_button_facebook
+    background-color: $facebook-icon-bg
+  .addthis_button_twitter
+    background-color: $twitter-icon-bg
+  .addthis_button_google_plusone_share
+    background-color: $googleplus-icon-bg
+  .addthis_button_pinterest_share
+    background-color: $pinterest-icon-bg
+  .addthis_button_email
+    background-color: $email-icon-bg
+
+.render-image
+  border-bottom: 1px solid $content-border
+  border-top: 5px solid $content-border
+  margin: ($grid-row-width / 30) 0
+  .render-image-caption
+    background-color: #222
+    padding: 15px
+    p
+      color: $white
+      line-height: 20px
+      margin-bottom: 0
+  .muted
+    margin: 20px
+
+.render-article
+  border-bottom: 1px solid $content-border
+  border-top: 5px solid $content-border
+  margin: ($grid-row-width / 30) 0
+  overflow: hidden
+  .render-article-image
+    border-right: 1px solid $content-border
+    position: relative
+  .render-article-caption
+    background-color: $content-bg-gray
+    border-bottom: 1px solid $content-border
+    overflow: hidden
+    padding: 5px 10px
+  .render-article-header
+    overflow: hidden
+    padding: 10px
+  .render-article-heading
+    font-size: 17.5px // H4
+    line-height: 25px
+    margin: 0 0 10px
+  .muted
+    margin: 20px
+
+.pagination
+  margin: 0
+  padding: 20px 0

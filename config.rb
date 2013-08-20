@@ -1,11 +1,11 @@
 # Change this to :production when ready to deploy the CSS to the live server.
-environment = :production
+environment = :development
 
 # In development, we can turn on the FireSass-compatible debug_info.
 firesass = false
 
 # Location of the theme's resources.
-sass_dir        = "sass"
+sass_dir        = "src/sass"
 css_dir         = "megaprojects/static/css"
 images_dir      = "megaprojects/static/img"
 javascripts_dir = "megaprojects/static/js"

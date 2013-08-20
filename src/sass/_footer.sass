@@ -1,11 +1,13 @@
-//
-// Footer
-//
+// Footer stylesheet //
+
+
+$footer-font: #c3c3c3
+$footer-cube: #444
 
 
 #footer
   border-top: 2px solid $black
-  color: #c3c3c3
+  color: $footer-font
   .search-form
     margin: 20px 0 0
     input
@@ -20,32 +22,19 @@
         border-color: #c8c8c8
     .input-append
       margin-bottom: 0
-  .block-render
+  .render-block
     margin-bottom: 20px
     margin-right: 20px
-  .block-title
-    border-left: 46px solid #444
-    color: $white
-    line-height: 46px
-    margin: 0 0 20px
-    padding-left: 10px
-    text-transform: uppercase
-  .page-menu
-    margin: 0
-    font-size: 0.9em
-    li
-      border-bottom: 1px dotted #666
-      a
-        +link-colors(#c3c3c3, $white, $white, #c3c3c3, $white)
-        padding: 6px 0
-        &:hover
-          background: none
-      &:last-child
-        border-bottom: none
-  .follow_toolbox
+    .render-block-title
+      border-left: 46px solid $footer-cube
+      color: $white
+      line-height: 46px
+      margin: 0 0 20px
+      padding-left: 10px
+      text-transform: uppercase
+  .follow-toolbox
     a
-      // +transition(all 2s)
-      background-color: #444
+      background-color: $footer-cube
       color: $white
       cursor: pointer
       display: inline-block
@@ -59,11 +48,26 @@
       height: 32px
       padding: 0 7px
       width: 32px
-  .separator-solid
+  .page-menu
+    font-size: 0.9em
+    margin: 0
+    li
+      border-bottom: 1px dotted #444
+      a
+        +link-colors(#c3c3c3, $white, $white, #c3c3c3, $white)
+        padding: 6px 0
+        &:hover
+          background: none
+      &:last-child
+        border-bottom: none
+  .separator
+    border-bottom: 1px solid $footer-cube
     border-top: 1px solid #222
-    border-bottom: 1px solid #444
+    height: 0
+    margin: 0
   .copyright
     color: $gray-dark
     font-size: 0.9em
     margin-top: 10px
     text-align: right
+
