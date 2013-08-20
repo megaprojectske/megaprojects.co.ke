@@ -48,9 +48,17 @@
     line-height: 1.2
   .base-content
     padding: ($grid-row-width / 30) 0
-  &.page-detail
+  &.article-detail
     .base-heading
       margin: 0
+  &.frontpage-detail, &.project-detail
+    .base-content
+      padding: 0
+      margin: 0
+      &>div
+        border-bottom: 1px solid $content-border
+      &>div:last-child
+        border-bottom: none
   &.overlay-list
     .base-content
       padding-top: 0
@@ -62,6 +70,48 @@
   .base-content
     margin-left: ($grid-row-width / 30)
     margin-right: ($grid-row-width / 30)
+    p:last-child
+      margin-bottom: 0
+
+.columns
+  &.columns-2
+    .column-1
+      border-right: 1px solid $content-border
+      margin-right: -1px
+    .column-2
+      border-left: 1px solid $content-border
+      width: ($grid-row-width / 3) - 1
+  &.columns-3
+    .column-1
+      border-right: 1px solid $content-border
+      width: ($grid-row-width / 3) - 1
+      .article-teaser-item
+        margin-right: 19px
+    .column-2
+      border-left: 1px solid $content-border
+      border-right: 1px solid $content-border
+      margin: 0 -1px
+    .column-3
+      border-left: 1px solid $content-border
+      width: ($grid-row-width / 3) - 1
+      .article-teaser-item
+        margin-left: 19px
+
+.article-teaser-item
+  margin: 20px
+  .article-teaser-item-header
+    margin-bottom: 10px
+  .article-teaser-item-heading
+    font-size: 21px // H3
+    line-height: 1.25em
+    margin: 0 0 5px
+    a
+      color: $black
+  .article-teaser-item-byline
+    margin-bottom: 0
+  .article-teaser-item-image
+    margin-bottom: 10px
+  .article-teaser-item-content
     p:last-child
       margin-bottom: 0
 
@@ -199,6 +249,29 @@
     margin: 0 0 10px
   .muted
     margin: 20px
+
+.carousel-image
+  margin-bottom: 0
+  .carousel-control
+    +border-radius(0)
+    line-height: 26px
+    top: 50%
+  .carousel-inner
+    height: ($grid-row-width / 4)
+  .carousel-image-item
+    height: ($grid-row-width / 4)
+    position: relative
+
+.next-page
+  background-color: $content-bg-gray
+  border-top: 1px solid $content-border
+  font-size: 20px
+  margin-bottom: 0
+  padding: 30px
+  text-transform: uppercase
+
+.background-dark
+  background-color: $banner-bg-gray
 
 .pagination
   margin: 0

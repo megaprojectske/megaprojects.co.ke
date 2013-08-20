@@ -43,82 +43,6 @@ body
 .brand
   display: block
 
-.columns
-  &.columns-2
-    .column-1
-      border-right: 1px solid $content-border
-      margin-right: -1px
-    .column-2
-      border-left: 1px solid $content-border
-      width: ($grid-row-width / 3) - 1
-  &.columns-3
-    .column-1
-      border-right: 1px solid $content-border
-      width: ($grid-row-width / 3) - 1
-      .teaser-simple
-        margin-right: 19px
-    .column-2
-      border-left: 1px solid $content-border
-      border-right: 1px solid $content-border
-      margin: 0 -1px
-    .column-3
-      border-left: 1px solid $content-border
-      width: ($grid-row-width / 3) - 1
-      .teaser-simple
-        margin-left: 19px
-
-.teaser-simple
-  margin: 20px
-  .teaser-header
-    margin-bottom: 10px
-  .teaser-heading
-    font-size: 21px // H3
-    line-height: 1.25em
-    margin: 0 0 5px
-    a
-      color: $black
-  .teaser-byline
-    margin-bottom: 0
-  .teaser-image
-    margin-bottom: 10px
-  .teaser-body
-    p:last-child
-      margin-bottom: 0
-
-.teaser-overlay
-  position: relative
-  &.wide
-    .teaser-image,
-    .teaser-header
-      height: ($grid-row-width / 4)
-  &.tall
-    .teaser-image,
-    .teaser-header
-      height: ($grid-row-width / 2)
-  .teaser-header
-    background-color: rgba(0, 0, 0, .5)
-    bottom: 0
-    left: 0
-    position: absolute
-    right: 0
-    &:hover
-      background-color: rgba(0, 0, 0, .25)
-  .teaser-heading
-    +text-shadow(0 1px 1px $black)
-    font-size: 24.5px // H3
-    line-height: 1.25em
-    margin: 0
-    padding: 10px
-    a
-      color: $white
-      &:hover
-        text-decoration: none
-  .teaser-byline
-    +text-shadow(0 1px 1px $black)
-    color: $white
-    margin-bottom: 0
-    padding: 0 10px
-
 .popular-content
   padding: 10px 0
   margin: 0
@@ -138,23 +62,6 @@ body
     a
       color: $black
       text-decoration: none
-
-.overlay-carousel
-  background-color: $banner-bg-gray
-  overflow: hidden
-
-.gallery-carousel
-  background-color: $banner-bg-gray
-  margin-bottom: 0
-  .carousel-control
-    +border-radius(0)
-    line-height: 26px
-    top: 50%
-  .carousel-inner
-    height: ($grid-row-width / 4)
-  .gallery-image
-    height: ($grid-row-width / 4)
-    position: relative
 
 .frontpage-carousel
   background-color: $banner-bg-gray
@@ -187,14 +94,6 @@ body
 
 .separator-solid
   border-top: 1px solid $black
-
-.next-page
-  background-color: $content-bg-gray
-  border-top: 1px dotted $content-border
-  font-size: 20px
-  margin-bottom: 0
-  padding: 30px
-  text-transform: uppercase
 
 .table-sidebar
   border-right: 0
