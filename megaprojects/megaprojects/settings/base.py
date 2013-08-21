@@ -290,8 +290,10 @@ HAYSTACK_CONNECTIONS = {
 ########## THUMBNAIL CONFIGURATION
 # See: http://sorl-thumbnail.readthedocs.org/en/latest/reference/settings.html#thumbnail-progressive
 THUMBNAIL_PROGRESSIVE = False
+
 # See: http://sorl-thumbnail.readthedocs.org/en/latest/reference/settings.html#thumbnail-upscale
 THUMBNAIL_UPSCALE = False
+
 # See: http://sorl-thumbnail.readthedocs.org/en/latest/reference/settings.html#thumbnail-format
 THUMBNAIL_FORMAT = 'PNG'
 ########## THUMBNAIL CONFIGURATION
