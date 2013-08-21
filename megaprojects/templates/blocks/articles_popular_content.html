@@ -7,15 +7,13 @@
 {% endblock %}
 
 {% block content %}
-  <ul class="unstyled popular-content">
+  <ul class="unstyled nomargin">
     {% loadarticles 5 program as article_list %}
     {% for article in article_list %}
-      <li>
-        <div class="popular-list">
-          <div class="popular-header">
-            <h2 class="popular-heading"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
-            <small class="popular-byline">{{ article.pubdate|date:'F j, Y - f A' }}</small>
-          </div>
+      <li class="block-list-item-alt">
+        <div class="block-list-item-header">
+          <h2 class="block-list-item-heading"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
+          <small class="block-list-item-byline">{{ article.pubdate|date:'F j, Y - f A' }}</small>
         </div>
       </li>
     {% endfor %}
