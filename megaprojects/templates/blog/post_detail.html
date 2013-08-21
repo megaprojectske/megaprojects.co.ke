@@ -5,9 +5,6 @@
 {% block extra_head %}
   {{ block.super }}
   <meta name="description" content="{{ object.body|striptokens|striptags|truncatechars:160 }}">
-  {% if object.enable_comments %}
-    {% intensedebate_config post_id=object.id post_id_prefix='post_' %}
-  {% endif%}
 {% endblock %}
 
 {% block title %}
@@ -47,6 +44,7 @@
 {% block extra_script %}
   {{ block.super }}
   {% if object.enable_comments %}
+    {% intensedebate_config post_id=object.id post_id_prefix='post_' %}
     {% intensedebate_cw %}
   {% endif%}
 {% endblock %}

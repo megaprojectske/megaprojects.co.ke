@@ -7,7 +7,7 @@
   {# TODO: Move title / link to settings #}
   <link rel="alternate" type="application/rss+xml" title="MegaProjects Kenya - All Posts" href="http://feeds.feedburner.com/megaprojectske">
   <link rel="publisher" href="//plus.google.com/{% gplus_publisher %}">
-  {% addthis_config %}
+  {% ganalytics_load %}
 {% endblock %}
 
 {% block page %}
@@ -25,6 +25,6 @@
 {% endblock %}
 
 {% block extra_script %}
-  {% ganalytics_load %}
+  {% addthis_config %}
   {% addthis_widget %}
 {% endblock %}
