@@ -2,6 +2,6 @@
 
 
 {% thumbnail obj.thumbnail.image '640x480' crop='center' as im %}
-  <img src="//cdn.megaprojects.co.ke{{ im.url }}" alt="{{ obj.thumbnail.title }}">
+  <img src="{{ im.url }}" alt="{{ obj.thumbnail.title }}">
 {% endthumbnail %}
 {{ obj.body|striptokens|striptags|truncatewords:60|safe|linebreaks }}
