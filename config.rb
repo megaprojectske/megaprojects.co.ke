@@ -5,7 +5,7 @@ environment = :production
 firesass = false
 
 # Location of the theme's resources.
-sass_dir        = "src/sass"
+sass_dir        = "extra/sass"
 css_dir         = "megaprojects/static/css"
 images_dir      = "megaprojects/static/img"
 javascripts_dir = "megaprojects/static/js"
