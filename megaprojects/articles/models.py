@@ -21,8 +21,6 @@ class Article(TimeStampedModel, BaseModel, AuthorModel, PublicModel, CommentMode
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     lead = models.CharField(max_length=255, blank=True)
     body = models.TextField()
-    drupal_id = models.IntegerField('drupal NID', unique=True, blank=True,
-                                    null=True, help_text='Node ID from the previous Drupal website (imported).')
 
     program = models.ForeignKey(Program, blank=True, null=True)
     objects = ArticleManager()

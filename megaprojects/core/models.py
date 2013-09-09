@@ -44,8 +44,9 @@ class BaseModel(TitleModel):
 
     uuid = models.CharField('UUID', max_length=255, unique=True,
                             help_text='Unique Key: Universally unique identifier for this entity.')
-    shortuuid = fields.ShortUUIDField(
-        verbose_name='Short UUID', max_length=255, unique=True, blank=True, null=True, help_text='Unique Key: Universally unique identifier for this entity.')
+    shortuuid = fields.ShortUUIDField(verbose_name='Short UUID',
+                                      max_length=255, unique=True,
+                                      help_text='Unique Key: Universally unique identifier for this entity.')
 
     def save(self, *args, **kwargs):
         if not self.uuid:
