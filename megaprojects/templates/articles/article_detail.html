@@ -1,6 +1,7 @@
 {% extends "articles/base_detail.html" %}
 {% load intensedebate core_tags %}
 
+
 {% block extra_head %}
   {{ block.super }}
   <meta name="description" content="{{ object.body|striptokens|striptags|truncatechars:160 }}">
@@ -34,7 +35,7 @@
   {% if object.lead %}
     <p class="lead">{{ object.lead }}</p>
   {% endif %}
-  {{ object.body|loadimages:object|safe }}
+  {{ object.body|renderimages:object|safe }}
 {% endblock %}
 
 {% block comments %}

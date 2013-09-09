@@ -3,12 +3,12 @@
 
 
 {% block heading %}
-  <h3 class="render-block-title">Must Read <small>Articles</small></h3>
+  <h3 class="render-block-title">From The Blog</h3>
 {% endblock %}
 
 {% block content %}
   <ul class="unstyled no-margin">
-    {% loadarticles count=5 kind='a' as article_list %}
+    {% loadarticles count=5 kind='b' as article_list %}
     {% for article in article_list %}
       <li class="media block-list-item">
         <a class="pull-left" href="{{ article.get_absolute_url }}">

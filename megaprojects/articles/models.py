@@ -1,32 +1,44 @@
-from django.core.urlresolvers import reverse
+from django import utils
+from django.core import urlresolvers
 from django.db import models
-from django.utils import timezone
 
-from core.models import TimeStampedModel, BaseModel, AuthorModel, PublicModel, ImageModel, CommentModel
-from core.util import unique_boolean
-from programs.models import Program
-
-from .managers import ArticleManager, ImageManager
-import util
+from core import models as core_models
+from core import utils as core_utils
+from programs import models as program_models
+import managers
+import utils as article_utils
 
 
-STATUS_CHOICES = [('d', 'Draft'),  ('p', 'Published'), ('w', 'Withdrawn')]
-KIND_CHOICES = [('a', 'Article'), ('f', 'Feature')]
+STATUS_CHOICES = [
+    ('d', 'Draft'),
+    ('p', 'Published'),
+    ('w', 'Withdrawn'),
+]
+
+KIND_CHOICES = [
+    ('a', 'Article'),
+    ('b', 'Blog'),
+    ('f', 'Feature'),
+]
 
 
-class Article(TimeStampedModel, BaseModel, AuthorModel, PublicModel, CommentModel):
+class Article(core_models.TimeStampedModel, core_models.BaseModel,
+              core_models.AuthorModel, core_models.PublicModel,
+              core_models.CommentModel):
 
-    pubdate = models.DateTimeField('publication date', default=timezone.now())
+    pubdate = models.DateTimeField('publication date',
+                                   default=utils.timezone.now())
     kind = models.CharField(max_length=1, choices=KIND_CHOICES)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     lead = models.CharField(max_length=255, blank=True)
     body = models.TextField()
+    program = models.ForeignKey(program_models.Program, blank=True, null=True)
 
-    program = models.ForeignKey(Program, blank=True, null=True)
-    objects = ArticleManager()
+    objects = managers.ArticleManager()
 
     def get_absolute_url(self):
-        return reverse('article_detail', kwargs={'id': self.id, 'slug': self.slug})
+        return urlresolvers.reverse('article_detail',
+                                    kwargs={'id': self.id, 'slug': self.slug})
 
     @property
     def thumbnail(self):
@@ -39,13 +51,17 @@ class Article(TimeStampedModel, BaseModel, AuthorModel, PublicModel, CommentMode
 
 
 # Keep the 'thumbnail' field unique for the images of each article
-@unique_boolean('thumbnail', subset=['article'])
-class Image(TimeStampedModel, BaseModel, ImageModel):
+@core_utils.unique_boolean('thumbnail', subset=['article'])
+class Image(core_models.TimeStampedModel, core_models.BaseModel,
+            core_models.ImageModel):
 
-    image = models.ImageField(upload_to=util.get_image_path)
-
+    image = models.ImageField(upload_to=article_utils.get_image_path)
     article = models.ForeignKey(Article)
-    objects = ImageManager()
+
+    objects = managers.ImageManager()
+
+    def __unicode__(self):
+        return self.shortuuid
 
     class Meta:
         ordering = ['-article__pubdate', '-created']

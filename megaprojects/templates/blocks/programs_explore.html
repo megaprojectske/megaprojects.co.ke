@@ -7,13 +7,13 @@
 {% endblock %}
 
 {% block content %}
-  <ul class="unstyled nomargin">
+  <ul class="unstyled no-margin">
     {% loadprograms 5 '?' as program_list %}
     {% for program in program_list %}
       <li class="overlay-list-item sidebar">
         <div class="overlay-list-item-image">
           {% thumbnail program.thumbnail.image '319x96' crop='center' as im %}
-            <img src="{{ im.url }}" alt="{{ program.thumbnail.title }}">
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ program.thumbnail.title }}">
           {% endthumbnail %}
         </div>
         <div class="overlay-list-item-header">

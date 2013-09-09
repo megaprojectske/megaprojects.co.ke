@@ -4,7 +4,7 @@
 <div class="media page-list-item">
   <a class="pull-left" href="{{ article.get_absolute_url }}">
    {% thumbnail article.thumbnail.image '168x168' crop='center' as im %}
-     <img class="media-object" src="{{ im.url }}" alt="{{ article.thumbnail.title }}">
+      <img class="media-object" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ article.thumbnail.title }}">
    {% endthumbnail %}
   </a>
   <div class="media-body">
@@ -12,17 +12,18 @@
       <h2 class="media-heading page-list-item-heading"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
       <p class="page-list-item-byline">
         {{ article.pubdate|date:'F j, Y - f A' }}
+        {# Link to the program when not on a program page ('program' object) #}
         {% if not program and article.program %}
           | <a href="{{ article.program.get_absolute_url }}">{{ article.program.title }}</a>
         {% endif %}
-        {% if article.enable_comments %}
-          | <a class="comment-count-green" href="{{ article.get_absolute_url }}#idc-container-parent">Comments</a>
-        {% endif%}
       </p>
     </div>
     <div class="media-body page-list-item-body">
       {{ article.body|striptokens|striptags|truncatewords:60|safe|linebreaks }}
       <a href="{{ article.get_absolute_url }}">Read More</a>
+      {% if article.enable_comments %}
+        | <a class="comment-count-green" href="{{ article.get_absolute_url }}#idc-container-parent">Comments</a>
+      {% endif%}
     </div>
   </div>
 </div>

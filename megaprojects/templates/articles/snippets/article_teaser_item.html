@@ -13,7 +13,7 @@
   </div>
   <div class="article-teaser-item-image">
     {% thumbnail article.thumbnail.image '280x210' crop='center' as im %}
-      <img src="{{ im.url }}" alt="{{ article.thumbnail.title }}">
+      <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ article.thumbnail.title }}">
     {% endthumbnail %}
   </div>
   <div class="article-teaser-item-content">

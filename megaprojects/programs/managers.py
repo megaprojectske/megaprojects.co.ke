@@ -1,19 +1,16 @@
 from django.db import models
 
-
-class ProgramManager(models.Manager):
-
-    def published(self):
-        return self.model.objects.filter(status=True)
-
-    def unpublished(self):
-        return self.model.objects.filter(status=False)
+import mixins
+import query
 
 
-class ImageManager(models.Manager):
+class ProgramManager(models.Manager, mixins.ProgramManagerMixin):
 
-    def published(self):
-        return self.model.objects.filter(status=True).filter(program__status=True)
+    def get_query_set(self):
+        return query.ProgramQuerySet(self.model, using=self._db)
 
-    def unpublished(self):
-        return self.model.objects.filter(status=True).filter(program__status=False)
+
+class ImageManager(models.Manager, mixins.ImageManagerMixin):
+
+    def get_query_set(self):
+        return query.ImageQuerySet(self.model, using=self._db)

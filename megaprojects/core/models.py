@@ -10,14 +10,14 @@ import fields
 class TimeStampedModel(models.Model):
 
     """
-    An abstract base class model that provides self-updating ``created`` and
+    An abstract base class model. Provides self-updating ``created`` and
     ``modified`` field.
     """
 
-    created = models.DateTimeField(
-        auto_now_add=True, help_text='The time when this entity was created.')
-    changed = models.DateTimeField(
-        auto_now=True, help_text='The time when this entity was most recently saved.')
+    created = models.DateTimeField(auto_now_add=True,
+                                   help_text='The time when this entity was created.')
+    changed = models.DateTimeField(auto_now=True,
+                                   help_text='The time when this entity was most recently saved.')
 
     class Meta:
         abstract = True
@@ -25,8 +25,8 @@ class TimeStampedModel(models.Model):
 
 class TitleModel(models.Model):
 
-    title = models.CharField(
-        max_length=255, help_text='The title of this entity, always treated as non-markup plain text.')
+    title = models.CharField(max_length=255,
+                             help_text='The title of this entity, always treated as non-markup plain text.')
 
     def __unicode__(self):
         return self.title
@@ -39,7 +39,7 @@ class BaseModel(TitleModel):
 
     """
     Abstract model for main entities. Provides a ``title`` and ``shortuuid``
-    field.
+    field. Inherits `TitleModel`
     """
 
     uuid = models.CharField('UUID', max_length=255, unique=True,
@@ -51,6 +51,7 @@ class BaseModel(TitleModel):
     def save(self, *args, **kwargs):
         if not self.uuid:
             self.uuid = uuid.uuid4()
+
         super(BaseModel, self).save(*args, **kwargs)
 
     class Meta:
@@ -63,8 +64,8 @@ class AuthorModel(models.Model):
     Abstract model for content entities. Provides a ``author`` field.
     """
 
-    author = models.ForeignKey(
-        settings.AUTH_USER_MODEL, help_text='The user that owns this entity; Initially, this is the user that created it.')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               help_text='The user that owns this entity; Initially, this is the user that created it.')
 
     class Meta:
         abstract = True
@@ -73,15 +74,17 @@ class AuthorModel(models.Model):
 class PublicModel(models.Model):
 
     """
-    Abstract model for public entities. Provides a ``slug``, ``reviewed``
-    field and code property.
+    Abstract model for public entities. Provides a ``slug``, ``reviewed`` field
+    and code property.
     """
 
     slug = models.SlugField('SEO slug', max_length=255)
-    reviewed = models.BooleanField(help_text='Entity has been reviewed (QC).')
+    reviewed = models.BooleanField(
+        help_text='Boolean indicating whether the entity has been reviewed (QC).')
 
     def save(self, *args, **kwargs):
         self.slug = text.slugify(self.title)
+
         super(PublicModel, self).save(*args, **kwargs)
 
     @property
@@ -98,14 +101,12 @@ class ImageModel(models.Model):
     Abstract base class model for Image fields.
     """
 
-    status = models.BooleanField(
-        default=True, help_text='Boolean indicating whether the entity is published (visible to non-administrators).')
-    reviewed = models.BooleanField(help_text='Entity has been reviewed (QC).')
+    reviewed = models.BooleanField(
+        help_text='Boolean indicating whether the entity has been reviewed (QC).')
+    status = models.BooleanField(default=True,
+                                 help_text='Boolean indicating whether the entity is published (visible to non-administrators).')
     thumbnail = models.BooleanField(
         help_text='Boolean indicating whether the entity is the main thumbnail.')
-
-    def __unicode__(self):
-        return self.uuid
 
     class Meta:
         abstract = True
