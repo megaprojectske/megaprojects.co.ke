@@ -1,11 +1,14 @@
-from django.conf.urls import patterns
-from django.conf.urls import url
+from django.conf import urls
 
-from .views import ArticleListView, ArticleDetailView
+import views
 
-urlpatterns = patterns(
+
+urlpatterns = urls.patterns(
     '',
-    url(r'^(?P<id>[\d]+)(?:/(?P<slug>[\S]+))?/$',
-        ArticleDetailView.as_view(), name='article_detail'),
-    url(r'^$', ArticleListView.as_view(), name='article_list'),
+    urls.url(r'^articles/(?P<id>[\d]+)(?:/(?P<slug>[\S]+))?/$',
+             views.ArticleDetailView.as_view(), name='article_detail'),
+    urls.url(r'^articles/$', views.ArticleListView.as_view(kind='a'),
+             name='article_list'),
+    urls.url(r'^blog/$', views.ArticleListView.as_view(kind='b'),
+             name='blog_list'),
 )

@@ -3,16 +3,16 @@
 
 
 {% block title %}
-  Articles | {{ block.super }}
+  {% if kind == 'b' %}Blog{% else %}Articles{% endif %} | {{ block.super }}
 {% endblock %}
 
 {% block breadcrumbs %}
   {% include "base/breadcrumb.html" %}
-  <li class="active">Articles</li>
+  <li class="active">{% if kind == 'b' %}Blog{% else %}Articles{% endif %}</li>
 {% endblock %}
 
 {% block headline %}
-  Articles
+  {% if kind == 'b' %}Blog{% else %}Articles{% endif %}
 {% endblock %}
 
 {% block list %}
@@ -28,6 +28,6 @@
 
 {% block sidebar %}
   {{ block.super }}
-  {% include "blocks/posts_from_the_blog.html" %}
+  {% include "blocks/articles_blog_posts.html" %}
   {% include "blocks/programs_explore.html" %}
 {% endblock %}

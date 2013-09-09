@@ -1,19 +1,16 @@
 from django.db import models
 
-
-class ArticleManager(models.Manager):
-
-    def draft(self):
-        return self.model.objects.filter(status='d')
-
-    def published(self):
-        return self.model.objects.filter(status='p')
+import mixins
+import query
 
 
-class ImageManager(models.Manager):
+class ArticleManager(models.Manager, mixins.ArticleManagerMixin):
 
-    def draft(self):
-        return self.model.objects.filter(status=True).filter(article__status='d')
+    def get_query_set(self):
+        return query.ArticleQuerySet(self.model, using=self._db)
 
-    def published(self):
-        return self.model.objects.filter(status=True).filter(article__status='p')
+
+class ImageManager(models.Manager, mixins.ImageManagerMixin):
+
+    def get_query_set(self):
+        return query.ImageQuerySet(self.model, using=self._db)

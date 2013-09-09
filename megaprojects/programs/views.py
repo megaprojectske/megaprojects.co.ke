@@ -20,8 +20,8 @@ class ProgramDetailView(DetailView):
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
-        url = reverse('program_detail', kwargs={
-                      'id': self.object.id, 'slug': self.object.slug})
+        url = reverse('program_detail',
+                      kwargs={'id': self.object.id, 'slug': self.object.slug})
 
         if url != self.request.path:
             return redirect(url, permanent=True)
@@ -49,8 +49,8 @@ class ProgramArchiveView(ListView):
     def get(self, request, *args, **kwargs):
         self.program = get_object_or_404(
             Program, pk=self.kwargs.get('id'), status=True)
-        url = reverse('program_archive', kwargs={
-                      'id': self.program.id, 'slug': self.program.slug})
+        url = reverse('program_archive',
+                      kwargs={'id': self.program.id, 'slug': self.program.slug})
 
         if url != self.request.path:
             return redirect(url, permanent=True)
@@ -58,7 +58,7 @@ class ProgramArchiveView(ListView):
         return super(ProgramArchiveView, self).get(request, *args, **kwargs)
 
     def get_queryset(self):
-        return Article.objects.published().filter(program=self.program)
+        return Article.objects.published().articles().filter(program=self.program)
 
     def get_context_data(self, **kwargs):
         context = super(ProgramArchiveView, self).get_context_data(**kwargs)

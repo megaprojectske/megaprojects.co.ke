@@ -11,25 +11,7 @@ def image_sub(content, repl):
     import re
 
     IMAGE_RE = r'\[image (?P<shortuuid>[a-z\d]+)\]'
-    return re.sub(IMAGE_RE, repl, content)
 
-
-def article_parse(match):
-    from articles import models
-
-    try:
-        article = models.Article.objects.get(
-            shortuuid=match.group('shortuuid'))
-    except models.Article.DoesNotExist:
-        article = None
-
-    return article
-
-
-def article_sub(content, repl):
-    import re
-
-    IMAGE_RE = r'\[article (?P<shortuuid>[a-z\d]+)\]'
     return re.sub(IMAGE_RE, repl, content)
 
 

@@ -1,13 +1,13 @@
 from django import forms
-from django.core.files.images import get_image_dimensions
-from django.contrib.flatpages.admin import FlatpageForm
+from django.contrib.flatpages import admin
+from django.core.files import images
 
-from ckeditor.widgets import CKEditorWidget
+from ckeditor import widgets
 
 
-class MyFlatpageForm(FlatpageForm):
+class FlatpageForm(admin.FlatpageForm):
 
-    content = forms.CharField(widget=CKEditorWidget())
+    content = forms.CharField(widget=widgets.CKEditorWidget())
 
 
 class BaseImageAdminForm(forms.ModelForm):
@@ -16,12 +16,12 @@ class BaseImageAdminForm(forms.ModelForm):
         image = self.cleaned_data['image']
 
         try:
-            w, h = get_image_dimensions(image)
+            w, h = images.get_image_dimensions(image)
         except TypeError:
             pass
         else:
             if w > 1280:
                 raise forms.ValidationError(
-                    "The image is %i pixels wide. It's supposed to be <= 1280 pixels wide." % w)
+                    "The image is %i pixels wide. It's should to be <= 1280 pixels wide." % w)
 
         return image

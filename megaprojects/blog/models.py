@@ -17,8 +17,6 @@ class Post(TimeStampedModel, BaseModel, AuthorModel, PublicModel, CommentModel):
     pubdate = models.DateTimeField('publication date', default=timezone.now())
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     body = models.TextField()
-    drupal_id = models.IntegerField('drupal NID', unique=True, blank=True,
-                                    null=True, help_text='Node ID from the previous Drupal website (imported).')
 
     objects = PostManager()
 

@@ -1,14 +1,14 @@
-from django.core.urlresolvers import reverse
+from django.core import urlresolvers
 from django.db import models
 
-from core.models import TimeStampedModel, BaseModel, PublicModel, ImageModel
-from core.util import unique_boolean
+from core import models as core_models
+from core import utils as core_utils
+import managers
+import utils
 
-from .managers import ProgramManager, ImageManager
-import util
 
-
-class Program(TimeStampedModel, BaseModel, PublicModel):
+class Program(core_models.TimeStampedModel, core_models.BaseModel,
+              core_models.PublicModel):
 
     abbr = models.CharField('abbreviation', max_length=255, blank=True)
     lead = models.CharField(max_length=255, blank=True)
@@ -16,10 +16,11 @@ class Program(TimeStampedModel, BaseModel, PublicModel):
     status = models.BooleanField(
         help_text='Boolean indicating whether the entity is published (visible to non-administrators).')
 
-    objects = ProgramManager()
+    objects = managers.ProgramManager()
 
     def get_absolute_url(self):
-        return reverse('program_latest', kwargs={'id': self.id, 'slug': self.slug})
+        return urlresolvers.reverse('program_latest',
+                                    kwargs={'id': self.id, 'slug': self.slug})
 
     @property
     def thumbnail(self):
@@ -35,7 +36,6 @@ class Detail(models.Model):
 
     title = models.CharField(max_length=255)
     value = models.CharField(max_length=255)
-
     program = models.ForeignKey(Program)
 
     def __unicode__(self):
@@ -46,13 +46,14 @@ class Detail(models.Model):
 
 
 # Keep the 'thumbnail' field unique for the images of each program
-@unique_boolean('thumbnail', subset=['program'])
-class Image(TimeStampedModel, BaseModel, ImageModel):
+@core_utils.unique_boolean('thumbnail', subset=['program'])
+class Image(core_models.TimeStampedModel, core_models.BaseModel,
+            core_models.ImageModel):
 
-    image = models.ImageField(upload_to=util.get_image_path)
-
+    image = models.ImageField(upload_to=utils.get_image_path)
     program = models.ForeignKey(Program)
-    objects = ImageManager()
+
+    objects = managers.ImageManager()
 
     class Meta:
         ordering = ['program__title', '-created']

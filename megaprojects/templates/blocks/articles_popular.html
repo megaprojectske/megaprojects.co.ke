@@ -7,8 +7,8 @@
 {% endblock %}
 
 {% block content %}
-  <ul class="unstyled nomargin">
-    {% loadarticles 5 program as article_list %}
+  <ul class="unstyled no-margin">
+    {% loadarticles count=5 program=program kind='a' as article_list %}
     {% for article in article_list %}
       <li class="block-list-item-alt">
         <div class="block-list-item-header">

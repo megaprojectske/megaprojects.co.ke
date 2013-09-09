@@ -50,8 +50,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'status', 'pubdate',
                     'author', 'enable_comments', 'reviewed']
     list_filter = ['status', 'pubdate', 'author__username']
-    readonly_fields = [
-        'drupal_id', 'shortuuid', 'slug', 'code', 'created', 'changed']
+    readonly_fields = ['shortuuid', 'slug', 'code', 'created', 'changed']
     search_fields = ['title']
 
     fieldsets = [
@@ -62,7 +61,7 @@ class PostAdmin(admin.ModelAdmin):
         (None, {'fields': ['slug', 'code']}),
         ('Advanced', {
             'classes': ['collapse'],
-            'fields': ['enable_comments', 'drupal_id', 'shortuuid', 'created', 'changed']
+            'fields': ['enable_comments', 'shortuuid', 'created', 'changed']
         }),
         (None, {'fields': ['reviewed']}),
     ]

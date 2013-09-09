@@ -1,15 +1,15 @@
-from django.conf.urls import patterns
-from django.conf.urls import url
+from django.conf import urls
 
-from .views import ProgramListView, ProgramDetailView, ProgramArchiveView, ProgramLatestView
+import views
 
-urlpatterns = patterns(
+
+urlpatterns = urls.patterns(
     '',
-    url(r'^(?P<id>[\d]+)/details(?:/(?P<slug>[\S]+))?/$',
-        ProgramDetailView.as_view(), name='program_detail'),
-    url(r'^(?P<id>[\d]+)/archive(?:/(?P<slug>[\S]+))?/$',
-        ProgramArchiveView.as_view(), name='program_archive'),
-    url(r'^(?P<id>[\d]+)(?:/(?P<slug>[\S]+))?/$',
-        ProgramLatestView.as_view(), name='program_latest'),
-    url(r'^$', ProgramListView.as_view(), name='program_list'),
+    urls.url(r'^(?P<id>[\d]+)/archive(?:/(?P<slug>[\S]+))?/$',
+             views.ProgramArchiveView.as_view(), name='program_archive'),
+    urls.url(r'^(?P<id>[\d]+)/details(?:/(?P<slug>[\S]+))?/$',
+             views.ProgramDetailView.as_view(), name='program_detail'),
+    urls.url(r'^(?P<id>[\d]+)(?:/(?P<slug>[\S]+))?/$',
+             views.ProgramLatestView.as_view(), name='program_latest'),
+    urls.url(r'^$', views.ProgramListView.as_view(), name='program_list'),
 )

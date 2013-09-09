@@ -1,22 +1,22 @@
 from django.contrib import admin
-from django.contrib.flatpages.admin import FlatPageAdmin
-from django.contrib.flatpages.models import FlatPage
+from django.contrib.flatpages import admin as flatpages_admin
+from django.contrib.flatpages import models
 
-from .forms import MyFlatpageForm
+import forms
 
 
 class BaseImageInline(admin.TabularInline):
 
-    extra = 1
+    extra = 0
     fields = ['title', 'image', 'shortuuid', 'status', 'thumbnail', 'reviewed']
     ordering = ['created']
     readonly_fields = ['shortuuid']
 
 
-class MyFlatPageAdmin(FlatPageAdmin):
+class FlatPageAdmin(flatpages_admin.FlatPageAdmin):
 
-    form = MyFlatpageForm
+    form = forms.FlatpageForm
 
 
-admin.site.unregister(FlatPage)
-admin.site.register(FlatPage, MyFlatPageAdmin)
+admin.site.unregister(models.FlatPage)
+admin.site.register(models.FlatPage, FlatPageAdmin)
