@@ -1,17 +1,16 @@
 import shortuuid
 
-from django.db.models import CharField
+from django.db import models
 
 
 # This is the default without the UPPERCASE characters
-# See:
-# http://github.com/stochastic-technologies/shortuuid/blob/50d7f109e25f03b05c74e4e913ca95dbc4b7e091/shortuuid/main.py#L9
+# See: http://github.com/stochastic-technologies/shortuuid/blob/50d7f109e25f03b05c74e4e913ca95dbc4b7e091/shortuuid/main.py#L9
 # i.e. '23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 SHORTUUID_ALPHABET = '23456789abcdefghijkmnopqrstuvwxyz'
 
 
 # See: http://github.com/nebstrebor/django-shortuuidfield
-class ShortUUIDField(CharField):
+class ShortUUIDField(models.CharField):
 
     """
     A field which stores a Short UUID value in base57 format. This may also
@@ -57,7 +56,9 @@ class ShortUUIDField(CharField):
         return super(ShortUUIDField, self).formfield(**kwargs)
 
 try:
-    from south.modelsinspector import add_introspection_rules
-    add_introspection_rules([], [r"^core\.fields\.ShortUUIDField"])
+    from south import modelsinspector
+
+    modelsinspector.add_introspection_rules(
+        [], [r"^core\.fields\.ShortUUIDField"])
 except ImportError:
     pass

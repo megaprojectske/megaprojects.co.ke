@@ -1,42 +1,40 @@
-from django.conf.urls import patterns, include, url
-from django.contrib.sitemaps import GenericSitemap
-from django.views.generic import TemplateView
+from django.conf import urls
+from django.contrib import sitemaps
+from django.views import generic
 
 from articles.models import Article
 from programs.models import Program
-from blog.models import Post
-from .views import FrontPageView
-from .feeds import FrontPageFeed
+import views
+import feeds
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 
-sitemaps = {
-    'articles': GenericSitemap({'queryset': Article.objects.published(), 'date_field': 'pubdate'}),
-    'projects': GenericSitemap({'queryset': Program.objects.published(), 'date_field': 'created'}),
-    'blog': GenericSitemap({'queryset': Post.objects.published(), 'date_field': 'pubdate'}),
+sm = {
+    'articles': sitemaps.GenericSitemap(
+        {'queryset': Article.objects.published(), 'date_field': 'pubdate'}),
+    'projects': sitemaps.GenericSitemap(
+        {'queryset': Program.objects.published(), 'date_field': 'created'}),
 }
 
-urlpatterns = patterns(
+urlpatterns = urls.patterns(
     '',
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^ckeditor/', include('ckeditor.urls')),
+    urls.url(r'^admin/doc/', urls.include('django.contrib.admindocs.urls')),
+    urls.url(r'^admin/', urls.include(admin.site.urls)),
+    urls.url(r'^ckeditor/', urls.include('ckeditor.urls')),
 
-    url(r'^$', FrontPageView.as_view(), name='frontpage'),
-    url(r"^rss/index.xml$", FrontPageFeed(), name='rss'),
+    urls.url(r'^$', views.FrontPageView.as_view(), name='frontpage'),
+    urls.url(r"^rss/index.xml$", feeds.FrontPageFeed(), name='rss'),
 
-    url(r'^articles/', include('articles.urls')),
-    url(r'^projects/', include('programs.urls')),
-    url(r'^blog/', include('blog.urls')),
-    url(r'^search/', include(
-        'haystack.urls'), name='search'),
+    urls.url(r'^', urls.include('articles.urls')),
+    urls.url(r'^projects/', urls.include('programs.urls')),
+    urls.url(r'^search/', urls.include('haystack.urls'), name='search'),
 
-    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
-        {'sitemaps': sitemaps}, name='sitemap'),
-    url(r'^robots\.txt$', TemplateView.as_view(
+    urls.url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
+             {'sitemaps': sm}, name='sitemap'),
+    urls.url(r'^robots\.txt$', generic.TemplateView.as_view(
         template_name='robots.txt', content_type='text/plain')),
 )
 
@@ -46,8 +44,8 @@ import settings.base as settings
 
 
 if 'runserver' in sys.argv:
-    urlpatterns += patterns(
+    urlpatterns += urls.patterns(
         '',
-        url(r'^media/(.*)$', 'django.views.static.serve',
-            kwargs={'document_root': settings.MEDIA_ROOT}),
+        urls.url(r'^media/(.*)$', 'django.views.static.serve',
+                 kwargs={'document_root': settings.MEDIA_ROOT}),
     )

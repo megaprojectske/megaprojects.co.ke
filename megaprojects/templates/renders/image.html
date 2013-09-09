@@ -4,7 +4,7 @@
 <div class="render-image">
   {% if image and image.status %}
     {% thumbnail image.image '576' crop='center' as im %}
-      <img id="{{ image.shortuuid }}" src="{{ im.url }}" alt="{{ image.title }}">
+      <img id="{{ image.shortuuid }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ image.title }}">
       <div class="render-image-caption">
         <p>{{ image.title }}</p>
       </div>

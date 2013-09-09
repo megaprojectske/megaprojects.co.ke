@@ -34,7 +34,7 @@
     <p class="lead">{{ object.lead }}</p>
   {% endif %}
   {% if object.body %}
-    {{ object.body|loadimages:object|safe }}
+    {{ object.body|renderimages:object|safe }}
   {% else %}
     <p class="muted">No description given.</p>
   {% endif %}

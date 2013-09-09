@@ -1,5 +1,4 @@
-{% extends "frontpage/base.html" %}
-
+{% extends "page.html" %}
 
 
 {% block extra_head %}
@@ -11,16 +10,14 @@
   {{ block.super }} | Kenya's Premier Infrastructure Development Website
 {% endblock %}
 
-{% block headline %}
-  MegaProjects Kenya
-{% endblock %}
-
-{% block body %}
-  {% include "frontpage/_frontpage_latest.html" %}
-{% endblock %}
-
-{% block bottom %}
-  <div class="text-center next-page">
-    FrontPage <a href="{% url 'article_list' %}">Archive</a>
+{% block content %}
+  <div class="base-model base-detail frontpage-detail">
+    <h1 style="display: none;">MegaProjects Kenya</h1>
+    <div class="base-content">
+      {% include "frontpage/_index_latest.html" %}
+    </div>
+    <div class="next-page">
+      FrontPage <a href="{% url 'article_list' %}">Archive</a>
+    </div>
   </div>
 {% endblock %}

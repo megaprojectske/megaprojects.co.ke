@@ -1,9 +1,9 @@
-from django.contrib.syndication.views import Feed
+from django.contrib.syndication import views
 
-from articles.models import Article
+from articles import models
 
 
-class FrontPageFeed(Feed):
+class FrontPageFeed(views.Feed):
 
     description = 'Updates on changes and additions to www.megaprojects.co.ke'
     description_template = 'feeds/article_body.html'
@@ -12,7 +12,7 @@ class FrontPageFeed(Feed):
     title = 'MegaProjects Kenya - All Posts'
 
     def items(self):
-        return Article.objects.published()[:10]
+        return models.Article.objects.published()[:10]
 
     def item_title(self, item):
         return item.title

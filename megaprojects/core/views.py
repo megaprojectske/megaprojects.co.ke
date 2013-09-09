@@ -1,14 +1,15 @@
-from django.shortcuts import get_object_or_404, redirect
-from django.views.generic import DetailView
+from django import shortcuts
+from django.views import generic
 
 
-class PublicDetailView(DetailView):
+class PublicDetailView(generic.DetailView):
 
     def get_object(self, queryset=None):
         if queryset is None:
             queryset = self.get_queryset()
 
-        obj = get_object_or_404(queryset, pk=self.kwargs.get('id'), status='p')
+        obj = shortcuts.get_object_or_404(queryset, pk=self.kwargs.get('id'),
+                                          status='p')
 
         return obj
 
@@ -16,7 +17,7 @@ class PublicDetailView(DetailView):
         self.object = self.get_object()
 
         if self.object.get_absolute_url() != self.request.path:
-            return redirect(self.object, permanent=True)
+            return shortcuts.redirect(self.object, permanent=True)
 
         # See: super(PublicDetailView, self).get(request, *args, **kwargs)
         context = self.get_context_data(object=self.object)

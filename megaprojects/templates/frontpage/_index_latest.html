@@ -27,7 +27,7 @@
     {% endfor %}
   </div>
   <div class="span4 column column-2">
-    {% include "blocks/articles_popular_content.html" %}
+    {% include "blocks/articles_popular.html" %}
   </div>
   <div class="span4 column column-3">
     {% for article in article_list|slice:'5:6' %}
@@ -71,7 +71,7 @@
     </div>
   {% endfor %}
   <div class="span4 column column-2">
-    {% include "blocks/posts_from_the_blog.html" %}
+    {% include "blocks/articles_blog_posts.html" %}
   </div>
   {% for article in article_list|slice:'10:11' %}
     <div class="span4 column column-3">
