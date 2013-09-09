@@ -92,8 +92,6 @@
       margin: 0
       &>div
         border-bottom: 1px solid $content-border
-      &>div:last-child
-        border-bottom: none
   &.program-list
     .base-content
       padding-top: 0
@@ -266,7 +264,6 @@
   .share-label
     background-color: #dfdfdf
     float: left
-    font-weight: bold
     margin: 0 2px 0 0
     padding: 6px
   .addthis_button_compact
@@ -333,24 +330,11 @@
 
 .next-page
   background-color: $content-bg-gray
-  border-top: 1px solid $content-border
   font-size: 20px
   margin-bottom: 0
   padding: 30px
+  text-align: center
   text-transform: uppercase
-
-.background-dark
-  background-color: $banner-bg-gray
-
-.pagination
-  margin: 0
-  padding: 20px 0
-
-.nomargin
-  margin: 0
-
-.nan
-  margin: 0 ($grid-row-width / 30)
 
 .separator-dotted, .separator-solid
   border-bottom: none
@@ -362,6 +346,19 @@
 
 .separator-solid
   border-top: 1px solid $black
+
+.no-margin
+  margin: 0
+
+.background-dark
+  background-color: $banner-bg-gray
+
+.pagination
+  margin: 0
+  padding: 20px 0
+
+.nan
+  margin: 0 ($grid-row-width / 30)
 
 .table-sidebar
   border-right: 0
