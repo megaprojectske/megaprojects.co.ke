@@ -3,7 +3,7 @@ from django.db import models
 from django.utils import timezone
 
 from core.models import TimeStampedModel, BaseModel, AuthorModel, PublicModel, ImageModel, CommentModel
-from core.util import unique_boolean
+from core.utils import unique_boolean
 
 from .managers import PostManager, ImageManager
 import util
