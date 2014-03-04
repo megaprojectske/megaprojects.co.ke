@@ -1,34 +1,53 @@
 def migrate_posts_to_articles():
-    from django.core.files import base
-    from articles.models import Article, Image
+    from articles.models import Article
     from blog.models import Post
 
     for p in Post.objects.all():
-        a = Article()
+        try:
+            Article.objects.get(shortuuid=p.shortuuid)
+            continue
+        except Article.DoesNotExist:
+            a = Article()
+            a.author = p.author
+            a.body = p.body
+            a.changed = p.changed
+            a.created = p.created
+            a.enable_comments = p.enable_comments
+            a.kind = Article.KIND_BLOG
+            a.pubdate = p.pubdate
+            a.reviewed = p.reviewed
+            a.shortuuid = p.shortuuid
+            a.slug = p.slug
+            a.status = Article.STATUS_PUBLISHED if p.status else Article.STATUS_DRAFT
+            a.title = p.title
+            a.uuid = p.uuid
+            a.save()
 
-        a.author = p.author
-        a.body = p.body
-        a.enable_comments = p.enable_comments
-        a.pubdate = p.pubdate
-        a.reviewed = p.reviewed
-        a.title = p.title
 
-        a.save()
+def migrate_post_images_to_article_images():
+    from django.core.files import base
+    from articles.models import Article, Image as ArticleImage
+    from blog.models import Post, Image as PostImage
 
-        if p.status:
-            a.status = 'p'
-        else:
-            a.status = 'd'
-
-        for pi in p.image_set.all():
-            ai = Image()
-
-            ai.article = a
-            ai.image = base.ContentFile(pi.image.read())
-            ai.reviewed = pi.reviewed
-            ai.shortuuid = pi.shortuuid
-            ai.status = pi.status
-            ai.thumbnail = pi.thumbnail
-            ai.title = pi.title
-
-            ai.save()
+    for pi in PostImage.objects.all():
+        try:
+            a = Article.objects.get(
+                kind=Article.KIND_BLOG, shortuuid=pi.post.shortuuid)
+            try:
+                ai = ArticleImage()
+                ai.article = a
+                ai.changed = pi.changed
+                ai.created = pi.created
+                ai.image = base.ContentFile(pi.image.read())
+                ai.reviewed = pi.reviewed
+                ai.save()
+                ai.shortuuid = pi.shortuuid
+                ai.status = pi.status
+                ai.thumbnail = pi.thumbnail
+                ai.title = pi.title
+                ai.uuid = pi.uuid
+                ai.save()
+            except IOError, e:
+                print e
+        except Article.DoesNotExist, e:
+            print e
