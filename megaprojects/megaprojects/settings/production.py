@@ -43,9 +43,6 @@ MANAGERS = ADMINS
 ########## FILE STORAGE CONFIGURATION
 # See: http://django-storages.readthedocs.org/en/latest/backends/amazon-S3.html#settings
 DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
-
-# See: http://django-storages.readthedocs.org/en/latest/backends/amazon-S3.html#settings
-STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
 ########## END FILE STORAGE CONFIGURATION
 
 
