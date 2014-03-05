@@ -12,6 +12,7 @@ django-storages==1.1.8
 django==1.5.1
 docutils==0.10
 logutils==0.3.3
+psycopg2==2.5.2
 shortuuid==0.3
 sorl-thumbnail==11.12
 south==0.7.6
