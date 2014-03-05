@@ -9,44 +9,37 @@ import models
 
 
 def article_mark_draft(modeladmin, request, queryset):
-    queryset.update(status='d')
-
+    queryset.update(status=models.Article.STATUS_DRAFT)
 article_mark_draft.short_description = 'Mark as draft'
 
 
 def article_mark_published(modeladmin, request, queryset):
-    queryset.update(status='p')
-
+    queryset.update(status=models.Article.STATUS_PUBLISHED)
 article_mark_published.short_description = 'Mark as published'
 
 
 def article_mark_withdrawn(modeladmin, request, queryset):
-    queryset.update(status='w')
-
+    queryset.update(status=models.Article.STATUS_WITHDRAWN)
 article_mark_withdrawn.short_description = 'Mark as withdrawn'
 
 
 def article_enable_comments(modeladmin, request, queryset):
     queryset.update(enable_comments=True)
-
 article_enable_comments.short_description = 'Enable comments'
 
 
 def article_disable_comments(modeladmin, request, queryset):
     queryset.update(enable_comments=False)
-
 article_disable_comments.short_description = 'Disable comments'
 
 
 def image_mark_published(modeladmin, request, queryset):
     queryset.update(status=True)
-
 image_mark_published.short_description = 'Mark as published'
 
 
 def image_mark_unpublished(modeladmin, request, queryset):
     queryset.update(status=False)
-
 image_mark_unpublished.short_description = 'Mark as unpublished'
 
 
