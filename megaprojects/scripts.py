@@ -86,3 +86,38 @@ def move_article_image_files(article_image=None):
 
         # Delete luuid path
         default_storage.delete(luuid_path)
+
+
+def move_program_image_files(program_image=None):
+    if not program_image:
+        from programs.models import Image as ProgramImage
+
+        REGEX_UUID = r'[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}/[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12}'
+        program_images = ProgramImage.objects.filter(image__regex=REGEX_UUID)
+        print 'Processing %d images' % len(program_images)
+
+        for pi in program_images:
+            move_program_image_files(pi)
+            print 'Done!'
+    else:
+        from django.core.files.storage import default_storage
+        from programs.utils import get_image_path
+
+        luuid_path = program_image.image.name
+        suuid_path = get_image_path(program_image, luuid_path)
+
+        # Check if destination exists
+        if default_storage.exists(suuid_path):
+            print 'Error: Destination exists (ID: %d)' % program_image.id
+            return
+
+        # Copy luuid path to suuid path
+        im = default_storage.open(luuid_path, 'r')
+        default_storage.save(suuid_path, im)
+
+        # Save suuid path
+        program_image.image = suuid_path
+        program_image.save()
+
+        # Delete luuid path
+        default_storage.delete(luuid_path)
