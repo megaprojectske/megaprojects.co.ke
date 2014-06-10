@@ -85,4 +85,4 @@ def move_article_image_files(article_image=None):
         article_image.save()
 
         # Delete luuid path
-        default_storage.delete(im)
+        default_storage.delete(luuid_path)
