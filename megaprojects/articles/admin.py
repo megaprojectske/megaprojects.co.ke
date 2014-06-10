@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.utils import text
 
 from sorl import thumbnail
+from sorl.thumbnail.helpers import ThumbnailError
 
 from core import admin as core_admin
 import forms
@@ -122,7 +123,7 @@ class ImageAdmin(admin.ModelAdmin):
         try:
             im = thumbnail.get_thumbnail(obj.image, '75x75')
             return '<img width="%d" height="%d" src="%s">' % (im.width, im.height, im.url)
-        except IOError:
+        except (ThumbnailError, IOError):
             return '<img width="75" height="75" src="">'
 
     img_thumbnail.allow_tags = True
