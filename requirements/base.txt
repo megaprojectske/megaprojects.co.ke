@@ -19,6 +19,6 @@ south==0.7.6
 whoosh==2.4.1
 
 git+git://github.com/jamstooks/django-s3-folder-storage.git#egg=django_s3_folder_storage
-git+https://bitbucket.org/raymondwanyoike/django-addthis.git#egg=django-addthis
-git+https://bitbucket.org/raymondwanyoike/django-ganalytics.git#egg=django-ganalytics
-git+https://bitbucket.org/raymondwanyoike/django-intensedebate.git#egg=django-intensedebate
+git+git://github.com/raymondwanyoike/django-addthis.git#egg=django-addthis
+git+git://github.com/raymondwanyoike/django-ganalytics.git#egg=django-ganalytics
+git+git://github.com/raymondwanyoike/django-intensedebate.git#egg=django-intensedebate
