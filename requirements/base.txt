@@ -1,4 +1,4 @@
-boto==2.9.6
+boto==2.29.1
 django-bootstrap-pagination==0.1.10
 django-braces==1.0.0
 django-ckeditor==4.0.2
