@@ -27,7 +27,7 @@ def migrate_posts_to_articles():
 def migrate_post_images_to_article_images():
     from django.core.files import base
     from articles.models import Article, Image as ArticleImage
-    from blog.models import Post, Image as PostImage
+    from blog.models import Image as PostImage
 
     for pi in PostImage.objects.all():
         try:
