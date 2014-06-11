@@ -9,22 +9,29 @@ import managers
 import utils as article_utils
 
 
-STATUS_CHOICES = [
-    ('d', 'Draft'),
-    ('p', 'Published'),
-    ('w', 'Withdrawn'),
-]
-
-KIND_CHOICES = [
-    ('a', 'Article'),
-    ('b', 'Blog'),
-    ('f', 'Feature'),
-]
-
-
 class Article(core_models.TimeStampedModel, core_models.BaseModel,
               core_models.AuthorModel, core_models.PublicModel,
               core_models.CommentModel):
+
+    STATUS_DRAFT = 'd'
+    STATUS_PUBLISHED = 'p'
+    STATUS_WITHDRAWN = 'w'
+
+    STATUS_CHOICES = [
+        (STATUS_DRAFT, 'Draft'),
+        (STATUS_PUBLISHED, 'Published'),
+        (STATUS_WITHDRAWN, 'Withdrawn'),
+    ]
+
+    KIND_ARTICLE = 'a'
+    KIND_BLOG = 'b'
+    KIND_FEATURE = 'f'
+
+    KIND_CHOICES = [
+        (KIND_ARTICLE, 'Article'),
+        (KIND_BLOG, 'Blog'),
+        (KIND_FEATURE, 'Feature'),
+    ]
 
     pubdate = models.DateTimeField('publication date',
                                    default=utils.timezone.now())
@@ -54,7 +61,6 @@ class Article(core_models.TimeStampedModel, core_models.BaseModel,
 @core_utils.unique_boolean('thumbnail', subset=['article'])
 class Image(core_models.TimeStampedModel, core_models.BaseModel,
             core_models.ImageModel):
-
     image = models.ImageField(upload_to=article_utils.get_image_path)
     article = models.ForeignKey(Article)
 

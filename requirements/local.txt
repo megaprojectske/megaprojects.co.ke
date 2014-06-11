@@ -1,7 +1,8 @@
-# Local development dependencies go here
+# Local dependencies
+
 -r base.txt
 
 coverage==3.6
 django-debug-toolbar==0.9.4
 django-discover-runner==0.4
-Sphinx==1.2b1
+sphinx==1.2b1

@@ -1,4 +1,5 @@
 from django.conf import urls
+from django.contrib import admin
 from django.contrib import sitemaps
 from django.views import generic
 
@@ -7,12 +8,10 @@ from programs.models import Program
 import views
 import feeds
 
-# Uncomment the next two lines to enable the admin:
-from django.contrib import admin
+
 admin.autodiscover()
 
-
-sm = {
+_sitemaps = {
     'articles': sitemaps.GenericSitemap(
         {'queryset': Article.objects.published(), 'date_field': 'pubdate'}),
     'projects': sitemaps.GenericSitemap(
@@ -33,19 +32,14 @@ urlpatterns = urls.patterns(
     urls.url(r'^search/', urls.include('haystack.urls'), name='search'),
 
     urls.url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
-             {'sitemaps': sm}, name='sitemap'),
+             {'sitemaps': _sitemaps}, name='sitemap'),
     urls.url(r'^robots\.txt$', generic.TemplateView.as_view(
         template_name='robots.txt', content_type='text/plain')),
 )
 
-
-import sys
 import settings.base as settings
-
-
-if 'runserver' in sys.argv:
-    urlpatterns += urls.patterns(
-        '',
-        urls.url(r'^media/(.*)$', 'django.views.static.serve',
-                 kwargs={'document_root': settings.MEDIA_ROOT}),
-    )
+urlpatterns += urls.patterns(
+    '',
+    urls.url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
+             kwargs={'document_root': settings.STATIC_ROOT}),
+)
